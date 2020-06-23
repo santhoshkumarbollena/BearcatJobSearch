@@ -17,4 +17,9 @@ class UserSchema extends Schema {
       table.timestamps()
     })
   }
+  down () {
+    this.drop('User')
+  }
 }
+
+module.exports = UserSchema
