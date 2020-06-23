@@ -16,4 +16,12 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('welcome')
+Route.get("/", async ({ response }) => {
+    return response.status(200).json({
+        status: 200,
+        message: "bearcat job serach application is running",
+    });
+});
+
+Route.get("/login", "Auth.home")
+Route.post("/registration", "Auth.registrationForStudent")
