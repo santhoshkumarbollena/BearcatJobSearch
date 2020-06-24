@@ -9,7 +9,7 @@ class StudentsSchema extends Schema {
       table.integer("studentId").primary();
       table.string("studentName", 40).notNullable();
       table.string("email", 40).notNullable();
-      table.string("password", 40).notNullable();
+      table.string("password", 300).notNullable();
       table.string("resume", 500);
       table.timestamp("dob").notNullable();
       table.string("phoneNumber", 20).notNullable();
