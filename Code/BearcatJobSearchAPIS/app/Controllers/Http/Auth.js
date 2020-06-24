@@ -30,14 +30,15 @@ class Auth {
 
     async registrationForStudent({ request, response, auth }) {
         // {
-        //   StudentId: '1',
-        //   StudentName: 'santhosh',
-        //   Email: 'demo',
-        //   Password: 'demo',
-        //   Resume: 'my resume',
-        //   DOB: '18/07/1998',
-        //   PhoneNumber: '9529054491',
-        //   Gender: 'Male'
+        //     "studentId":"1",
+        //       "studentName":"santhosh",
+        //       "email":"demo",
+        //       "password":"demo",
+        //       "resume":"my resume",
+        //       "dob":"1998-07-18 00:00:00",
+        //       "phoneNumber":"9529054491",
+        //       "gender":"Male"
+            
         // }
         //completed the registration
         console.log(request.all());

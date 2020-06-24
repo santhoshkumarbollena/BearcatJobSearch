@@ -27,5 +27,5 @@ Route.get("/", async ({ response }) => {
 // login routers
 Route.group(() => {
   Route.post("login", "Auth.login");
-  Route.post("registration", "Auth.register");
+  Route.post("registration", "Auth.registrationForStudent");
 }).prefix("api/v1");
