@@ -39,6 +39,7 @@ class Auth {
         //   PhoneNumber: '9529054491',
         //   Gender: 'Male'
         // }
+        //completed the registration
         console.log(request.all());
         const student = request.all();
         const studentInDB = await Student.create(student);
