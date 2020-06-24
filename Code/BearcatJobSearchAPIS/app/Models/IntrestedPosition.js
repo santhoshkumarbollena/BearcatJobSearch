@@ -4,12 +4,6 @@
 const Model = use('Model')
 
 class IntrestedPosition extends Model {
-    static get primaryKey() {
-        return "PositionId";
-    }
-    student() {
-        return this.belongsTo("App/Models/Student", "StudentId", "StudentId");
-    } 
 }
 
 module.exports = IntrestedPosition

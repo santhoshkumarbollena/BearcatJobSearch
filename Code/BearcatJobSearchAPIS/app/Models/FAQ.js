@@ -3,11 +3,7 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
-class FAQ extends Model {
-    static get primaryKey() {
-        return "FAQId";
-    }
-    
+class Faq extends Model {
 }
 
-module.exports = FAQ
+module.exports = Faq
