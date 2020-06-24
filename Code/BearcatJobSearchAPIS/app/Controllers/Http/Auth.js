@@ -1,52 +1,56 @@
 "use strict";
 
 const _ = use("lodash");
+const Hash = use("Hash");
 const Student = use("App/Models/Student");
 
 class Auth {
-    async login({ request, auth, response }) {
-        const userData = request.post();
+  async login({ request, auth, response }) {
+    const userData = request.post();
 
-        if (!userData || !userData.email || !userData.password) {
-            return response.status(400).json({
-                error: {
-                    status: 400,
-                    message: "missing required feilds, email, password are required",
-                },
-            });
-        }
-        let validateUser = await auth.attempt(userData.email, userData.password);
-        return response.status(200).json({
-            message: "login route",
-        });
+    if (!userData || !userData.email || !userData.password) {
+      return response.status(400).json({
+        error: {
+          status: 400,
+          message: "missing required feilds, email and password are required",
+        },
+      });
     }
 
-    async validateToken({ request, auth, response }) {
-        await auth.attempt(uid, password);
-        return response.status(200).json({
-            message: "login route",
-        });
+    let user = await Student.findBy("email", userData.email);
+
+    if (!user) {
+      return response.status(401).json({
+        error: {
+          status: 401,
+          message: "bad request, invalid email, password",
+        },
+      });
     }
 
-    async registrationForStudent({ request, response, auth }) {
-        // {
-        //     "studentId":"1",
-        //       "studentName":"santhosh",
-        //       "email":"demo",
-        //       "password":"demo",
-        //       "resume":"my resume",
-        //       "dob":"1998-07-18 00:00:00",
-        //       "phoneNumber":"9529054491",
-        //       "gender":"Male"
-            
-        // }
-        //completed the registration
-        console.log(request.all());
-        const student = request.all();
-        const studentInDB = await Student.create(student);
-        return response.status(200).json({
-            message: "student registered" + studentInDB,
-        });
+    let token = await auth.generate(user);
+    user = await user.toJSON();
+
+    // checking hashed password
+    const hashedPassword = await Hash.verify(userData.password, user.password);
+    if (!hashedPassword) {
+      return response.status(403).json({
+        error: {
+          status: 403,
+          message: "invalid password..",
+        },
+      });
     }
+
+    token = _.merge(token, {
+      message: "user login successfully",
+      studentId: user.studentId,
+      userId: user.userId,
+      email: user.email,
+    });
+    return response.status(200).json(token);
+  }
+
+  
 }
 module.exports = Auth;
