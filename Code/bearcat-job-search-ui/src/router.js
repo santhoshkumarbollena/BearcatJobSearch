@@ -4,7 +4,7 @@ import Login from "./views/Login.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
@@ -23,3 +23,21 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.fullPath == "/") {
+    next({ name: 'login' });
+  } else if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!auth.loggedIn()) {
+      next({ name: 'login' });
+    } else {
+      next()
+    }
+  } else {
+    next() // make sure to always call next()!
+  }
+})
+
+export default router;
