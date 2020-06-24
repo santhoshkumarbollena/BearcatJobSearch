@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Login from "./views/Login.vue";
+import Registration from "./views/Registration.vue";
+
 
 Vue.use(Router);
 
@@ -11,6 +13,11 @@ const router = new Router({
       path: "/login",
       name: "login",
       component: Login,
+    },
+    {
+      path: "/register",
+      name: "registration",
+      component: Registration,
     },
     {
       path: "/about",
