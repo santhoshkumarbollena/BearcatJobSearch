@@ -11,7 +11,7 @@
     </div>
     <div class="main">
       <div class="col-md-6 col-sm-12">
-        <div class="login-form border p-3 form-outline">
+        <div class="login-form border p-3 container-outline">
           <form>
             <div class="form-group text-left">
               <label>User Name</label>
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group text-left">
               <label>Password</label>
-              <input type="password" class="form-control" placeholder="Password" />
+              <input type="password" class="form-control" placeholder="Password" /><br>
             </div>
             <button type="submit" class="btn btn-black mr-2">Login</button>
             <button type="submit" class="btn btn-secondary">Register</button>
@@ -123,7 +123,7 @@ body {
   color: #aaa
 }
 
-.form-outline{
+.container-outline{
   background-color: #ADD8E6;
   border-radius:20px;
 }
