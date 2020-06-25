@@ -9,3 +9,15 @@
         <p>Registration to access the application.</p>
       </div>
     </div>
+    <div class="main form-outline">
+      <div class="col-md-6">
+        <div class="register-form border p-3">
+          <form>
+           <div class="form-group text-left">
+              <label>First Name</label>
+              <input type="text" class="form-control" placeholder="Firstname" />
+            </div>
+            <div class="form-group text-left">
+              <label>Last Name</label>
+              <input type="text" class="form-control" placeholder="Lastname" />
+            </div>
