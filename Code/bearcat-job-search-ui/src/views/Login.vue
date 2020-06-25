@@ -11,7 +11,7 @@
     </div>
     <div class="main">
       <div class="col-md-6 col-sm-12">
-        <div class="login-form border p-3">
+        <div class="login-form border p-3 form-outline">
           <form>
             <div class="form-group text-left">
               <label>User Name</label>
@@ -121,5 +121,10 @@ body {
 
 .btn:hover {
   color: #aaa
+}
+
+.form-outline{
+  background-color: #ADD8E6;
+  border-radius:20px;
 }
 </style>
