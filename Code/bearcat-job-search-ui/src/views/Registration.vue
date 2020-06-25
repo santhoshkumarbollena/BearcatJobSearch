@@ -29,3 +29,16 @@
               <label>Password</label>
               <input type="password" class="form-control" placeholder="Password" />
             </div>
+             <div class="form-group text-left">
+            <label>Gender</label>
+                  <div class="maxl">
+                    <label class="radio inline">
+                      <input type="radio" name="gender" value="male" checked />
+                      <span> Male</span>
+                    </label>&nbsp&nbsp
+                    <label class="radio inline">
+                      <input type="radio" name="gender" value="female" />
+                      <span> Female</span>
+                    </label>
+                  </div>
+            </div>
