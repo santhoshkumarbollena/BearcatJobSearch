@@ -42,6 +42,19 @@
                     </label>
                   </div>
             </div>
+            <div class="form-group text-left">
+                  <label><b>Phone Number</b></label>
+                  <input
+                    type="text"
+                    minlength="10"
+                    maxlength="10"
+                    name="txtEmpPhone"
+                    class="form-control"
+                    placeholder="Your Phone"
+                    value
+                  />
+              </div>
+              <input type="submit" class="btn btn-primary" value="Register" />
              </form>
         </div>
       </div>
