@@ -32,4 +32,5 @@ Route.group(() => {
 
 Route.group(() => {
     Route.get("getStudent/:studentId", "StudentController.getStudentBasedOnId");
+    Route.get("getAllJobs", "StudentController.getAllJobs");
   }).prefix("api/v1/student");
