@@ -7,9 +7,9 @@ const Job = use("App/Models/Job")
 
 class StudentController {
     async getStudentBasedOnId({ request, auth, response,params }) {
-        console.log(params.studentId)
+        // console.log(params.studentId)
         const student = await Student.find(params.studentId)
-        console.log(student)
+        // console.log(student)
         return response.status(200).json(student);
     }
 
