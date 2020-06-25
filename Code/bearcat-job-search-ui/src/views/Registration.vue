@@ -42,3 +42,15 @@
                     </label>
                   </div>
             </div>
+             </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Registration"
+};
+</script>
