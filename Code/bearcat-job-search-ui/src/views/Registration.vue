@@ -11,7 +11,7 @@
     </div>
     <div class="main form-outline">
       <div class="col-md-6">
-        <div class="register-form border p-3">
+        <div class="register-form p-3">
           <form>
            <div class="form-group text-left">
               <label><b>First Name</b></label>
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group text-left">
               <label><b>Password</b></label>
-              <input type="password" class="form-control" placeholder="Password" />
+              <input type="password" class="form-control" placeholder="New Password" />
             </div>
              <div class="form-group text-left">
             <label><b>Gender</b></label>
