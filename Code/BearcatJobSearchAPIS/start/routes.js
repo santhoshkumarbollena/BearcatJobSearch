@@ -29,3 +29,7 @@ Route.group(() => {
   Route.post("login", "Auth.login");
   Route.post("registration", "Auth.registrationForStudent");
 }).prefix("api/v1");
+
+Route.group(() => {
+    Route.get("getStudent/:studentId", "StudentController.getStudentBasedOnId");
+  }).prefix("api/v1/student");
