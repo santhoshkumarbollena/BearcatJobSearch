@@ -21,3 +21,11 @@
               <label>Last Name</label>
               <input type="text" class="form-control" placeholder="Lastname" />
             </div>
+             <div class="form-group text-left">
+              <label>User Name</label>
+              <input type="text" class="form-control" placeholder="User Name" />
+            </div>
+            <div class="form-group text-left">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password" />
+            </div>
