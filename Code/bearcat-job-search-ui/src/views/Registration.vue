@@ -14,23 +14,23 @@
         <div class="register-form border p-3">
           <form>
            <div class="form-group text-left">
-              <label>First Name</label>
+              <label><b>First Name</b></label>
               <input type="text" class="form-control" placeholder="Firstname" />
             </div>
             <div class="form-group text-left">
-              <label>Last Name</label>
+              <label><b>Last Name</b></label>
               <input type="text" class="form-control" placeholder="Lastname" />
             </div>
              <div class="form-group text-left">
-              <label>User Name</label>
+              <label><b>User Name</b></label>
               <input type="text" class="form-control" placeholder="User Name" />
             </div>
             <div class="form-group text-left">
-              <label>Password</label>
+              <label><b>Password</b></label>
               <input type="password" class="form-control" placeholder="Password" />
             </div>
              <div class="form-group text-left">
-            <label>Gender</label>
+            <label><b>Gender</b></label>
                   <div class="maxl">
                     <label class="radio inline">
                       <input type="radio" name="gender" value="male" checked />
