@@ -30,6 +30,7 @@ Route.group(() => {
   Route.post("registration", "Auth.registrationForStudent");
 }).prefix("api/v1");
 
+// data fetching routers
 Route.group(() => {
     Route.get("getStudent/:studentId", "StudentController.getStudentBasedOnId");
     Route.get("getAllJobs", "StudentController.getAllJobs");
