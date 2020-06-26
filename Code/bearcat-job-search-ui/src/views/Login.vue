@@ -13,12 +13,17 @@
       <div class="col-md-6 col-sm-12">
         <div class="login-form border p-3 container-outline">
           <form>
-            <div class="form-group text-left">
-              <label>User Name</label>
+            <div class="form-group">
+            <div class="input-group"> <span class="fa-stack fa-lg">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                 <i class="fa fa-user fa-1x"></i>
+                 </span>
               <input type="text" class="form-control" placeholder="User Name" />
             </div>
-            <div class="form-group text-left">
-              <label>Password</label>
+            </div>
+            <div class="form-group">
+            
+              
               <input type="password" class="form-control" placeholder="Password" /><br>
             </div>
             <button type="submit" class="btn btn-black mr-2">Login</button>
