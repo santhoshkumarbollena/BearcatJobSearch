@@ -75,6 +75,15 @@
 										<input type="password" class="form-control" placeholder="Password"> </div>
 								</div>
 							</div>
+              <div class="row align-items-center mt-4">
+								<div class="col">
+									<div class="input-group"> <span class="fa-stack fa-lg">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                 <i class="fa fa-lock fa-1x"></i>
+                 </span>
+										<input type="password" class="form-control" placeholder="Confirm Password"> </div>
+								</div>
+							</div>
 							<div class="row text-left mt-4">
 								<div class="col">
 									<div class="form-check">
