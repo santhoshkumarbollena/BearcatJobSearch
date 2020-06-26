@@ -1,43 +1,50 @@
 <template>
-  <div>
-    <div class="sidenav">
-      <div class="login-main-text">
-        <h2>
+	<div>
+		<div class="sidenav">
+			<div class="login-main-text">
+				<h2>
           Bearcat Job Search
-          <br />Login Page
-        </h2>
-        <p>Login from here to access the application.</p>
-      </div>
-    </div>
-    <div class="main">
-      <div class="col-md-6 col-sm-12">
-        <div class="login-form border p-3 container-outline">
-          <form>
-            <div class="form-group">
-            <div class="input-group"> <span class="fa-stack fa-lg">
-                <i class="fa fa-square-o fa-stack-2x"></i>
-                 <i class="fa fa-user fa-1x"></i>
-                 </span>
-              <input type="text" class="form-control" placeholder="User Name" />
-            </div>
-            </div>
-            <div class="form-group">
-            
-              
-              <input type="password" class="form-control" placeholder="Password" /><br>
-            </div>
-            <button type="submit" class="btn btn-black mr-2">Login</button>
-            <button type="submit" class="btn btn-secondary">Register</button>
-
-            <div class="form-group mt-3">
-              <a href="/#/login">Forget password</a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
+          
+					<br />Login Page
+        
+				</h2>
+				<p>Login from here to access the application.</p>
+			</div>
+		</div>
+		<div class="main">
+			<div class="col-md-6 col-sm-12">
+				<div class="login-form p-3">
+					<form>
+						<div class="form-group">
+							<div class="input-group">
+								<span class="fa-stack fa-lg">
+									<i class="fa fa-square-o fa-stack-2x"></i>
+									<i class="fa fa-user fa-1x"></i>
+								</span>
+								<input type="text" class="form-control" placeholder="User Name" />
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<span class="fa-stack fa-lg">
+									<i class="fa fa-square-o fa-stack-2x"></i>
+									<i class="fa fa-unlock fa-1x"></i>
+								</span>
+								<input type="password" class="form-control" placeholder="Password" />
+								<br>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary mr-2">Login</button>
+							<button type="submit" class="btn btn-secondary">Register</button>
+							<div class="form-group mt-3">
+								<a href="/#/login" id="forgot-pwd">Forgot password?</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
 
 <script>
 export default {
@@ -128,8 +135,8 @@ body {
   color: #aaa
 }
 
-.container-outline{
-  background-color: #ADD8E6;
-  border-radius:20px;
+#forgot-pwd {
+  color: #000000
 }
+
 </style>
