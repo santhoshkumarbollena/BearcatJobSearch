@@ -49,6 +49,15 @@
 		</div>
 	</div>
 </template>
+<script>
+export default {
+  name: "ResetPassword",
+  data() {
+    return {};
+  },
+  methods: {}
+};
+</script>
 
 
 <style scoped>
