@@ -10,25 +10,27 @@ Vue.use(Router);
 const router = new Router({
   base: process.env.BASE_URL,
   routes: [
+    { path: "/", redirect: "/home" },
     {
       path: "/error-page",
-      name: "Error404Page",
+      name: "error-404-page",
       component: Error404Page,
     },
     {
       path: "/login",
-      name: "Login",
+      name: "login",
       component: Login,
     },
     {
       path: "/register",
-      name: "Register",
+      name: "register",
       component: Registration,
     },
     {
       path: "/home",
-      name: "Home",
+      name: "home",
       component: Home,
+      meta: { requiresAuth: true },
     },
     {
       path: "/about",
@@ -43,20 +45,20 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.fullPath == "/") {
-    next({ name: "Login" });
+  let auth = localStorage.getItem("access_token");
+
+  if (to.fullPath == "/login" && auth) {
+    next({ name: "home" });
   } else if (to.matched.length == 0) {
-    next({ name: "Error404Page" });
+    next({ name: "error-404-page" });
   } else if (to.matched.some((record) => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!auth.loggedIn()) {
-      next({ name: "Login" });
+    if (!auth) {
+      next({ name: "login" });
     } else {
       next();
     }
   } else {
-    next(); // make sure to always call next()!
+    next();
   }
 });
 
