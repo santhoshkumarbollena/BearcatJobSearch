@@ -22,7 +22,25 @@
 								<p>Please enter your registered email, a verification link will be sent to your email</p>
 							</div>
 						</div>
-
+            <div class="row align-items-center mt-4">
+							<div class="col">
+								<div class="input-group"> <span class="fa-stack fa-lg">
+                      <i class="fa fa-square-o fa-stack-2x"></i>
+                      <i class="fa fa-envelope fa-1x"></i>
+                    </span>
+									<input type="email" class="form-control" placeholder="Email" /> </div>
+							</div>
+						</div>
+						<div class="row align-items-center mt-4">
+							<div class="col">
+								<input class="btn btn-primary btn-block" value="Reset Password" type="submit"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
 <script>
 export default {
   name: "ForgotPassword",
