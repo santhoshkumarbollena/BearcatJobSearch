@@ -103,7 +103,9 @@ export default {
         })
         .catch(error => {
           this.loader = false;
-          this.error = error.response.data.error.message;
+          this.error = error.response
+            ? error.response.data.error.message
+            : error;
         });
     }
   }
