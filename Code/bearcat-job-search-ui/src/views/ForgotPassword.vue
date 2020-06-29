@@ -33,7 +33,7 @@
 						</div>
 						<div class="row align-items-center mt-4">
 							<div class="col">
-								<input class="btn btn-primary btn-block" value="Reset Password" type="submit"> </div>
+								<input class="btn btn-primary btn-block" value="Send Link" type="submit"> </div>
 						</div>
 					</div>
 				</div>
