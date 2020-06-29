@@ -47,7 +47,9 @@
               <button type="submit" class="btn btn-secondary">Register</button>
             </router-link>
             <div class="form-group mt-3">
-              <a href="/#/login">Forgot password?</a>
+              <router-link to="/forgot-password" class="border">
+                <a>Forgot password?</a>
+              </router-link>
             </div>
             <Loader v-if="loader"></Loader>
             <b-alert show variant="danger" v-if="error">{{error}}</b-alert>
