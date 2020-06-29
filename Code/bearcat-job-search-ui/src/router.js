@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
 import Registration from "./views/Registration.vue";
+import ForgotPassword from "./views/ForgotPassword.vue";
 import Error404Page from "./components/utils/Error404Page.vue";
 
 Vue.use(Router);
@@ -25,6 +26,11 @@ const router = new Router({
       path: "/register",
       name: "register",
       component: Registration,
+    },
+    {
+      path: "/forgot-password",
+      name: "forgot-password",
+      component: ForgotPassword,
     },
     {
       path: "/home",
