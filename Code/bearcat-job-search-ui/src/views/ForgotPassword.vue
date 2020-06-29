@@ -9,7 +9,19 @@
 				<p>Forgot Password to access the application</p>
 			</div>
 		</div>
-    
+    <div class="main form-outline">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-12 col-md-8 col-lg-8 col-xl-6">
+						<div class="row align-items-center mt-4">
+							<div class="col"> <i class="fa fa-lock fa-4x"></i> </div>
+						</div>
+						<div class="row align-items-center mt-4">
+							<div class="col">
+								<h2>Forgot Password?</h2>
+								<p>Please enter your registered email, a verification link will be sent to your email</p>
+							</div>
+						</div>
 
 <script>
 export default {
