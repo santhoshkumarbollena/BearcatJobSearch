@@ -5,6 +5,7 @@ const Hash = use("Hash");
 const Student = use("App/Models/Student");
 
 class Auth {
+    
     async login({ request, auth, response }) {
         const userData = request.post();
 
