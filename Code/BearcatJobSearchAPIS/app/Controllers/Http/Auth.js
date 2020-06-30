@@ -5,6 +5,17 @@ const Hash = use("Hash");
 const Student = use("App/Models/Student");
 
 class Auth {
+    //Forgot password for a student function.
+    async forgotPassword({ request, auth, response }) 
+    {
+        //Getting the student email to send the password manage link.
+        const studentEmail = request.all();
+        console.log(studentEmail.email," will get a mail to reset password")
+
+        //Successful response that student got mail.
+        return response.status(200).json("Mail sent to Student succesfully "+studentEmail.email);
+
+    }
     async login({ request, auth, response }) {
         const userData = request.post();
 
@@ -52,8 +63,10 @@ class Auth {
     }
 
     async registrationForStudent({ request, response, auth }) {
+        //Getting all the details from the registration form.
         const student = request.all();
         let err = [];
+        //Validation for all the feilds in the registration form.
         if (!student.studentId) err.push("studentId is required");
         if (!student.email) err.push("email is required");
         if (!student.password) err.push("password is required");
@@ -61,6 +74,7 @@ class Auth {
         if (!student.phoneNumber) err.push("phoneNumber is required");
         if (!student.gender) err.push("gender is required");
 
+        //Cheaking for any missing feilds to send error as response.
         if (err && err.length) {
             return response.status(400).json({
                 error: {
@@ -70,16 +84,20 @@ class Auth {
                 },
             });
         }
-
+        //Hashing the password for security.
         try {
             const hashPassword = await Hash.make(student.password);
             student.password = hashPassword;
+            //Storing the student details in database.
             let studentInDB = await Student.create(student);
+            //Attaching succesful message for the response object. 
             studentInDB = _.merge(studentInDB, {
                 message: "student registered successfully",
             });
+            //Returing the response object.
             return response.status(200).json(studentInDB);
         } catch (err) {
+            //Returning the error if the student is not stored.
             return response.status(400).json({
                 error: err,
             });

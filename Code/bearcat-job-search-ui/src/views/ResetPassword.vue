@@ -4,36 +4,44 @@
 			<div class="ForgotPassword-main-text">
 				<h2>
           Bearcat Job Search
-          <br />Forgot Password Page
+          <br />Reset Password Page
         </h2>
-				<p>Forgot Password to access the application</p>
+				<p>Reset Password to access the application</p>
 			</div>
 		</div>
-    <div class="main form-outline">
+		<div class="main form-outline">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-12 col-md-8 col-lg-8 col-xl-6">
 						<div class="row align-items-center mt-4">
-							<div class="col"> <i class="fa fa-lock fa-4x"></i> </div>
+							<div class="col"> <i class="fa fa-unlock fa-4x"></i> </div>
 						</div>
 						<div class="row align-items-center mt-4">
 							<div class="col">
-								<h2>Forgot Password?</h2>
-								<p>Please enter your registered email, a verification link will be sent to your email</p>
-							</div>
+								<h2>Reset Password</h2> </div>
 						</div>
-            <div class="row align-items-center mt-4">
+						<div class="row align-items-center mt-4">
 							<div class="col">
 								<div class="input-group"> <span class="fa-stack fa-lg">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa fa-envelope fa-1x"></i>
-                    </span>
-									<input type="email" class="form-control" placeholder="Email" /> </div>
+                                <i class="fa fa-square-o fa-stack-2x"></i>
+                                <i class="fa fa-key fa-1x"></i>
+                                </span>
+								<input type="text" class="form-control" placeholder="New Password" /> </div>
 							</div>
 						</div>
-						<div class="row align-items-center mt-4">
+                        <div class="row align-items-center mt-4">
 							<div class="col">
-								<input class="btn btn-primary btn-block" value="Send Link" type="submit"> </div>
+								<div class="input-group"> <span class="fa-stack fa-lg">
+                                <i class="fa fa-square-o fa-stack-2x"></i>
+                                <i class="fa fa-key fa-1x"></i>
+                                </span>
+								<input type="text" class="form-control" placeholder="Confirm New Password" /> </div>
+							</div>
+						</div>
+                           <div class="row align-items-center mt-4">
+							<div class="col">
+								<input class="btn btn-primary btn-block" value="Reset Password" type="submit">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -43,13 +51,14 @@
 </template>
 <script>
 export default {
-  name: "ForgotPassword",
+  name: "ResetPassword",
   data() {
     return {};
   },
   methods: {}
 };
 </script>
+
 
 <style scoped>
 .nw-bg {

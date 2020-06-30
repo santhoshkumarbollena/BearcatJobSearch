@@ -28,6 +28,7 @@ Route.get("/", async ({ response }) => {
 Route.group(() => {
   Route.post("login", "Auth.login");
   Route.post("registration", "Auth.registrationForStudent");
+  Route.post("forgotpassword", "Auth.forgotPassword");
 }).prefix("api/v1");
 
 // data fetching routers
