@@ -5,11 +5,14 @@ const Hash = use("Hash");
 const Student = use("App/Models/Student");
 
 class Auth {
+    //Forgot password for a student function.
     async forgotPassword({ request, auth, response }) 
     {
+        //Getting the student email to send the password manage link.
         const studentEmail = request.all();
         console.log(studentEmail.email," will get a mail to reset password")
 
+        //Successful response that student got mail.
         return response.status(200).json("Mail sent to Student succesfully "+studentEmail.email);
 
     }
