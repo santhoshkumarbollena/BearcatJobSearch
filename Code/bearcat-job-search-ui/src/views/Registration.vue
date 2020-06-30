@@ -28,7 +28,7 @@
                       v-model="form.studentId"
                       required
                     />
-                    <small class="col-12 text-left ml-4">Please provied student id (#919)</small>
+                    <small class="col-12 text-left ml-4">Please provide student id (#919)</small>
                     <small class="col-12 text-left ml-4 text-danger">{{error.studentId}}</small>
                   </div>
                 </div>
