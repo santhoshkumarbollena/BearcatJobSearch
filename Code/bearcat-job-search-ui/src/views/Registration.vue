@@ -58,10 +58,11 @@
                       <i class="fa fa-phone fa-1x"></i>
                     </span>
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
                       placeholder="Phone Number"
                       v-model="form.phoneNumber"
+                      onKeyPress="if(this.value.length==10) return false;"
                     />
                     <small class="col-12 text-left ml-4 text-danger">{{error.phoneNumber}}</small>
                   </div>
@@ -140,7 +141,7 @@
                     name="checkbox-1"
                     value="accepted"
                     unchecked-value="not_accepted"
-                  >I accept the terms and use</b-form-checkbox>
+                  >I agree to terms and conditions</b-form-checkbox>
                   <button class="btn btn-primary mt-4" @click.prevent.stop="register">Register</button>
                 </div>
               </div>
