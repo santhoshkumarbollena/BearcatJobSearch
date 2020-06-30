@@ -22,10 +22,14 @@
                       <i class="fa fa-user fa-1x"></i>
                     </span>
                     <input
-                      type="text"
+                      type="number"
                       class="form-control"
-                      placeholder="First Name"
+                      placeholder="Student ID"
+                      v-model="form.studentId"
+                      required
                     />
+                    <small class="col-12 text-left ml-4">Please provied student id (#919)</small>
+                    <small class="col-12 text-left ml-4 text-danger">{{error.studentId}}</small>
                   </div>
                 </div>
               </div>
@@ -39,8 +43,10 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Last Name"
+                      placeholder="Name"
+                      v-model="form.studentName"
                     />
+                    <small class="col-12 text-left ml-4 text-danger">{{error.studentName}}</small>
                   </div>
                 </div>
               </div>
@@ -55,43 +61,23 @@
                       type="text"
                       class="form-control"
                       placeholder="Phone Number"
+                      v-model="form.phoneNumber"
                     />
+                    <small class="col-12 text-left ml-4 text-danger">{{error.phoneNumber}}</small>
                   </div>
                 </div>
               </div>
               <div class="row text-left mt-4">
                 <div class="col">
                   <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="Male"
-                    />
-                    <label class="form-check-label" for="inlineRadio1"
-                      >Male</label
-                    >
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-circle fa-stack-1x"></i>
-                      <i class="fa fa-male fa-stack-1x fa-inverse"></i>
-                    </span>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio2"
-                      value="Female"
-                    />
-                    <label class="form-check-label" for="inlineRadio2"
-                      >Female</label
-                    >
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-circle fa-stack-1x"></i>
-                      <i class="fa fa-female fa-stack-1x fa-inverse"></i>
-                    </span>
+                    <b-form-radio-group
+                      v-model="form.gender"
+                      :options="options"
+                      class="mb-3"
+                      value-field="item"
+                      text-field="name"
+                      disabled-field="notEnabled"
+                    ></b-form-radio-group>
                   </div>
                 </div>
               </div>
@@ -106,7 +92,9 @@
                       type="email"
                       class="form-control"
                       placeholder="Email"
+                      v-model="form.email"
                     />
+                    <small class="col-12 text-left ml-4 text-danger">{{error.email}}</small>
                   </div>
                 </div>
               </div>
@@ -121,7 +109,9 @@
                       type="password"
                       class="form-control"
                       placeholder="Password"
+                      v-model="form.password"
                     />
+                    <small class="col-12 text-left ml-4 text-danger">{{error.password}}</small>
                   </div>
                 </div>
               </div>
@@ -136,32 +126,108 @@
                       type="password"
                       class="form-control"
                       placeholder="Confirm Password"
+                      v-model="confirmPassword"
                     />
+                    <small class="col-12 text-left ml-4 text-danger">{{error.confirmPassword}}</small>
                   </div>
                 </div>
               </div>
               <div class="row text-left mt-4">
                 <div class="col">
-                  <div class="form-check">
-                    <label class="form-check-label">
-                      <input type="checkbox" class="form-check-input" /> I Read
-                      and Accept <a href="#">Terms and Conditions</a>
-                    </label>
-                  </div>
-                  <button class="btn btn-primary mt-4">Register</button>
+                  <b-form-checkbox
+                    id="checkbox-1"
+                    v-model="status"
+                    name="checkbox-1"
+                    value="accepted"
+                    unchecked-value="not_accepted"
+                  >I accept the terms and use</b-form-checkbox>
+                  <button class="btn btn-primary mt-4" @click.prevent.stop="register">Register</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <Loader v-if="loader"></Loader>
+      <b-alert show variant="success" v-if="endResult">{{endResult}}</b-alert>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Registration"
+  name: "Registration",
+  data() {
+    return {
+      error: {
+        studentId: "",
+        studentName: "",
+        email: "",
+        password: "",
+        phoneNumber: "",
+        gender: "",
+        confirmPassword: ""
+      },
+      form: {
+        studentId: 919584288,
+        studentName: "",
+        email: "",
+        password: "",
+        phoneNumber: "",
+        gender: "Male"
+      },
+      loader: false,
+      confirmPassword: "",
+      status: "not_accepted",
+      endResult: "",
+      options: [
+        { item: "Male", name: "Male" },
+        { item: "Female", name: "Female" }
+      ]
+    };
+  },
+  methods: {
+    register() {
+      this.loader = true;
+      this.error = null;
+
+      if (!this.form.studentId) {
+        this.error.studentId = "please enter student id";
+      }
+      if (!this.form.studentName) {
+        this.error.studentName = "please enter student name";
+      }
+      if (!this.form.email) {
+        this.error.email = "please enter email";
+      }
+      if (!this.form.password) {
+        this.error.password = "please enter password";
+      }
+      if (!this.form.dob) {
+        this.error.dob = "please enter dob";
+      }
+      if (!this.form.phoneNumber) {
+        this.error.phoneNumber = "please enter phone number";
+      }
+      if (this.error) {
+        this.loader = false;
+        return;
+      }
+
+      this.$http
+        .post("registration", this.form)
+        .then(response => {
+          this.loader = false;
+          this.endResult = "Student register successfully...!!";
+        })
+        .catch(error => {
+          this.loader = false;
+          this.endResult = error.response
+            ? error.response.data.error.message
+            : error;
+        });
+    }
+  }
 };
 </script>
 <style scoped>
