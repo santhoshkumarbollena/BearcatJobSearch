@@ -21,11 +21,11 @@ class Auth {
     {
         //Getting the student email to reset the password.
         const student = request.all();
-        console.log(student.email," password will be reseted")
+        console.log(student.email," password will be resetted")
         console.log(student.password," new password")
         // Hash the password and reset it.
         //Successful response that student got.
-        return response.status(200).json("password reseted succesfully "+student.email);
+        return response.status(200).json("password resetted succesfully "+student.email);
 
     }
 
@@ -35,7 +35,7 @@ class Auth {
         //Getting the user data to login.
         const userData = request.post();
 
-        //Veryfying weather the data has email and password for login.
+        //Verifying whether the data has email and password for login.
         if (!userData || !userData.email || !userData.password) {
             return response.status(400).json({
                 error: {
@@ -45,7 +45,7 @@ class Auth {
             });
         }
 
-        //Geeting the student based on email id.
+        //Getting the student based on email id.
         let user = await Student.findBy("email", userData.email);
 
         if (!user) {
