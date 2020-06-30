@@ -12,13 +12,28 @@ class Auth {
         const studentEmail = request.all();
         console.log(studentEmail.email," will get a mail to reset password")
 
-        //Successful response that student got mail.
+        //Successful response that student got.
         return response.status(200).json("Mail sent to Student succesfully "+studentEmail.email);
 
     }
+    //reset password for a student.
+    async resetPassword({ request, auth, response }) 
+    {
+        //Getting the student email to reset the password.
+        const student = request.all();
+        console.log(student.email," password will be reseted")
+        console.log(student.password," new password")
+        // Hash the password and reset it.
+        //Successful response that student got.
+        return response.status(200).json("password reseted succesfully "+student.email);
+
+    }
+    //Login logic
     async login({ request, auth, response }) {
+        //Getting the user data to login.
         const userData = request.post();
 
+        //Veryfying weather the data has email and password for login.
         if (!userData || !userData.email || !userData.password) {
             return response.status(400).json({
                 error: {
@@ -28,6 +43,7 @@ class Auth {
             });
         }
 
+        //Geeting the student based on email id.
         let user = await Student.findBy("email", userData.email);
 
         if (!user) {
@@ -39,8 +55,9 @@ class Auth {
             });
         }
 
-        // checking hashed password
+        // checking hashed password for login
         const hashedPassword = await Hash.verify(userData.password, user.password);
+        //If the password is incorrect sending an error with invalid password.
         if (!hashedPassword) {
             return response.status(403).json({
                 error: {
@@ -50,15 +67,18 @@ class Auth {
             });
         }
 
+        //Generating a JWT token for managing the application.
         let token = await auth.generate(user);
         user = await user.toJSON();
 
+        //Adding token to response object.
         token = _.merge(token, {
             message: "user login successfully",
             studentId: user.studentId,
             userId: user.userId,
             email: user.email,
         });
+        //Sending the succesful student details along with the access token.
         return response.status(200).json(token);
     }
 
