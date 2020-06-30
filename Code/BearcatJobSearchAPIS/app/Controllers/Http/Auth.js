@@ -5,7 +5,14 @@ const Hash = use("Hash");
 const Student = use("App/Models/Student");
 
 class Auth {
-    
+    async forgotPassword({ request, auth, response }) 
+    {
+        const studentEmail = request.all();
+        console.log(studentEmail.email," will get a mail to reset password")
+
+        return response.status(200).json("Mail sent to Student succesfully "+studentEmail.email);
+
+    }
     async login({ request, auth, response }) {
         const userData = request.post();
 
