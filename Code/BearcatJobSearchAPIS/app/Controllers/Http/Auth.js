@@ -15,6 +15,20 @@ class Auth {
         return response.status(200).json("Mail sent to Student succesfully "+studentEmail.email);
 
     }
+
+    //reset password for a student.
+    async resetPassword({ request, auth, response }) 
+    {
+        //Getting the student email to reset the password.
+        const student = request.all();
+        console.log(student.email," password will be reseted")
+        console.log(student.password," new password")
+        // Hash the password and reset it.
+        //Successful response that student got.
+        return response.status(200).json("password reseted succesfully "+student.email);
+
+    }
+
     
     //Login logic
     async login({ request, auth, response }) {
