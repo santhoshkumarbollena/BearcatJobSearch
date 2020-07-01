@@ -62,7 +62,7 @@
                       class="form-control"
                       placeholder="Phone Number"
                       v-model="form.phoneNumber"
-                      onKeyPress="if(this.value.length==10) return false;"
+                      onkeypress="if(this.value.length==10) return false;"
                     />
                     <small class="col-12 text-left ml-4 text-danger">{{error.phoneNumber}}</small>
                   </div>
@@ -75,12 +75,7 @@
                       <i class="fa fa-square-o fa-stack-2x"></i>
                       <i class="fa fa-calendar fa-1x"></i>
                     </span>
-                    <input
-                      type="date"
-                      class="form-control"
-                      placeholder="DOB"
-                      v-model="form.dob"
-                    />
+                    <input type="date" class="form-control" placeholder="DOB" v-model="form.dob" />
                   </div>
                 </div>
               </div>
@@ -165,15 +160,14 @@
           </div>
         </div>
       </section>
-      
+
       <b-alert show variant="success" v-if="endResult">{{endResult}}</b-alert>
     </div>
   </div>
 </template>
 
 <script>
-import Datepicker from 'vuejs-datepicker';
-
+import Datepicker from "vuejs-datepicker";
 
 export default {
   name: "Registration",
@@ -197,7 +191,7 @@ export default {
         gender: "Male",
         dob: ""
       },
-     
+
       confirmPassword: "",
       status: "not_accepted",
       endResult: "",
@@ -212,59 +206,56 @@ export default {
       console.log(this.form.dob);
       this.loader = true;
       this.error = null;
-      
+
       this.error = {};
 
-console.log(this.form.password)
-      console.log(this.confirmPassword)
-      console.log(this.confirmPassword==this.form.password)
+      console.log(this.form.password);
+      console.log(this.confirmPassword);
+      console.log(this.confirmPassword == this.form.password);
       if (!this.form.studentId) {
-        console.log("Error for student id")
+        console.log("Error for student id");
         this.error.studentId = "please enter student id";
       }
       if (!this.form.studentName) {
-        console.log("Error for student Name")
+        console.log("Error for student Name");
         this.error.studentName = "please enter student name";
       }
       if (!this.form.email) {
-        console.log("Error for student EMail")
+        console.log("Error for student EMail");
         this.error.email = "please enter email";
       }
       if (!this.form.password) {
-        console.log("Error for student Password")
+        console.log("Error for student Password");
         this.error.password = "please enter password";
         // this.error.confirmPassword = "please enter password";
       }
-      console.log("confirm pass bool"+this.confirmPassword==this.form.password)
-      
+      if (!(this.confirmPassword == this.form.password)) {
+        console.log("Password miss match");
+        // this.error.password = "please enter conform password";
+        this.error.confirmPassword = "please match password";
+      }
+
       if (!this.form.dob) {
         this.error.dob = "please enter dob";
       }
       if (!this.form.phoneNumber) {
-        console.log("Error for student phone number")
+        console.log("Error for student phone number");
         this.error.phoneNumber = "please enter phone number";
       }
-      console.log(Object.keys(this.error).length)
+      console.log(Object.keys(this.error).length);
       if (Object.keys(this.error).length) {
-        
-        console.log("In error")
+        console.log("In error");
         return;
       }
-      console.log("In functio")
-      console.log(this.form)
-      
 
       this.$http
         .post("registration", this.form)
         .then(response => {
-         
           this.endResult = "Student register successfully...!!";
-          alert("Student registered succesfully")
-          window.location = "http://localhost:8080/#/login"
-
+          alert("Student registered succesfully");
+          window.location = "http://localhost:8080/#/login";
         })
         .catch(error => {
-          
           this.endResult = error.response
             ? error.response.data.error.message
             : error;
