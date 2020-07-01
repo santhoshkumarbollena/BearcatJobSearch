@@ -14,7 +14,8 @@ Student Routes:
 
 Jobs Routes:
 
-
+  Route.get("getAllJobs", "StudentController.getAllJobs");
+  Route.get("getJob/:jobId", "StudentController.getJobBasedOnId");
 
 User Routes:
 
