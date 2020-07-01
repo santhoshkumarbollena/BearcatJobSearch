@@ -165,7 +165,7 @@
           </div>
         </div>
       </section>
-      <Loader v-if="loader"></Loader>
+      
       <b-alert show variant="success" v-if="endResult">{{endResult}}</b-alert>
     </div>
   </div>
@@ -173,6 +173,8 @@
 
 <script>
 import Datepicker from 'vuejs-datepicker';
+
+
 export default {
   name: "Registration",
   data() {
@@ -187,7 +189,7 @@ export default {
         confirmPassword: ""
       },
       form: {
-        studentId: 919584288,
+        studentId: "",
         studentName: "",
         email: "",
         password: "",
@@ -195,7 +197,7 @@ export default {
         gender: "Male",
         DOB: ""
       },
-      loader: false,
+     
       confirmPassword: "",
       status: "not_accepted",
       endResult: "",
@@ -210,40 +212,61 @@ export default {
       console.log(this.form.DOB);
       this.loader = true;
       this.error = null;
+      
+      this.error = {};
 
+console.log(this.form.password)
+      console.log(this.confirmPassword)
+      console.log(this.confirmPassword==this.form.password)
       if (!this.form.studentId) {
+        console.log("Error for student id")
         this.error.studentId = "please enter student id";
       }
       if (!this.form.studentName) {
+        console.log("Error for student Name")
         this.error.studentName = "please enter student name";
       }
       if (!this.form.email) {
+        console.log("Error for student EMail")
         this.error.email = "please enter email";
       }
       if (!this.form.password) {
+        console.log("Error for student Password")
         this.error.password = "please enter password";
+        // this.error.confirmPassword = "please enter password";
       }
+      // if (!this.confirmPassword==this.form.password) {
+      //   console.log("password missmatch")
+      //   this.error.confirmPassword = "pasword mismatch";
+      // }
       // if (!this.form.dob) {
       //   this.error.dob = "please enter dob";
       // }
       if (!this.form.phoneNumber) {
+        console.log("Error for student phone number")
         this.error.phoneNumber = "please enter phone number";
       }
-      if (this.error) {
-        this.loader = false;
+      console.log(Object.keys(this.error).length)
+      if (Object.keys(this.error).length) {
+        
+        console.log("In error")
         return;
       }
       console.log("In functio")
       console.log(this.form)
+      
 
       this.$http
         .post("registration", this.form)
         .then(response => {
-          this.loader = false;
+         
           this.endResult = "Student register successfully...!!";
+          alert("Student registered succesfully")
+          window.location = "http://localhost:8080/#/login"
+
         })
         .catch(error => {
-          this.loader = false;
+          
           this.endResult = error.response
             ? error.response.data.error.message
             : error;
