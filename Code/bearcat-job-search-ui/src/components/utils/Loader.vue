@@ -1,10 +1,6 @@
 <template>
   <div class="mt-30">
-    <b-overlay
-      :show="true"
-      rounded="sm"
-      spinner-variant="primary"
-    ></b-overlay>
+    <b-overlay :show="true" rounded="sm" spinner-variant="primary"></b-overlay>
   </div>
 </template>
 
