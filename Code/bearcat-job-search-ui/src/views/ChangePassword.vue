@@ -17,7 +17,7 @@
                                 <i class="fa fa-square-o fa-stack-2x"></i>
                                 <i class="fa fa-key fa-1x"></i>
                                 </span>
-								<input type="text" class="form-control" placeholder="Old Password" /> </div>
+								<input type="password" class="form-control" placeholder="Old Password" /> </div>
 							</div>
 						</div>
 						<div class="row align-items-center mt-4">
@@ -26,7 +26,7 @@
                                 <i class="fa fa-square-o fa-stack-2x"></i>
                                 <i class="fa fa-key fa-1x"></i>
                                 </span>
-								<input type="text" class="form-control" placeholder="New Password" /> </div>
+								<input type="password" class="form-control" placeholder="New Password" /> </div>
 							</div>
 						</div>
                         <div class="row align-items-center mt-4">
@@ -35,7 +35,7 @@
                                 <i class="fa fa-square-o fa-stack-2x"></i>
                                 <i class="fa fa-key fa-1x"></i>
                                 </span>
-								<input type="text" class="form-control" placeholder="Confirm New Password" /> </div>
+								<input type="password" class="form-control" placeholder="Confirm New Password" /> </div>
 							</div>
 						</div>
                            <div class="row align-items-center mt-4">
