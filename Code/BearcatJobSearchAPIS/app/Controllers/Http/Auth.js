@@ -85,18 +85,42 @@ class Auth {
 
   // reset password for the student
   async resetPassword({ request, response }) {
+    const getSecretKey = myCache.get(request.params.secretKey);
+    const userData = request.post();
 
-    if (getSecretKey) {
+    if (!userData.password || !userData.confirmPassword) {
+      return response.status(400).json({
+        status: 400,
+        message:
+          "missing required feilds, password and confirmPassword is required",
+      });
+    }
+
+    if (getSecretKey && getSecretKey.email) {
+      if (userData.password != userData.confirmPassword) {
+        return response.status(400).json({
+          status: 400,
+          message: "confirm password is not same as password",
+        });
+      }
+      let student = await Student.findBy("email", getSecretKey.email);
+
+      // generating new  hash password
+      const hashPassword = await Hash.make(userData.password);
+      student.password = hashPassword;
+
+      // updating password in database
+      await student.save();
+      return response.status(200).json({
+        status: 200,
+        message: "password updated successfully",
+      });
     } else {
       return response.status(400).json({
         status: 400,
         message: "reset token has expired, please generate new link",
       });
     }
-
-    return response.status(200).json({
-      message: "success",
-    });
   }
 
   //change password for the student
