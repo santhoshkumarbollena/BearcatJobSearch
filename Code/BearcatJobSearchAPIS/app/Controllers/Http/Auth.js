@@ -29,6 +29,37 @@ class Auth {
 
     }
 
+    //change password for the student
+    async changePassword({request, auth, response}){
+        //console.log(auth);
+
+        //based on auth.Student id retrieve student details
+        const id = 919584721;
+        let student = await Student.find(id);
+
+        //compare old password and hashed password from db
+        const userData = request.all();
+        console.log(userData);
+        const hashedPassword = await Hash.verify(userData.password, student.password);
+        //console.log(hashedPassword);
+
+        //if same create hasdh for new passwor and store it in db
+        if(hashedPassword) {
+            
+        }
+
+        //send successfull message
+        
+
+        
+        
+        
+
+
+
+
+    }
+
     
     //Login logic
     async login({ request, auth, response }) {
@@ -40,7 +71,7 @@ class Auth {
             return response.status(400).json({
                 error: {
                     status: 400,
-                    message: "missing required feilds, email and password are required",
+                    message: "missing required fields, email and password are required",
                 },
             });
         }
