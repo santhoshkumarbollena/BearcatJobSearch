@@ -77,7 +77,6 @@
                   />
                 </router-link>
                 </div>
-              </div>
             </div>
             <div class="row align-items-center mt-4">
               <div class="col-sm-12">
