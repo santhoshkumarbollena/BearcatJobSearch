@@ -1,46 +1,62 @@
 <template>
-	<div>
-		<div class="sidenav">
-			<div class="ForgotPassword-main-text">
-				<h2>
+  <div>
+    <div class="sidenav">
+      <div class="ForgotPassword-main-text">
+        <h2>
           Bearcat Job Search
           <br />Forgot Password Page
         </h2>
-				<p>Forgot Password to access the application</p>
-			</div>
-		</div>
+        <p>Forgot Password to access the application</p>
+      </div>
+    </div>
     <div class="main form-outline">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-12 col-md-8 col-lg-8 col-xl-6">
-						<div class="row align-items-center mt-4">
-							<div class="col"> <i class="fa fa-lock fa-4x"></i> </div>
-						</div>
-						<div class="row align-items-center mt-4">
-							<div class="col">
-								<h2>Forgot Password?</h2>
-								<p>Please enter your registered email, a verification link will be sent to your email</p>
-							</div>
-						</div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-6">
             <div class="row align-items-center mt-4">
-							<div class="col">
-								<div class="input-group"> <span class="fa-stack fa-lg">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa fa-envelope fa-1x"></i>
-                    </span>
-									<input type="email" class="form-control" placeholder="Email" /> </div>
-							</div>
-						</div>
-						<div class="row align-items-center mt-4">
-							<div class="col">
-								<input class="btn btn-primary btn-block" value="Send Link" type="submit"> </div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+              <div class="col">
+                <i class="fa fa-lock fa-4x"></i>
+              </div>
+            </div>
+            <div class="row align-items-center mt-4">
+              <div class="col">
+                <h2>Forgot Password?</h2>
+                <p>Please enter your registered email, a verification link will be sent to your email</p>
+              </div>
+            </div>
+            <div class="row align-items-center mt-4">
+              <div class="col">
+                <div class="input-group">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-square-o fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-1x"></i>
+                  </span>
+                  <input type="email" class="form-control" placeholder="Email" v-model="email" />
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-center mt-4">
+              <div class="col">
+                <input
+                  class="btn btn-primary btn-block"
+                  value="Send Link"
+                  type="submit"
+                  @click.prevent="sendLink"
+                />
+              </div>
+              <div class="col-sm-12 mt-3">
+                <Loader v-if="loader" class="mt-4"></Loader>
+                <b-alert show variant="danger" v-if="error">{{error}}</b-alert>
+                <b-alert show variant="success" v-if="success">{{success}}</b-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
+
 <script>
 import Loader from "../components/utils/Loader.vue";
 export default {
@@ -80,7 +96,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .nw-bg {
