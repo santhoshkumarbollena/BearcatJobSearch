@@ -41,13 +41,13 @@ class Auth {
         const hashedPassword = await Hash.verify(userData.password, student.password);
         //console.log(hashedPassword);
 
-        //if same create hasdh for new password and store it in db
+        //if same create hash for new password and store it in db
         let result = "";
         if (hashedPassword) {
             try {
                 const newHashPassword = await Hash.make(userData.newpassword);
                 student.password = newHashPassword;
-                result = await Student.save(student);
+                result = await student.save();
 
             }
 
