@@ -6,31 +6,29 @@ const Student = use("App/Models/Student");
 
 class Auth {
     //Forgot password for a student function.
-    async forgotPassword({ request, auth, response }) 
-    {
+    async forgotPassword({ request, auth, response }) {
         //Getting the student email to send the password manage link.
         const studentEmail = request.all();
-        console.log(studentEmail.email," will get a mail to reset password")
+        console.log(studentEmail.email, " will get a mail to reset password")
         //Successful response that student got.
-        return response.status(200).json("Mail sent to Student succesfully "+studentEmail.email);
+        return response.status(200).json("Mail sent to Student succesfully " + studentEmail.email);
 
     }
 
     //reset password for a student.
-    async resetPassword({ request, auth, response }) 
-    {
+    async resetPassword({ request, auth, response }) {
         //Getting the student email to reset the password.
         const student = request.all();
-        console.log(student.email," password will be resetted")
-        console.log(student.password," new password")
+        console.log(student.email, " password will be resetted")
+        console.log(student.password, " new password")
         // Hash the password and reset it.
         //Successful response that student got.
-        return response.status(200).json("password resetted succesfully "+student.email);
+        return response.status(200).json("password resetted succesfully " + student.email);
 
     }
 
     //change password for the student
-    async changePassword({request, auth, response}){
+    async changePassword({ request, auth, response }) {
         //console.log(auth);
 
         //based on auth.Student id retrieve student details
@@ -44,14 +42,15 @@ class Auth {
         //console.log(hashedPassword);
 
         //if same create hasdh for new password and store it in db
-        if(hashedPassword) {
+        let result = "";
+        if (hashedPassword) {
             try {
                 const newHashPassword = await Hash.make(userData.newpassword);
                 student.password = newHashPassword;
-                student
-                
+                result = await Student.save(student);
+
             }
-            
+
             catch (err) {
                 //Returning the error
                 return response.status(400).json({
@@ -59,14 +58,17 @@ class Auth {
                 });
             }
         }
-    
+
 
         //send successfull message
-        return response.status(200).json("password changed succesfully");
-    
+        return response.status(200).json({
+            message: "password changed succesfully",
+            result
+        });
+
     }
 
-    
+
     //Login logic
     async login({ request, auth, response }) {
         //Getting the user data to login.
