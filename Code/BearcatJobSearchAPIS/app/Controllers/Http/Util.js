@@ -6,7 +6,6 @@ const Student = use("App/Models/Student");
 class Util {
   async sendTestMail({ request, response }) {
     let reqBody = request.post();
-    console.log("-------reqBody", reqBody);
     if (!reqBody || !reqBody.email) {
       return response.status(400).json({
         status: 400,
