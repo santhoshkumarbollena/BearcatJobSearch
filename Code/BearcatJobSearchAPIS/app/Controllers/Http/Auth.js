@@ -44,7 +44,7 @@ class Auth {
       Math.random().toString(36).slice(2) +
       (Math.random() * 100 + "").toString().slice(3);
 
-    myCache.set(secureResetkey, true);
+    myCache.set(secureResetkey, { email: student.email });
     student.url = `http://localhost:8080/#/reset-password/${secureResetkey}`;
 
     let mailResponse = await Mail.send(
@@ -54,7 +54,7 @@ class Auth {
         message
           .to(student.email)
           .from(Env.get("MAIL_USERNAME"))
-          .subject("Testing Mail");
+          .subject("Reset Password Link");
       }
     );
 
@@ -71,16 +71,16 @@ class Auth {
     const getSecretKey = myCache.get(secretKey);
 
     if (getSecretKey) {
+      return response.status(200).json({
+        status: 200,
+        message: "success, verified link",
+      });
     } else {
       return response.status(400).json({
         status: 400,
         message: "reset token has expired, please generate new link",
       });
     }
-
-    return response.status(200).json({
-      message: "success",
-    });
   }
 
   // reset password for the student
