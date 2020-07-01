@@ -42,14 +42,45 @@
 	</div>
 </template>
 <script>
+import Loader from "../components/utils/Loader.vue";
 export default {
   name: "ForgotPassword",
-  data() {
-    return {};
+  components: {
+    Loader
   },
-  methods: {}
+  data() {
+    return {
+      email: "",
+      error: "",
+      success: "",
+      loader: false
+    };
+  },
+  methods: {
+    sendLink() {
+      this.loader = true;
+      this.error = "";
+      this.success = "";
+      if (!this.email) {
+        this.error = "please enter the email id";
+        return;
+      }
+      this.$http
+        .post("forgot-password", { email: this.email })
+        .then(response => {
+          this.loader = false;
+          this.success = "Reset mail has sent successfully";
+        })
+        .catch(error => {
+          console.log("error", error.response);
+          this.loader = false;
+          this.error = "Invalid, please check your email id";
+        });
+    }
+  }
 };
 </script>
+
 
 <style scoped>
 .nw-bg {
