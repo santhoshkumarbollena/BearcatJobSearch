@@ -33,6 +33,7 @@ Route.group(() => {
   Route.post("registration", "Auth.registrationForStudent");
   Route.post("forgotpassword", "Auth.forgotPassword");
   Route.post("resetpassword", "Auth.resetPassword");
+  Route.post("changepassword", "Auth.changePassword");
 }).prefix("api/v1");
 
 // data fetching routers
