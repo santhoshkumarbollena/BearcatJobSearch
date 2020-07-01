@@ -23,7 +23,7 @@
                 <h2>Reset Password</h2>
               </div>
             </div>
-            <div v-if="!loader && !error">
+            <div v-if="!error">
               <div class="row align-items-center mt-4">
                 <div class="col">
                   <div class="input-group">
@@ -31,7 +31,12 @@
                       <i class="fa fa-square-o fa-stack-2x"></i>
                       <i class="fa fa-key fa-1x"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="New Password" />
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="New Password"
+                      v-model="secret.password"
+                    />
                   </div>
                 </div>
               </div>
@@ -42,13 +47,24 @@
                       <i class="fa fa-square-o fa-stack-2x"></i>
                       <i class="fa fa-key fa-1x"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="Confirm New Password" />
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Confirm New Password"
+                      v-model="secret.confirmPassword"
+                    />
+                    <small class="text-left text-danger col-sm-12 ml-3">{{passError}}</small>
                   </div>
                 </div>
               </div>
               <div class="row align-items-center mt-4">
                 <div class="col">
-                  <input class="btn btn-primary btn-block" value="Reset Password" type="submit" />
+                  <input
+                    class="btn btn-primary btn-block"
+                    value="Reset Password"
+                    type="submit"
+                    @click.prevent.stop="changePassword"
+                  />
                 </div>
               </div>
             </div>
@@ -56,6 +72,7 @@
               <div class="col-sm-12">
                 <Loader v-if="loader"></Loader>
                 <b-alert show variant="danger" v-if="error">{{error}}</b-alert>
+                <b-alert show variant="success" v-if="success">{{success}}</b-alert>
               </div>
             </div>
           </div>
@@ -72,7 +89,7 @@ export default {
   components: {
     Loader
   },
-  created() {
+  mounted() {
     this.$http
       .get("validate/reset/password/" + this.$route.params.secretKey)
       .then(response => {
@@ -87,10 +104,38 @@ export default {
     return {
       loader: true,
       error: "",
-      success: ""
+      success: "",
+      passError: "",
+      secret: {
+        password: "",
+        confirmPassword: ""
+      }
     };
   },
-  methods: {}
+  methods: {
+    changePassword() {
+      this.loader = true;
+      this.passError = "";
+      if (this.secret.password != this.secret.confirmPassword) {
+        this.loader = false;
+        this.passError = "confirm password is not same as password";
+        return;
+      }
+
+      this.$http
+        .post("reset/password/" + this.$route.params.secretKey, this.secret)
+        .then(response => {
+          this.loader = false;
+          this.secret = {};
+          this.success = "Password updated successfully";
+        })
+        .catch(error => {
+          this.loader = false;
+          this.secret = {};
+          this.error = "reset token has expired, please generate new link";
+        });
+    }
+  }
 };
 </script>
 
