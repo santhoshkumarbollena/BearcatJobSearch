@@ -50,14 +50,34 @@
 	</div>
 </template>
 <script>
+import Loader from "../components/utils/Loader.vue";
 export default {
   name: "ResetPassword",
+  components: {
+    Loader
+  },
+  created() {
+    this.$http
+      .get("validate/reset/password/" + this.$route.params.secretKey)
+      .then(response => {
+        this.loader = false;
+      })
+      .catch(error => {
+        this.loader = false;
+        this.error = "reset token has expired, please generate new link";
+      });
+  },
   data() {
-    return {};
+    return {
+      loader: true,
+      error: "",
+      success: ""
+    };
   },
   methods: {}
 };
 </script>
+
 
 
 <style scoped>
