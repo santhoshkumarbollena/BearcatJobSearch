@@ -22,7 +22,7 @@
                       <i class="fa fa-user fa-1x"></i>
                     </span>
                     <input
-                      type="number"
+                      type="text"
                       class="form-control"
                       placeholder="Student ID"
                       v-model="form.studentId"
@@ -204,9 +204,9 @@ export default {
       if (!this.form.password) {
         this.error.password = "please enter password";
       }
-      if (!this.form.dob) {
-        this.error.dob = "please enter dob";
-      }
+      // if (!this.form.dob) {
+      //   this.error.dob = "please enter dob";
+      // }
       if (!this.form.phoneNumber) {
         this.error.phoneNumber = "please enter phone number";
       }
@@ -214,6 +214,8 @@ export default {
         this.loader = false;
         return;
       }
+      console.log("In functio")
+      console.log(this.form)
 
       this.$http
         .post("registration", this.form)
