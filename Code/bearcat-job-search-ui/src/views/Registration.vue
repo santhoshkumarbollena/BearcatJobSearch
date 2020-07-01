@@ -144,16 +144,18 @@
                   </div>
                 </div>
               </div>
-              <div class="row text-left mt-4">
+              <div class="row mt-4">
                 <div class="col">
                   <b-form-checkbox
+                    class="text-left"
                     id="checkbox-1"
                     v-model="status"
                     name="checkbox-1"
                     value="accepted"
                     unchecked-value="not_accepted"
                   >I agree to terms and conditions</b-form-checkbox>
-                  <button class="btn btn-primary mt-4" @click.prevent.stop="register">Register</button>
+                  <button class="btn btn-primary mt-4 pull-left" @click.prevent.stop="register">Register</button>
+                  <button class="btn btn-primary mt-4 pull-right">Login</button>
                 </div>
               </div>
             </div>
