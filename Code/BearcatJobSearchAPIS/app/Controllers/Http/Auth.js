@@ -43,21 +43,27 @@ class Auth {
         const hashedPassword = await Hash.verify(userData.password, student.password);
         //console.log(hashedPassword);
 
-        //if same create hasdh for new passwor and store it in db
+        //if same create hasdh for new password and store it in db
         if(hashedPassword) {
+            try {
+                const newHashPassword = await Hash.make(userData.newpassword);
+                student.password = newHashPassword;
+                student
+                
+            }
             
+            catch (err) {
+                //Returning the error
+                return response.status(400).json({
+                    error: err,
+                });
+            }
         }
+    
 
         //send successfull message
-        
-
-        
-        
-        
-
-
-
-
+        return response.status(200).json("password changed succesfully");
+    
     }
 
     
