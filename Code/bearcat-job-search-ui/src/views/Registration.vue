@@ -68,6 +68,22 @@
                   </div>
                 </div>
               </div>
+              <div class="row align-items-center mt-4">
+                <div class="col">
+                  <div class="input-group">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square-o fa-stack-2x"></i>
+                      <i class="fa fa-calendar fa-1x"></i>
+                    </span>
+                    <input
+                      type="date"
+                      class="form-control"
+                      placeholder="DOB"
+                      v-model="form.DOB"
+                    />
+                  </div>
+                </div>
+              </div>
               <div class="row text-left mt-4">
                 <div class="col">
                   <div class="form-check form-check-inline">
@@ -156,6 +172,7 @@
 </template>
 
 <script>
+import Datepicker from 'vuejs-datepicker';
 export default {
   name: "Registration",
   data() {
@@ -175,7 +192,8 @@ export default {
         email: "",
         password: "",
         phoneNumber: "",
-        gender: "Male"
+        gender: "Male",
+        DOB: ""
       },
       loader: false,
       confirmPassword: "",
@@ -189,6 +207,7 @@ export default {
   },
   methods: {
     register() {
+      console.log(this.form.DOB);
       this.loader = true;
       this.error = null;
 
