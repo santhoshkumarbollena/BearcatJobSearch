@@ -68,6 +68,17 @@
                 </div>
               </div>
             </div>
+             <div class="row align-items-center mt-4">
+                <div class="col">
+                <router-link to="/login">
+                  <input
+                    class="btn btn-primary btn-block"
+                    value="Click here to Login"
+                  />
+                </router-link>
+                </div>
+              </div>
+            </div>
             <div class="row align-items-center mt-4">
               <div class="col-sm-12">
                 <Loader v-if="loader"></Loader>
