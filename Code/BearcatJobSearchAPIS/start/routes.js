@@ -24,15 +24,12 @@ Route.get("/", async ({ response }) => {
   });
 });
 
-// base route to check sending mail health
-Route.post("test/send-main", "Util.sendTestMail");
-
 // login routers
 Route.group(() => {
   Route.post("login", "Auth.login");
   Route.post("registration", "Auth.registrationForStudent");
-  Route.post("forgotpassword", "Auth.forgotPassword");
-  Route.post("resetpassword", "Auth.resetPassword");
+  Route.post("forgot-password", "Auth.sendResetMail");
+  Route.get("validate/reset/password/:secretKey", "Auth.validateResetPasswordLink");
   Route.post("changepassword", "Auth.changePassword");
 }).prefix("api/v1");
 
