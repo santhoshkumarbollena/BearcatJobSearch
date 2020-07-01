@@ -1,10 +1,12 @@
 "use strict";
+const nodeCache = use("node-cache");
 const Env = use("Env");
 const Mail = use("Mail");
 const Student = use("App/Models/Student");
+const myCache = new nodeCache({ stdTTL: 600 });
 
 class Util {
-  async sendTestMail({ request, response }) {
+  async sendResetMail({ request, response }) {
     let reqBody = request.post();
     if (!reqBody || !reqBody.email) {
       return response.status(400).json({
@@ -15,7 +17,13 @@ class Util {
 
     let student = await Student.findBy("email", reqBody.email);
     student = await student.toJSON();
-    student.url = "http://localhost:8080/#/reset-password";
+
+    const secureResetkey =
+      Math.random().toString(36).slice(2) +
+      (Math.random() * 100 + "").toString().slice(3);
+
+    myCache.set(secureResetkey, true);
+    student.url = `http://localhost:8080/#/reset-password/${secureResetkey}`;
 
     let mailResponse = await Mail.send(
       "emails.resetEmail",
