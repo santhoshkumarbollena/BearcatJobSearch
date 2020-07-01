@@ -1,54 +1,70 @@
 <template>
-	<div>
-		<div class="sidenav">
-			<div class="ForgotPassword-main-text">
-				<h2>
+  <div>
+    <div class="sidenav">
+      <div class="ForgotPassword-main-text">
+        <h2>
           Bearcat Job Search
           <br />Reset Password Page
         </h2>
-				<p>Reset Password to access the application</p>
-			</div>
-		</div>
-		<div class="main form-outline">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-12 col-md-8 col-lg-8 col-xl-6">
-						<div class="row align-items-center mt-4">
-							<div class="col"> <i class="fa fa-unlock fa-4x"></i> </div>
-						</div>
-						<div class="row align-items-center mt-4">
-							<div class="col">
-								<h2>Reset Password</h2> </div>
-						</div>
-						<div class="row align-items-center mt-4">
-							<div class="col">
-								<div class="input-group"> <span class="fa-stack fa-lg">
-                                <i class="fa fa-square-o fa-stack-2x"></i>
-                                <i class="fa fa-key fa-1x"></i>
-                                </span>
-								<input type="password" class="form-control" placeholder="New Password" /> </div>
-							</div>
-						</div>
-                        <div class="row align-items-center mt-4">
-							<div class="col">
-								<div class="input-group"> <span class="fa-stack fa-lg">
-                                <i class="fa fa-square-o fa-stack-2x"></i>
-                                <i class="fa fa-key fa-1x"></i>
-                                </span>
-								<input type="password" class="form-control" placeholder="Confirm New Password" /> </div>
-							</div>
-						</div>
-                           <div class="row align-items-center mt-4">
-							<div class="col">
-								<input class="btn btn-primary btn-block" value="Reset Password" type="submit">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <p>Reset Password to access the application</p>
+      </div>
+    </div>
+    <div class="main form-outline">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+            <div class="row align-items-center mt-4">
+              <div class="col">
+                <i class="fa fa-unlock fa-4x"></i>
+              </div>
+            </div>
+            <div class="row align-items-center mt-4">
+              <div class="col">
+                <h2>Reset Password</h2>
+              </div>
+            </div>
+            <div v-if="!loader && !error">
+              <div class="row align-items-center mt-4">
+                <div class="col">
+                  <div class="input-group">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square-o fa-stack-2x"></i>
+                      <i class="fa fa-key fa-1x"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="New Password" />
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-center mt-4">
+                <div class="col">
+                  <div class="input-group">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square-o fa-stack-2x"></i>
+                      <i class="fa fa-key fa-1x"></i>
+                    </span>
+                    <input type="password" class="form-control" placeholder="Confirm New Password" />
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-center mt-4">
+                <div class="col">
+                  <input class="btn btn-primary btn-block" value="Reset Password" type="submit" />
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-center mt-4">
+              <div class="col-sm-12">
+                <Loader v-if="loader"></Loader>
+                <b-alert show variant="danger" v-if="error">{{error}}</b-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
+
 <script>
 import Loader from "../components/utils/Loader.vue";
 export default {
@@ -77,7 +93,6 @@ export default {
   methods: {}
 };
 </script>
-
 
 
 <style scoped>
