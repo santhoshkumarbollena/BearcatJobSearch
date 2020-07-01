@@ -5,6 +5,7 @@ import Login from "./views/Login.vue";
 import Registration from "./views/Registration.vue";
 import ForgotPassword from "./views/ForgotPassword.vue";
 import ResetPassword from "./views/ResetPassword.vue";
+import ChangePassword from "./views/ChangePassword.vue";
 import Error404Page from "./components/utils/Error404Page.vue";
 
 Vue.use(Router);
@@ -27,6 +28,11 @@ const router = new Router({
       path: "/register",
       name: "register",
       component: Registration,
+    },
+    {
+      path: "/change-password",
+      name: "change-password",
+      component: ChangePassword,
     },
     {
       path: "/forgot-password",
