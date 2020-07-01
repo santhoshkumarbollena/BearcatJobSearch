@@ -25,7 +25,7 @@ Route.get("/", async ({ response }) => {
 });
 
 // base route to check sending mail health
-// Route.get("/test/send-main", "Utils.sendTestMail");
+Route.get("/test/send-main", "Utils.sendTestMail");
 
 // login routers
 Route.group(() => {
