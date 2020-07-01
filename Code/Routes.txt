@@ -9,7 +9,12 @@ Authentication routes:
 
 Student Routes:
 
-  
+  Route.get("getStudent/:studentId", "StudentController.getStudentBasedOnId");
+  Route.post("changepassword", "Auth.changePassword");
+
+Jobs Routes:
+
+
 
 User Routes:
 
