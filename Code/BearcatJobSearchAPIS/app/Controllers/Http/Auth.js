@@ -83,6 +83,22 @@ class Auth {
     });
   }
 
+  // reset password for the student
+  async resetPassword({ request, response }) {
+
+    if (getSecretKey) {
+    } else {
+      return response.status(400).json({
+        status: 400,
+        message: "reset token has expired, please generate new link",
+      });
+    }
+
+    return response.status(200).json({
+      message: "success",
+    });
+  }
+
   //change password for the student
   async changePassword({ request, auth, response }) {
     //console.log(auth);
