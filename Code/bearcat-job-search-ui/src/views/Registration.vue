@@ -79,7 +79,7 @@
                       type="date"
                       class="form-control"
                       placeholder="DOB"
-                      v-model="form.DOB"
+                      v-model="form.dob"
                     />
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export default {
         password: "",
         phoneNumber: "",
         gender: "Male",
-        DOB: ""
+        dob: ""
       },
      
       confirmPassword: "",
@@ -209,7 +209,7 @@ export default {
   },
   methods: {
     register() {
-      console.log(this.form.DOB);
+      console.log(this.form.dob);
       this.loader = true;
       this.error = null;
       
@@ -235,13 +235,11 @@ console.log(this.form.password)
         this.error.password = "please enter password";
         // this.error.confirmPassword = "please enter password";
       }
-      // if (!this.confirmPassword==this.form.password) {
-      //   console.log("password missmatch")
-      //   this.error.confirmPassword = "pasword mismatch";
-      // }
-      // if (!this.form.dob) {
-      //   this.error.dob = "please enter dob";
-      // }
+      console.log("confirm pass bool"+this.confirmPassword==this.form.password)
+      
+      if (!this.form.dob) {
+        this.error.dob = "please enter dob";
+      }
       if (!this.form.phoneNumber) {
         console.log("Error for student phone number")
         this.error.phoneNumber = "please enter phone number";

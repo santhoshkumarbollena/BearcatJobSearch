@@ -126,6 +126,8 @@ class Auth {
     async registrationForStudent({ request, response, auth }) {
         //Getting all the details from the registration form.
         const student = request.all();
+        console.log("In Registration")
+        console.log(student)
         let err = [];
         //Validation for all the feilds in the registration form.
         if (!student.studentId) err.push("studentId is required");
