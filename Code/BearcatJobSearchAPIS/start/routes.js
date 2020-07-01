@@ -30,6 +30,7 @@ Route.group(() => {
   Route.post("registration", "Auth.registrationForStudent");
   Route.post("forgot-password", "Auth.sendResetMail");
   Route.get("validate/reset/password/:secretKey", "Auth.validateResetPasswordLink");
+  Route.post("reset/password/:secretKey", "Auth.resetPassword");
   Route.post("changepassword", "Auth.changePassword");
 }).prefix("api/v1");
 
