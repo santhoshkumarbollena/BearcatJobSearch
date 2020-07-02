@@ -16,7 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
-// base route to check API health
+// Base route to check API health
 Route.get("/", async ({ response }) => {
   return response.status(200).json({
     status: 200,
@@ -24,7 +24,7 @@ Route.get("/", async ({ response }) => {
   });
 });
 
-// login routers
+// Login related routers
 Route.group(() => {
   Route.post("login", "Auth.login");
   Route.post("registration", "Auth.registrationForStudent");
@@ -34,7 +34,7 @@ Route.group(() => {
   Route.post("changepassword", "Auth.changePassword");
 }).prefix("api/v1");
 
-// data fetching routers
+// Data fetching routers
 Route.group(() => {
   Route.get("getStudent/:studentId", "StudentController.getStudentBasedOnId");
   Route.get("getAllJobs", "StudentController.getAllJobs");

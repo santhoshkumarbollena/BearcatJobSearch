@@ -10,6 +10,7 @@ const myCache = new nodeCache({ stdTTL: 600 });
 
 class Auth {
 
+  //Student Registration logic
   async registrationForStudent({ request, response, auth }) {
     //Getting all the details from the registration form.
     const student = request.all();
@@ -24,7 +25,7 @@ class Auth {
     if (!student.phoneNumber) err.push("phoneNumber is required");
     if (!student.gender) err.push("gender is required");
 
-    //Checking for any missing feilds to send error as response.
+    //Checking for any missing fields to send error messages as response.
     if (err && err.length) {
       return response.status(400).json({
         error: {
@@ -34,17 +35,20 @@ class Auth {
         },
       });
     }
-    //Hashing the password for security.
+    //Hashing the password for security purpose.
     try {
       const hashPassword = await Hash.make(student.password);
       student.password = hashPassword;
+
       //Storing the student details in database.
       let studentInDB = await Student.create(student);
+
       //Attaching succesful message for the response object.
       studentInDB = _.merge(studentInDB, {
         message: "student registered successfully",
       });
-      //Returing the response object.
+
+      //Returning the response object.
       return response.status(200).json(studentInDB);
     } catch (err) {
       //Returning the error if the student is not stored.
@@ -55,7 +59,7 @@ class Auth {
   }
 
 
-  //Login logic
+  //Student Login logic 
   async login({ request, auth, response }) {
     //Getting the user data to login.
     const userData = request.post();
@@ -84,6 +88,7 @@ class Auth {
 
     // checking hashed password for login
     const hashedPassword = await Hash.verify(userData.password, user.password);
+
     //If the password is incorrect sending an error with invalid password.
     if (!hashedPassword) {
       return response.status(403).json({
@@ -105,15 +110,18 @@ class Auth {
       userId: user.userId,
       email: user.email,
     });
+
     //Sending the succesful student details along with the access token.
     return response.status(200).json(token);
   }
 
   //Forgot password for a student function.
   async forgotPassword({ request, auth, response }) {
+
     //Getting the student email to send the password manage link.
     const studentEmail = request.all();
     console.log(studentEmail.email, " will get a mail to reset password");
+
     //Successful response that student got.
     return response
       .status(200)
@@ -223,7 +231,7 @@ class Auth {
     }
   }
 
-  //change password for the student
+  //Change password for the student
   async changePassword({ request, auth, response }) {
     //console.log(auth);
 
@@ -255,7 +263,7 @@ class Auth {
       }
     }
 
-    //send successfull message
+    //Send successfull message
     return response.status(200).json({
       message: "password changed succesfully",
       result,
