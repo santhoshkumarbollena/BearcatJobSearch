@@ -76,6 +76,8 @@
                       <i class="fa fa-calendar fa-1x"></i>
                     </span>
                     <input type="date" class="form-control" placeholder="DOB" v-model="form.dob" />
+                    <small class="col-12 text-left ml-4 text-danger">{{error.dob}}</small>
+                    <small class="col-12 text-left ml-4">Please provide student DOB</small>
                   </div>
                 </div>
               </div>
@@ -154,9 +156,12 @@
                     value="accepted"
                     unchecked-value="not_accepted"
                   >I agree to terms and conditions</b-form-checkbox>
-                  <button class="btn btn-primary mt-4 pull-left" @click.prevent.stop="register">Register</button>
+                  <button
+                    class="btn btn-primary mt-4 pull-left mb-4"
+                    @click.prevent.stop="register"
+                  >Register</button>
                   <router-link to="/login" class="border">
-                  <button class="btn btn-primary mt-4 pull-right">Login</button>
+                    <button class="btn btn-primary mt-4 pull-right">Login</button>
                   </router-link>
                 </div>
               </div>
