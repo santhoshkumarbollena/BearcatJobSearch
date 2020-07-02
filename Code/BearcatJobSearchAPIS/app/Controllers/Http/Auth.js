@@ -128,7 +128,7 @@ class Auth {
     //console.log(auth);
 
     //based on auth.Student id retrieve student details
-    const id = 919584721;
+    const id = auth.studentId;
     let student = await Student.find(id);
 
     //compare old password and hashed password from db
