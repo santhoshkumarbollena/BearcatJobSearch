@@ -16,10 +16,7 @@
       <div class="error__subtitle">Hmmm...</div>
       <div class="error__description">It looks like one of the developers fell asleep</div>
       <router-link to="/login">
-        <button class="error__button error__button--active">LOGIN</button>
-      </router-link>
-      <router-link to="/login">
-        <button class="error__button">CONTACT</button>
+        <button class="btn btn-primary m-2">Back to Login</button>
       </router-link>
     </div>
 
