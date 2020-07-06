@@ -1,65 +1,40 @@
 <template>
-  <div>
-    <div class="sidenav">
-      <div class="login-main-text">
-        <h2>
-          Bearcat Job Search
-          <br />Login Page
-        </h2>
-        <p>Login from here to access the application.</p>
-      </div>
-    </div>
-    <div class="main">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-8 col-lg-8 col-xl-6">
-        <div class="login-form p-3">
-          <form>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-square-o fa-stack-2x"></i>
-                  <i class="fa fa-user fa-1x"></i>
-                </span>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="User Name"
-                  v-model="credentials.email"
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-square-o fa-stack-2x"></i>
-                  <i class="fa fa-lock fa-1x"></i>
-                </span>
-                <input
-                  type="password"
-                  class="form-control"
-                  v-model="credentials.password"
-                  placeholder="Password"
-                />
-                <br />
-              </div>
-            </div>
-            <button class="btn btn-primary mr-2" @click.prevent.stop="login">Login</button>
-            <router-link to="/register" class="border">
-              <button type="submit" class="btn btn-secondary">Register</button>
-            </router-link>
-            <div class="form-group mt-3">
-              <router-link to="/forgot-password" class="border">
-                <a>Forgot password?</a>
-              </router-link>
-            </div>
-            <Loader v-if="loader"></Loader>
-            <b-alert show variant="danger" v-if="error">{{error}}</b-alert>
-          </form>
+<div id="main-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
+        <h1 class="text-center" style="font-family:argon">LOGIN</h1>
+        <base-input
+          placeholder="Enter your username or email id"
+          addon-left-icon="fa fa-user"
+          v-model="credentials.email"
+        ></base-input>
+        <base-input
+          type="password"
+          placeholder="Enter your password"
+          addon-left-icon="fa fa-unlock"
+          v-model="credentials.password"
+        ></base-input>
+        <div class="pb-2">
+          <router-link to="/forgot-password">
+            <a href="#">Forgot password?</a>
+          </router-link>
+        </div>
+        <base-button
+          type="primary"
+          class="pull-left"
+          icon="fa fa-sign-in"
+          @click.prevent.stop="login"
+        >Login</base-button>
+        <router-link to="/register">
+          <base-button type="secondary" class="pull-right" icon="fa fa-registered">Register</base-button>
+        </router-link>
+        <Loader v-if="loader"></Loader>
+          <small class="alert alert-danger" role="alert" v-if="error">{{error}}</small>
         </div>
       </div>
-    </div>
   </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -80,7 +55,6 @@ export default {
       loader: false
     };
   },
-  created() {},
   methods: {
     async login() {
       this.loader = true;
@@ -115,89 +89,24 @@ export default {
 </script>
 
 <style scoped>
-.nw-bg {
-  background-image: url("https://lh5.googleusercontent.com/p/AF1QipP2PpiWMDm_uvLraBe3Esmow4Wki2lwkNF-2S1k=w203-h318-k-no");
-  background-color: #cccccc;
+.v-center {
+  margin-top: 10%;
+}
+
+.border-2px {
+  border: 1px solid #999;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+#main-background{
+  /*Ref: https://thriveglobal.com/stories/the-one-thing-thats-likely-missing-from-your-job-search-strategy/ */
+  background-image: url("https://content.thriveglobal.com/wp-content/uploads/2019/12/adult-blur-computer-cup-374897-1.jpg?w=1550");
   background-repeat: no-repeat;
-}
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.main-head {
-  height: 150px;
-  background: #fff;
-}
-
-.sidenav {
-  height: 100%;
-  background-color: #000;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-.main {
-  padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  max-height: 400vh;
   }
-}
-
-@media screen and (max-width: 450px) {
-  .login-form {
-    margin-top: 10%;
-  }
-
-  .register-form {
-    margin-top: 10%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .main {
-    margin-left: 40%;
-  }
-
-  .sidenav {
-    width: 40%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-  }
-
-  .login-form {
-    margin-top: 50%;
-  }
-
-  .register-form {
-    margin-top: 20%;
-  }
-}
-
-.login-main-text {
-  margin-top: 20%;
-  padding: 60px;
-  color: #fff;
-}
-
-.login-main-text h2 {
-  font-weight: 300;
-}
-
-.btn-black {
-  background-color: #000 !important;
-  color: #fff;
-}
-
-.btn:hover {
-  color: #aaa;
-}
-
-#forgot-pwd {
-  color: #000000;
-}
 </style>
