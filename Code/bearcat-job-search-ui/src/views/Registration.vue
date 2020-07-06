@@ -1,4 +1,5 @@
 <template>
+<div id="main-background">
   <div class="container">
     <div class="row">
       <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
@@ -93,6 +94,7 @@
                 <div class="alert alert-danger" role="alert" v-if="endResult">{{endResult}}</div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -206,4 +208,15 @@ export default {
   border-radius: 20px;
   background-color: #fff;
 }
+
+#main-background{
+  /*Ref: https://thriveglobal.com/stories/the-one-thing-thats-likely-missing-from-your-job-search-strategy/ */
+  background-image: url("https://content.thriveglobal.com/wp-content/uploads/2019/12/adult-blur-computer-cup-374897-1.jpg?w=1550");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  max-height: 400vh;
+  }
 </style>
