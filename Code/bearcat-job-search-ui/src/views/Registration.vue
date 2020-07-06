@@ -1,183 +1,104 @@
 <template>
-  <div>
-    <div class="sidenav">
-      <div class="Registration-main-text">
-        <h2>
-          Bearcat Job Search
-          <br />Registration Page
-        </h2>
-        <p>Registration to access the application.</p>
-      </div>
-    </div>
-    <div class="main form-outline">
-      <section>
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-8 col-xl-6">
-              <div class="row align-items-center mt-4">
-                <div class="col">
-                  <div class="input-group">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa fa-user fa-1x"></i>
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Student ID"
-                      v-model="form.studentId"
-                      required
-                    />
-                    <small class="col-12 text-left ml-4">Please provide student id (#919)</small>
-                    <small class="col-12 text-left ml-4 text-danger">{{error.studentId}}</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row align-items-center mt-4">
-                <div class="col">
-                  <div class="input-group">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa fa-user fa-1x"></i>
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Name"
-                      v-model="form.studentName"
-                    />
-                    <small class="col-12 text-left ml-4 text-danger">{{error.studentName}}</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row align-items-center mt-4">
-                <div class="col">
-                  <div class="input-group">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa fa-phone fa-1x"></i>
-                    </span>
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="Phone Number"
-                      v-model="form.phoneNumber"
-                      onkeypress="if(this.value.length==10) return false;"
-                    />
-                    <small class="col-12 text-left ml-4 text-danger">{{error.phoneNumber}}</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row align-items-center mt-4">
-                <div class="col">
-                  <div class="input-group">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa fa-calendar fa-1x"></i>
-                    </span>
-                    <input type="date" class="form-control" placeholder="DOB" v-model="form.dob" />
-                    <small class="col-12 text-left ml-4 text-danger">{{error.dob}}</small>
-                    <small class="col-12 text-left ml-4">Please provide student DOB</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row text-left mt-4">
-                <div class="col">
-                  <div class="form-check form-check-inline">
-                    <b-form-radio-group
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
+        <h1 class="text-center" style="font-family:argon">REGISTER</h1>
+         <base-input
+                    type="number"
+                    placeholder="Please provide your (919) Id"
+                    addon-left-icon="fa fa-id-badge"
+                    v-model="form.studentId"
+                    required
+          ></base-input>
+          <Loader v-if="loader"></Loader>
+          <small class="col-12 text-left ml-4 text-danger">{{error.studentId}}</small>
+           <base-input
+                    type="text"
+                    placeholder="Name"
+                    addon-left-icon="fa fa-user"
+                    v-model="form.studentName"
+                    required
+           ></base-input>
+          <small class="col-12 text-left ml-4 text-danger">{{error.studentName}}</small>
+          <base-input
+                    type="number"
+                    placeholder="Phone Number"
+                    v-model="form.phoneNumber"
+                    onkeypress="if(this.value.length==10) return false;"
+                    addon-left-icon="fa fa-phone"
+                    required
+            ></base-input>
+          <small class="col-12 text-left ml-4 text-danger">{{error.phoneNumber}}</small>
+           <base-input addon-left-icon="fa fa-calendar">
+                    <flat-picker
+                      slot-scope="{focus, blur}"
+                      @on-open="focus"
+                      @on-close="blur"
+                      :config="{allowInput: true}"
+                      class="form-control datepicker"
+                      v-model="form.dob"
+                      placeholder="DOB"
+                    ></flat-picker>
+            </base-input>
+            <small class="col-12 text-left ml-4 text-danger">{{error.dob}}</small>
+             <b-form-radio-group
                       v-model="form.gender"
                       :options="options"
                       class="mb-3"
                       value-field="item"
                       text-field="name"
                       disabled-field="notEnabled"
-                    ></b-form-radio-group>
-                  </div>
+            ></b-form-radio-group>
+              <!-- <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                  <label class="custom-control-label" for="customRadioInline1">Male</label>
                 </div>
-              </div>
-              <div class="row align-items-center mt-4">
-                <div class="col">
-                  <div class="input-group">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa fa-envelope fa-1x"></i>
-                    </span>
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Email"
-                      v-model="form.email"
-                    />
-                    <small class="col-12 text-left ml-4 text-danger">{{error.email}}</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row align-items-center mt-4">
-                <div class="col">
-                  <div class="input-group">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa fa-lock fa-1x"></i>
-                    </span>
-                    <input
-                      type="password"
-                      class="form-control"
-                      placeholder="Password"
-                      v-model="form.password"
-                    />
-                    <small class="col-12 text-left ml-4 text-danger">{{error.password}}</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row align-items-center mt-4">
-                <div class="col">
-                  <div class="input-group">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa fa-lock fa-1x"></i>
-                    </span>
-                    <input
-                      type="password"
-                      class="form-control"
-                      placeholder="Confirm Password"
-                      v-model="confirmPassword"
-                    />
-                    <small class="col-12 text-left ml-4 text-danger">{{error.confirmPassword}}</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row mt-4">
-                <div class="col">
-                  <b-form-checkbox
-                    class="text-left"
-                    id="checkbox-1"
-                    v-model="status"
-                    name="checkbox-1"
-                    value="accepted"
-                    unchecked-value="not_accepted"
-                  >I agree to terms and conditions</b-form-checkbox>
-                  <button
-                    class="btn btn-primary mt-4 pull-left mb-4"
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                  <label class="custom-control-label" for="customRadioInline2">Female</label>
+                  </div>-->
+               <base-input
+                    type="email"
+                    placeholder="Email"
+                    addon-left-icon="fa fa-envelope"
+                    v-model="form.email"
+                    required
+               ></base-input>
+              <small class="col-12 text-left ml-4 text-danger">{{error.email}}</small>
+               <base-input
+                    type="password"
+                    placeholder="Password"
+                    addon-left-icon="fa fa-key"
+                    v-model="form.password"
+                    required
+                ></base-input>
+              <small class="col-12 text-left ml-4 text-danger">{{error.password}}</small>
+              <base-input
+                    type="password"
+                    placeholder="Confirm Password"
+                    addon-left-icon="fa fa-key"
+                    v-model="confirmPassword"
+                    required
+              ></base-input>
+              <small class="col-12 text-left ml-4 text-danger">{{error.confirmPassword}}</small>
+                <base-button
+                    type="primary"
+                    class="pull-left mt-4"
+                    icon="fa fa-registered"
                     @click.prevent.stop="register"
-                  >Register</button>
-                  <router-link to="/login" class="border">
-                    <button class="btn btn-primary mt-4 pull-right">Login</button>
+                  >Register</base-button>
+                  <router-link to="/login">
+                  <base-button type="secondary" class="pull-right" icon="fa fa-sign-in">Login</base-button>
                   </router-link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <b-alert show variant="success" v-if="endResult">{{endResult}}</b-alert>
+                <div class="alert alert-danger" role="alert" v-if="endResult">{{endResult}}</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Datepicker from "vuejs-datepicker";
-
+import flatPicker from "vue-flatpickr-component";
+import "flatpickr/dist/flatpickr.css";
 export default {
   name: "Registration",
   data() {
@@ -210,9 +131,11 @@ export default {
       ]
     };
   },
+  components: {
+    flatPicker
+  },
   methods: {
     register() {
-      console.log(this.form.dob);
       this.loader = true;
       this.error = null;
 
@@ -274,81 +197,13 @@ export default {
 };
 </script>
 <style scoped>
-.nw-bg {
-  background-image: url("https://lh5.googleusercontent.com/p/AF1QipP2PpiWMDm_uvLraBe3Esmow4Wki2lwkNF-2S1k=w203-h318-k-no");
-  background-color: #cccccc;
-  background-repeat: no-repeat;
-}
-body {
-  font-family: "Lato", sans-serif;
+.v-center {
+  margin-top: 10%;
 }
 
-.main-head {
-  height: 150px;
-  background: #fff;
-}
-
-.sidenav {
-  height: 100%;
-  background-color: #000;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-.main {
-  padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .Registration-form {
-    margin-top: 10%;
-  }
-
-  .register-form {
-    margin-top: 10%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .main {
-    margin-left: 40%;
-  }
-
-  .sidenav {
-    width: 40%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-  }
-
-  .Registration-form {
-    margin-top: 50%;
-  }
-}
-
-.Registration-main-text {
-  margin-top: 20%;
-  padding: 60px;
-  color: #fff;
-}
-
-.Registration-main-text h2 {
-  font-weight: 300;
-}
-
-.btn-black {
-  background-color: #000 !important;
-  color: #fff;
-}
-
-.btn:hover {
-  color: #aaa;
+.border-2px {
+  border: 1px solid #999;
+  border-radius: 20px;
+  background-color: #fff;
 }
 </style>
