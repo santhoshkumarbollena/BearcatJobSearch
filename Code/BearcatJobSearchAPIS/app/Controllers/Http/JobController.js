@@ -36,7 +36,12 @@ class JobController {
         return response.status(200).json(job);
     }
 
-    
+    async deleteJob({ request, auth, response, params }) {
+
+        const job = await Job.find(params.id);
+        await job.delete();
+        return response.status(200).json(job);
+    }
    
 
 }
