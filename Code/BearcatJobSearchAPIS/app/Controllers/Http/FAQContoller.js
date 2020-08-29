@@ -27,6 +27,16 @@ class FAQController {
         return response.status(200).json(faq);
     }
 
+    async updateFAQ({ request, auth, response, params }) {
+        let FAQInput = request.all();
+        console.log(FAQInput)
+        const faq = await FAQ.find(params.id);
+        faq = _.merge(faq, FAQInput);
+        await faq.save();
+        return response.status(200).json(faq);
+    }
+
+ 
    
 
 }
