@@ -40,3 +40,12 @@ Route.group(() => {
   Route.get("getAllJobs", "StudentController.getAllJobs");
   Route.get("getJob/:jobId", "StudentController.getJobBasedOnId");
 }).prefix("api/v1/student");
+
+// Data fetching routers
+Route.group(() => {
+  Route.get("getAllJobs", "JobController.getAllJobs");
+  Route.get("getJob/:jobId", "JobController.getJobBasedOnId");
+  Route.post("create-job", "JobController.createJob");
+  Route.patch("update-job/:id", "JobController.updateJob");
+  Route.delete("delete-job/:id", "JobController.deleteJob");
+}).prefix("api/v1/job");
