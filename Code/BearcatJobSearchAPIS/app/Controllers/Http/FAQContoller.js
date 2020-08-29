@@ -20,6 +20,13 @@ class FAQController {
         return response.status(200).json(faq);
     }
 
+    async createFAQ({ request, auth, response, params }) {
+        let FAQInput = request.all();
+        console.log(FAQInput)
+        const faq = await FAQ.findOrCreate(FAQInput);
+        return response.status(200).json(faq);
+    }
+
    
 
 }
