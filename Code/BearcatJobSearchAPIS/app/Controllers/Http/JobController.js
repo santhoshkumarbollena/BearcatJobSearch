@@ -27,6 +27,15 @@ class JobController {
         return response.status(200).json(job);
     }
 
+    async updateJob({ request, auth, response, params }) {
+        let jobInput = request.all();
+        console.log(jobInput)
+        const job = await Job.find(params.id);
+        job = _.merge(job, jobInput);
+        await job.save();
+        return response.status(200).json(job);
+    }
+
     
    
 
