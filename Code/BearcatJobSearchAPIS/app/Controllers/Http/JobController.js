@@ -20,7 +20,14 @@ class JobController {
         return response.status(200).json(job);
     }
 
-   
+    async createJob({ request, auth, response, params }) {
+        let jobInput = request.all();
+        console.log(jobInput)
+        const job = await Job.findOrCreate(jobInput);
+        return response.status(200).json(job);
+    }
+
+    
    
 
 }
