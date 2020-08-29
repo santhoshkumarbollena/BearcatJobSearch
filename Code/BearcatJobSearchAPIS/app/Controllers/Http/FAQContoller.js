@@ -35,7 +35,12 @@ class FAQController {
         await faq.save();
         return response.status(200).json(faq);
     }
+   async deleteFAQ({ request, auth, response, params }) {
 
+        const faq = await FAQ.find(params.id);
+        await faq.delete();
+        return response.status(200).json(faq);
+    }
  
    
 
