@@ -1,6 +1,6 @@
 # BearcatJobSearch
 
-Bearcat Job Search is a web application used by northwest students to apply jobs.
+Bearcat Job Search is a web application used by northwest students to register and apply jobs.
 
 ## Developers
 1. [Anil Bomma](https://github.com/anil-bomma)
