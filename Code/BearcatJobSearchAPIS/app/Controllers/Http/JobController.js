@@ -13,7 +13,14 @@ class JobController {
         return response.status(200).json(job);
 
     }
+    async getJobBasedOnId({ request, auth, response, params }) {
+        //console.log(params.jobId)
+        const job = await Job.find(params.jobId);
+        //console.log(job)
+        return response.status(200).json(job);
+    }
 
+   
    
 
 }
