@@ -13,7 +13,13 @@ class FAQController {
         return response.status(200).json(faq);
 
     }
-    
+    async getFAQBasedOnId({ request, auth, response, params }) {
+        //console.log(params.FAQId)
+        const faq = await FAQ.find(params.FAQId);
+        //console.log(FAQ)
+        return response.status(200).json(faq);
+    }
+
    
 
 }
