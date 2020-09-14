@@ -1,100 +1,100 @@
 <template>
-<div id="main-background">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
-        <h1 class="text-center" style="font-family:argon">REGISTER</h1>
-         <base-input
-                    type="number"
-                    placeholder="Please provide your (919) Id"
-                    addon-left-icon="fa fa-id-badge"
-                    v-model="form.studentId"
-                    required
-          ></base-input>
-          <Loader v-if="loader"></Loader>
-          <small class="col-12 text-left ml-4 text-danger">{{error.studentId}}</small>
-           <base-input
-                    type="text"
-                    placeholder="Name"
-                    addon-left-icon="fa fa-user"
-                    v-model="form.studentName"
-                    required
-           ></base-input>
-          <small class="col-12 text-left ml-4 text-danger">{{error.studentName}}</small>
+  <div id="main-background">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 v-center p-4 border-2px mb-5">
+          <h1 class="text-center">REGISTER</h1>
+
           <base-input
-                    type="number"
-                    placeholder="Phone Number"
-                    v-model="form.phoneNumber"
-                    onkeypress="if(this.value.length==10) return false;"
-                    addon-left-icon="fa fa-phone"
-                    required
-            ></base-input>
-          <small class="col-12 text-left ml-4 text-danger">{{error.phoneNumber}}</small>
-           <base-input addon-left-icon="fa fa-calendar">
-                    <flat-picker
-                      slot-scope="{focus, blur}"
-                      @on-open="focus"
-                      @on-close="blur"
-                      :config="{allowInput: true}"
-                      class="form-control datepicker"
-                      v-model="form.dob"
-                      placeholder="DOB"
-                    ></flat-picker>
-            </base-input>
-            <small class="col-12 text-left ml-4 text-danger">{{error.dob}}</small>
-             <b-form-radio-group
-                      v-model="form.gender"
-                      :options="options"
-                      class="mb-3"
-                      value-field="item"
-                      text-field="name"
-                      disabled-field="notEnabled"
-            ></b-form-radio-group>
-              <!-- <div class="custom-control custom-radio custom-control-inline">
-                  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                  <label class="custom-control-label" for="customRadioInline1">Male</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                  <label class="custom-control-label" for="customRadioInline2">Female</label>
-                  </div>-->
-               <base-input
-                    type="email"
-                    placeholder="Email"
-                    addon-left-icon="fa fa-envelope"
-                    v-model="form.email"
-                    required
-               ></base-input>
-              <small class="col-12 text-left ml-4 text-danger">{{error.email}}</small>
-               <base-input
-                    type="password"
-                    placeholder="Password"
-                    addon-left-icon="fa fa-key"
-                    v-model="form.password"
-                    required
-                ></base-input>
-              <small class="col-12 text-left ml-4 text-danger">{{error.password}}</small>
-              <base-input
-                    type="password"
-                    placeholder="Confirm Password"
-                    addon-left-icon="fa fa-key"
-                    v-model="confirmPassword"
-                    required
-              ></base-input>
-              <small class="col-12 text-left ml-4 text-danger">{{error.confirmPassword}}</small>
-                <base-button
-                    type="primary"
-                    class="pull-left mt-4"
-                    icon="fa fa-registered"
-                    @click.prevent.stop="register"
-                  >Register</base-button>
-                  <router-link to="/login">
-                  <base-button type="secondary" class="pull-right" icon="fa fa-sign-in">Login</base-button>
-                  </router-link>
-                <div class="alert alert-danger" role="alert" v-if="endResult">{{endResult}}</div>
+            type="number"
+            placeholder="Please provide your (919) Id"
+            addon-left-icon="fa fa-id-badge"
+            v-model="form.studentId"
+            required
+          ></base-input>
+          <!-- <Loader v-if="loader"></Loader> -->
+          <small v-if="error.studentId" class="col-12 text-left text-danger">{{error.studentId}}</small>
+          <base-input
+            type="text"
+            placeholder="Name"
+            addon-left-icon="fa fa-user"
+            v-model="form.studentName"
+            required
+          ></base-input>
+          <small v-if="error.studentName" class="col-12 text-left text-danger">{{error.studentName}}</small>
+          <base-input
+            type="number"
+            placeholder="Phone Number"
+            v-model="form.phoneNumber"
+            onkeypress="if(this.value.length==10) return false;"
+            addon-left-icon="fa fa-phone"
+            required
+          ></base-input>
+          <small v-if="error.phoneNumber" class="col-12 text-left text-danger">{{error.phoneNumber}}</small>
+          <base-input addon-left-icon="fa fa-calendar">
+            <flat-picker
+              slot-scope="{focus, blur}"
+              @on-open="focus"
+              @on-close="blur"
+              :config="{allowInput: true}"
+              class="form-control datepicker"
+              v-model="form.dob"
+              placeholder="DOB"
+            ></flat-picker>
+          </base-input>
+          <small v-if="error.dob" class="col-12 text-left text-danger">{{error.dob}}</small>
+          <b-form-radio-group
+            v-model="form.gender"
+            :options="options"
+            class="mb-3"
+            value-field="item"
+            text-field="name"
+            disabled-field="notEnabled"
+          ></b-form-radio-group>
+          <base-input
+            type="email"
+            placeholder="Email"
+            addon-left-icon="fa fa-envelope"
+            v-model="form.email"
+            required
+          ></base-input>
+          <small v-if="error.email" class="col-12 text-left text-danger">{{error.email}}</small>
+          <base-input
+            type="password"
+            placeholder="Password"
+            addon-left-icon="fa fa-key"
+            v-model="form.password"
+            required
+          ></base-input>
+          <small v-if="error.password" class="col-12 text-left text-danger">{{error.password}}</small>
+          <base-input
+            type="password"
+            placeholder="Confirm Password"
+            addon-left-icon="fa fa-key"
+            v-model="confirmPassword"
+            required
+          ></base-input>
+          <small
+            v-if="error.confirmPassword"
+            class="col-12 text-left text-danger"
+          >{{error.confirmPassword}}</small>
+          <base-button
+            type="success"
+            class="pull-left mt-3"
+            icon="fa fa-registered"
+            @click.prevent.stop="register"
+          >Register</base-button>
+          <router-link to="/login">
+            <base-button
+              type="primary"
+              class="btn pull-right mt-3 btn-icon btn-primary"
+              icon="fa fa-sign-in"
+            >Login</base-button>
+          </router-link>
+          <div class="alert alert-danger" role="alert" v-if="endResult">{{endResult}}</div>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -123,7 +123,6 @@ export default {
         gender: "Male",
         dob: ""
       },
-
       confirmPassword: "",
       status: "not_accepted",
       endResult: "",
@@ -140,12 +139,8 @@ export default {
     register() {
       this.loader = true;
       this.error = null;
-
       this.error = {};
 
-      console.log(this.form.password);
-      console.log(this.confirmPassword);
-      console.log(this.confirmPassword == this.form.password);
       if (!this.form.studentId) {
         console.log("Error for student id");
         this.error.studentId = "please enter student id";
@@ -209,7 +204,7 @@ export default {
   background-color: #fff;
 }
 
-#main-background{
+#main-background {
   /*Ref: https://thriveglobal.com/stories/the-one-thing-thats-likely-missing-from-your-job-search-strategy/ */
   background-image: url("https://content.thriveglobal.com/wp-content/uploads/2019/12/adult-blur-computer-cup-374897-1.jpg?w=1550");
   background-repeat: no-repeat;
@@ -218,5 +213,5 @@ export default {
   background-attachment: fixed;
   min-height: 100vh;
   max-height: 400vh;
-  }
+}
 </style>
