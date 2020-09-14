@@ -12,7 +12,7 @@
           <b-card :title="job.jobTitle" class="mb-2 card-bg">
             <b-card-text>Description: {{job.jobDescription}}</b-card-text>
             <b-card-text>Employment Type: {{job.employmentType}}</b-card-text>
-            <b-card-text>Salary: {{job.salary}}</b-card-text>
+            <b-card-text>Salary: ${{job.salary}}</b-card-text>
 
             <b-button href="#" variant="primary">Apply</b-button>
           </b-card>
