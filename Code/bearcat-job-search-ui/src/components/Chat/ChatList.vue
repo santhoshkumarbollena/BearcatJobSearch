@@ -7,7 +7,8 @@
       bg-variant="secondary"
       text-variant="dark"
       right
-      shadow
+      :backdrop-variant="variant"
+      backdrop
     >
       <hr class="m-3" />
       <div class="px-3 py-2">
