@@ -36,7 +36,12 @@ class UserController {
         return response.status(200).json(user);
     }
 
-   
+    async deleteUser({ request, auth, response, params }) {
+
+        const user = await User.find(params.id);
+        await user.delete();
+        return response.status(200).json(user);
+    }
    
 
 }
