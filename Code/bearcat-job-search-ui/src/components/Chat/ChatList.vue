@@ -7,7 +7,7 @@
       bg-variant="secondary"
       text-variant="dark"
       right
-      :backdrop-variant="variant"
+      backdrop-variant="secondary"
       backdrop
     >
       <hr class="m-3" />

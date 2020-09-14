@@ -22,14 +22,11 @@ export default {
       ],
       items: [
         {
-          text: "Admin",
-          href: "#"
+          text: "List All Jobs",
+          href: "/home"
         }
       ]
     };
   }
 };
 </script>
-
-<style scoped>
-</style>
