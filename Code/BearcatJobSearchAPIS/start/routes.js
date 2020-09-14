@@ -49,3 +49,8 @@ Route.group(() => {
   Route.patch("update-job/:id", "JobController.updateJob");
   Route.delete("delete-job/:id", "JobController.deleteJob");
 }).prefix("api/v1/job");
+
+Route.group(() => {
+  Route.get("getAllUsers", "UserController.getAllUsers");
+  
+}).prefix("api/v1/user");
