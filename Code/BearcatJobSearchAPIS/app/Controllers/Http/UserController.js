@@ -20,6 +20,13 @@ class UserController {
         return response.status(200).json(user);
     }
 
+    async createUser({ request, auth, response, params }) {
+        let userInput = request.all();
+        console.log(userInput)
+        const user = await User.findOrCreate(userInput);
+        return response.status(200).json(user);
+    }
+
 
 }
 module.exports = UserController;
