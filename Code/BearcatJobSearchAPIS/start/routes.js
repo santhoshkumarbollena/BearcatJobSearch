@@ -53,6 +53,8 @@ Route.group(() => {
 Route.group(() => {
   Route.get("getAllUsers", "UserController.getAllUsers");
   Route.get("getUser/:userId", "UserController.getUserBasedOnId");
- 
+  Route.post("create-user", "UserController.createUser");
+  Route.patch("update-user/:id", "UserController.updateUser");
+  Route.delete("delete-user/:id", "UserController.deleteUser");
   
 }).prefix("api/v1/user");
