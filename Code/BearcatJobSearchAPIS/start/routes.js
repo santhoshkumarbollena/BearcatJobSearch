@@ -52,5 +52,7 @@ Route.group(() => {
 
 Route.group(() => {
   Route.get("getAllUsers", "UserController.getAllUsers");
+  Route.get("getUser/:userId", "UserController.getUserBasedOnId");
+ 
   
 }).prefix("api/v1/user");
