@@ -58,3 +58,11 @@ Route.group(() => {
   Route.delete("delete-user/:id", "UserController.deleteUser");
   
 }).prefix("api/v1/user");
+//FAQ Data fetching routers
+Route.group(() => {
+  Route.get("getAllUsers", "FAQController.getAllFAQs");
+  Route.get("getUser/:userId", "FAQController.getFAQBasedOnId");
+  Route.post("create-user", "FAQController.createFAQ");
+  Route.patch("update-user/:id", "FAQController.updateFAQ");
+  Route.delete("delete-user/:id", "FAQController.deleteFAQ");
+}).prefix("api/v1/user");
