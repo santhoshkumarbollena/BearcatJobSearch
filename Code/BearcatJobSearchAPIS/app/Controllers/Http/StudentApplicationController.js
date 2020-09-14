@@ -15,6 +15,8 @@ class StudentApplicationController {
         student.studentApplications().attach([job.id], (studentApplication) => {
             studentApplication.status = "Applied";
           });
+
+          return "Student Applied";
   
     }
    

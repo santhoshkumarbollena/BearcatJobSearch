@@ -30,7 +30,7 @@ class UserController {
     async updateUser({ request, auth, response, params }) {
         let userInput = request.all();
         console.log(userInput)
-        const user = await User.find(params.id);
+        let user = await User.find(params.id);
         user = _.merge(user, userInput);
         await user.save();
         return response.status(200).json(user);

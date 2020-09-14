@@ -41,6 +41,11 @@ Route.group(() => {
   Route.get("getJob/:jobId", "StudentController.getJobBasedOnId");
 }).prefix("api/v1/student");
 
+Route.group(() => {
+  Route.get("StudentApplyJob/:studentId/:jobId", "StudentApplicationController.StudentApplyJob");
+  
+}).prefix("api/v1/studentApplication");
+
 // Data fetching routers
 Route.group(() => {
   Route.get("getAllJobs", "JobController.getAllJobs");
@@ -60,9 +65,9 @@ Route.group(() => {
 }).prefix("api/v1/user");
 //FAQ Data fetching routers
 Route.group(() => {
-  Route.get("getAllUsers", "FAQController.getAllFAQs");
-  Route.get("getUser/:userId", "FAQController.getFAQBasedOnId");
-  Route.post("create-user", "FAQController.createFAQ");
-  Route.patch("update-user/:id", "FAQController.updateFAQ");
-  Route.delete("delete-user/:id", "FAQController.deleteFAQ");
-}).prefix("api/v1/user");
+  Route.get("getAllFAQs", "FAQController.getAllFAQs");
+  Route.get("getFAQBasedOnId/:FAQId", "FAQController.getFAQBasedOnId");
+  Route.post("createFAQ", "FAQController.createFAQ");
+  Route.patch("updateFAQ/:id", "FAQController.updateFAQ");
+  Route.delete("deleteFAQ/:id", "FAQController.deleteFAQ");
+}).prefix("api/v1/faq");
