@@ -4,7 +4,8 @@ class ChatController {
   constructor({ socket, request }) {
     this.socket = socket;
     this.request = request;
-    console.log("----scoket connected---");
+
+    console.log("------");
   }
 
   onMessage(message) {
