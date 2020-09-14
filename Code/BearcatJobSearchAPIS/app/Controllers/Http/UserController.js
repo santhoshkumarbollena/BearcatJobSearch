@@ -13,8 +13,13 @@ class UserController {
         return response.status(200).json(user);
 
     }
-    
-   
+    async getUserBasedOnId({ request, auth, response, params }) {
+        //console.log(params.UserId)
+        const user = await User.find(params.userId);
+        //console.log(User)
+        return response.status(200).json(user);
+    }
+
 
 }
 module.exports = UserController;
