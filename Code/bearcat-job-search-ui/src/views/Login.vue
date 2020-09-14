@@ -22,15 +22,17 @@
           </div>
           <base-button
             type="primary"
-            class="pull-left"
+            class="pull-left mb-5"
             icon="fa fa-sign-in"
             @click.prevent.stop="login"
           >Login</base-button>
           <router-link to="/register">
-            <base-button type="secondary" class="pull-right" icon="fa fa-registered">Register</base-button>
+            <base-button type="secondary" class="pull-right mb-5" icon="fa fa-registered">Register</base-button>
           </router-link>
           <Loader v-if="loader"></Loader>
-          <small class="alert alert-danger" role="alert" v-if="error">{{error}}</small>
+          <div>
+            <small class="alert alert-danger mt-3 text-center" role="alert" v-if="error">{{error}}</small>
+          </div>
         </div>
       </div>
     </div>
