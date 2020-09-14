@@ -28,6 +28,7 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/validator": "^5.0.6",
+    "@adonisjs/websocket": "^1.0.12",
     "Validator": "^1.0.8",
     "activedirectory": "^0.7.2",
     "async": "^3.2.0",
