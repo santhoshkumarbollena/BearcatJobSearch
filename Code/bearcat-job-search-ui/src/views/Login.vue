@@ -30,8 +30,8 @@
             <base-button type="secondary" class="pull-right mb-5" icon="fa fa-registered">Register</base-button>
           </router-link>
           <Loader v-if="loader"></Loader>
-          <div>
-            <small class="alert alert-danger mt-3 text-center" role="alert" v-if="error">{{error}}</small>
+          <div class="mt-5">
+            <b-alert show variant="danger" v-if="error">{{error}}</b-alert>
           </div>
         </div>
       </div>
