@@ -4,17 +4,20 @@
       <div class="row">
         <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
           <h1 class="text-center">LOGIN</h1>
-          <base-input
-            placeholder="Enter your username or email id"
-            addon-left-icon="fa fa-user"
-            v-model="credentials.email"
-          ></base-input>
-          <base-input
-            type="password"
-            placeholder="Enter your password"
-            addon-left-icon="fa fa-unlock"
-            v-model="credentials.password"
-          ></base-input>
+          <form>
+            <base-input
+              placeholder="Enter your username or email id"
+              addon-left-icon="fa fa-user"
+              v-model="credentials.email"
+            ></base-input>
+            <base-input
+              type="password"
+              placeholder="Enter your password"
+              addon-left-icon="fa fa-unlock"
+              v-model="credentials.password"
+              autocomplete="on"
+            ></base-input>
+          </form>
           <div class="pb-2">
             <router-link to="/forgot-password">
               <a href="#">Forgot password?</a>
