@@ -106,6 +106,7 @@ class Auth {
     //Adding token to response object.
     token = _.merge(token, {
       message: "user login successfully",
+      name: user.studentName,
       studentId: user.studentId,
       userId: user.userId,
       email: user.email,
