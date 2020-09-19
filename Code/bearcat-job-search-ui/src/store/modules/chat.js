@@ -37,10 +37,16 @@ const mutations = {
 };
 
 const actions = {
-  getActiveUsers: (context) => {
-    wsChat.on("activeUser", (activeUser) => {
-      console.log("-------activeUser from server", activeUser);
-      context.commit("setActiveUser", activeUser);
+  // getActiveUsers: (context) => {
+  //   wsChat.on("activeUser", (activeUser) => {
+  //     context.commit("setActiveUser", activeUser);
+  //   });
+  // },
+
+  addNewUser: ({ commit }) => {
+    wsChat.emit("addUser", localStorage.getItem("user_name"));
+    wsChat.on("userUpdated", (activeUser) => {
+      commit("setActiveUser", activeUser);
     });
   },
 };

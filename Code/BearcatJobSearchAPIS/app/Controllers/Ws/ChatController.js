@@ -1,16 +1,19 @@
 "use strict";
 
-let activeUser = [];
+let activeUser = {};
 
 class ChatController {
   constructor({ socket, request }) {
     this.socket = socket;
     this.request = request;
-    console.log("---connected socket id %s", socket.id);
+    console.log("---connected socket id %s", socket.id, activeUser);
 
-    this.socket.on("activeUser", (username) => {
-      activeUser.push({ [this.socket.id]: username });
-      this.socket.broadcastToAll("activeUser", activeUser);
+    // new user has logged-in save and emit activeUsers
+    this.socket.on("addUser", (username) => {
+      // activeUser.push({ [this.socket.id]: username });
+      activeUser[username] = this.socket.id;
+      
+      this.socket.broadcastToAll("userUpdated", activeUser);
     });
   }
 
