@@ -10,15 +10,20 @@ axios.defaults.baseURL = "http://localhost:3006/api/v1";
 const ws = Ws("ws://localhost:3006");
 ws.connect();
 ws.on("open", () => {
-  console.log("--web socket connection is open");
+  console.log("--------web socket connection is open");
 });
-ws.on("close", () => {
-  console.log("--web socket connection is close");
-});
+
+// ws.on("close", () => {
+//   console.log("--web socket connection is close");
+// });
 
 // setting up web-socket with chat channel
 /** subscribe to chat channel **/
 const wsChat = ws.subscribe("chat");
+
+wsChat.on("userUpdated", (activeUser) => {
+  console.log("------userUpdated", activeUser);
+});
 
 const state = {
   activeUsers: [],
