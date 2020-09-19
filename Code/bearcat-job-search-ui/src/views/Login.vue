@@ -80,6 +80,7 @@ export default {
           this.$http.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.token;
           localStorage.setItem("access_token", "Bearer " + response.data.token);
+          localStorage.setItem("user_name", response.data.name);
           this.$router.push({ name: "home" });
         })
         .catch(error => {
@@ -105,7 +106,6 @@ export default {
 }
 
 #main-background {
-  /*Ref: https://thriveglobal.com/stories/the-one-thing-thats-likely-missing-from-your-job-search-strategy/ */
   background-image: url("https://content.thriveglobal.com/wp-content/uploads/2019/12/adult-blur-computer-cup-374897-1.jpg?w=1550");
   background-repeat: no-repeat;
   background-size: cover;
