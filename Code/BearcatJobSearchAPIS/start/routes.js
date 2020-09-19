@@ -61,13 +61,12 @@ Route.group(() => {
   Route.post("create-user", "UserController.createUser");
   Route.patch("update-user/:id", "UserController.updateUser");
   Route.delete("delete-user/:id", "UserController.deleteUser");
-  
 }).prefix("api/v1/user");
 //FAQ Data fetching routers
 Route.group(() => {
-  Route.get("getAllFAQs", "FAQController.getAllFAQs");
-  Route.get("getFAQBasedOnId/:FAQId", "FAQController.getFAQBasedOnId");
-  Route.post("createFAQ", "FAQController.createFAQ");
-  Route.patch("updateFAQ/:id", "FAQController.updateFAQ");
-  Route.delete("deleteFAQ/:id", "FAQController.deleteFAQ");
+  Route.get("get/all/faqs", "FAQContoller.getAllFAQs");
+  Route.get("get/faqs/:FAQId", "FAQContoller.getFAQBasedOnId");
+  Route.post("create/faq", "FAQContoller.createFAQ");
+  Route.patch("update/faq/:id", "FAQContoller.updateFAQ");
+  Route.delete("delete/faq/:id", "FAQContoller.deleteFAQ");
 }).prefix("api/v1/faq");

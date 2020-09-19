@@ -4,17 +4,20 @@
       <div class="row">
         <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
           <h1 class="text-center">LOGIN</h1>
-          <base-input
-            placeholder="Enter your username or email id"
-            addon-left-icon="fa fa-user"
-            v-model="credentials.email"
-          ></base-input>
-          <base-input
-            type="password"
-            placeholder="Enter your password"
-            addon-left-icon="fa fa-unlock"
-            v-model="credentials.password"
-          ></base-input>
+          <form>
+            <base-input
+              placeholder="Enter your username or email id"
+              addon-left-icon="fa fa-user"
+              v-model="credentials.email"
+            ></base-input>
+            <base-input
+              type="password"
+              placeholder="Enter your password"
+              addon-left-icon="fa fa-unlock"
+              v-model="credentials.password"
+              autocomplete="on"
+            ></base-input>
+          </form>
           <div class="pb-2">
             <router-link to="/forgot-password">
               <a href="#">Forgot password?</a>
@@ -30,8 +33,8 @@
             <base-button type="secondary" class="pull-right mb-5" icon="fa fa-registered">Register</base-button>
           </router-link>
           <Loader v-if="loader"></Loader>
-          <div>
-            <small class="alert alert-danger mt-3 text-center" role="alert" v-if="error">{{error}}</small>
+          <div class="mt-5">
+            <b-alert show variant="danger" v-if="error">{{error}}</b-alert>
           </div>
         </div>
       </div>
@@ -77,6 +80,7 @@ export default {
           this.$http.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.token;
           localStorage.setItem("access_token", "Bearer " + response.data.token);
+          localStorage.setItem("user_name", response.data.name);
           this.$router.push({ name: "home" });
         })
         .catch(error => {
@@ -102,7 +106,6 @@ export default {
 }
 
 #main-background {
-  /*Ref: https://thriveglobal.com/stories/the-one-thing-thats-likely-missing-from-your-job-search-strategy/ */
   background-image: url("https://content.thriveglobal.com/wp-content/uploads/2019/12/adult-blur-computer-cup-374897-1.jpg?w=1550");
   background-repeat: no-repeat;
   background-size: cover;
