@@ -1,56 +1,64 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-default">
-    <div class="container">
-        <a class="navbar-brand nav-link nav-link-icon" href="#"><i class="fa fa-home"></i> Home</a>
-        <a class="navbar-brand nav-link nav-link-icon" href="#"><i class="fa fa-book"></i> Careers</a>
-        <a class="navbar-brand nav-link nav-link-icon" href="#"><i class="fa fa-phone-square"></i> About us</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar-default">
-            <div class="navbar-collapse-header">
-                <div class="row">
-                    <div class="col-6 collapse-brand"> 
-                        <a href="#">
-                            <img src="assets/img/brand/blue.png">
-                        </a>
-                    </div>
-                    <div class="col-6 collapse-close">
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
-                            <span></span>
-                            <span></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <ul class="navbar-nav ml-lg-auto">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="#">
-                        <i class="fa fa-sign-out"></i> sign-out
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link nav-link-icon" href="#" id="navbar-default_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="ni ni-settings-gear-65"></i> settings
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-                       <router-link to="/change-password">
-                        <a class="dropdown-item">Change Password</a>
-                       </router-link>
-                    </div>
-                </li>
-            </ul>
-        </div>
+  <div>
+    <NavBar />
+    <SubHeader />
+
+    <div v-if="loader">
+      <Loader v-if="loader"></Loader>
     </div>
-</nav>
+    <div v-else>
+      <b-row>
+        <b-col sm="4" lg="4" v-for="job in jobs" :key="job.id">
+          <b-card :title="job.jobTitle" class="mb-2 card-bg">
+            <b-card-text>Description: {{ job.jobDescription }}</b-card-text>
+            <b-card-text>Employment Type: {{ job.employmentType }}</b-card-text>
+            <b-card-text>Salary: ${{ job.salary }}</b-card-text>
+
+            <b-button href="#" variant="primary">Apply</b-button>
+          </b-card>
+        </b-col>
+      </b-row>
+    </div>
+  </div>
 </template>
 
 <script>
+import NavBar from "../components/Nav/NavBar";
+import SubHeader from "../components/Nav/SubHeader";
+import Loader from "../components/utils/Loader.vue";
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    NavBar,
+    SubHeader,
+    Loader
+  },
+  data() {
+    return {
+      loader: true,
+      jobs: [],
+      error: null
+    };
+  },
+  created() {
+    this.$http
+      .get("job/getAllJobs", this.credentials)
+      .then(response => {
+        this.jobs = response.data;
+        this.loader = false;
+      })
+      .catch(error => {
+        this.loader = false;
+        this.error = error.response ? error.response.data.error.message : error;
+      });
+  }
 };
 </script>
 
 <style scoped>
+.card-bg {
+  background: #eee;
+  color: black;
+}
 </style>

@@ -1,40 +1,42 @@
 <template>
-<div id="main-background">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
-        <h1 class="text-center" style="font-family:argon">LOGIN</h1>
-        <base-input
-          placeholder="Enter your username or email id"
-          addon-left-icon="fa fa-user"
-          v-model="credentials.email"
-        ></base-input>
-        <base-input
-          type="password"
-          placeholder="Enter your password"
-          addon-left-icon="fa fa-unlock"
-          v-model="credentials.password"
-        ></base-input>
-        <div class="pb-2">
-          <router-link to="/forgot-password">
-            <a href="#">Forgot password?</a>
+  <div id="main-background">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
+          <h1 class="text-center">LOGIN</h1>
+          <base-input
+            placeholder="Enter your username or email id"
+            addon-left-icon="fa fa-user"
+            v-model="credentials.email"
+          ></base-input>
+          <base-input
+            type="password"
+            placeholder="Enter your password"
+            addon-left-icon="fa fa-unlock"
+            v-model="credentials.password"
+          ></base-input>
+          <div class="pb-2">
+            <router-link to="/forgot-password">
+              <a href="#">Forgot password?</a>
+            </router-link>
+          </div>
+          <base-button
+            type="primary"
+            class="pull-left mb-5"
+            icon="fa fa-sign-in"
+            @click.prevent.stop="login"
+          >Login</base-button>
+          <router-link to="/register">
+            <base-button type="secondary" class="pull-right mb-5" icon="fa fa-registered">Register</base-button>
           </router-link>
-        </div>
-        <base-button
-          type="primary"
-          class="pull-left"
-          icon="fa fa-sign-in"
-          @click.prevent.stop="login"
-        >Login</base-button>
-        <router-link to="/register">
-          <base-button type="secondary" class="pull-right" icon="fa fa-registered">Register</base-button>
-        </router-link>
-        <Loader v-if="loader"></Loader>
-          <small class="alert alert-danger" role="alert" v-if="error">{{error}}</small>
+          <Loader v-if="loader"></Loader>
+          <div>
+            <small class="alert alert-danger mt-3 text-center" role="alert" v-if="error">{{error}}</small>
+          </div>
         </div>
       </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -99,7 +101,7 @@ export default {
   background-color: #fff;
 }
 
-#main-background{
+#main-background {
   /*Ref: https://thriveglobal.com/stories/the-one-thing-thats-likely-missing-from-your-job-search-strategy/ */
   background-image: url("https://content.thriveglobal.com/wp-content/uploads/2019/12/adult-blur-computer-cup-374897-1.jpg?w=1550");
   background-repeat: no-repeat;
@@ -108,5 +110,5 @@ export default {
   background-attachment: fixed;
   min-height: 100vh;
   max-height: 400vh;
-  }
+}
 </style>
