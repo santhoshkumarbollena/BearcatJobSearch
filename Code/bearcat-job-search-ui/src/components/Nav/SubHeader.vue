@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-breadcrumb :items="items"></b-breadcrumb>
-    <ChatList :usersList="usersList" />
+    <ChatList />
   </div>
 </template>
 
@@ -15,11 +15,6 @@ export default {
   },
   data() {
     return {
-      usersList: [
-        { studentName: "Anil" },
-        { studentName: "AB" },
-        { studentName: "Sai" }
-      ],
       items: [
         {
           text: "List All Jobs",

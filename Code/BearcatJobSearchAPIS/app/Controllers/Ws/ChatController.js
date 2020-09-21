@@ -1,16 +1,19 @@
 "use strict";
+const Ws = use("Ws");
+const _ = use("lodash");
 
-let activeUser = [];
+let activeUser = {};
 
 class ChatController {
   constructor({ socket, request }) {
     this.socket = socket;
     this.request = request;
-    console.log("---connected socket id %s", socket.id);
+    this.topic = Ws.getChannel("chat").topic("chat");
 
-    this.socket.on("activeUser", (username) => {
-      activeUser.push({ [this.socket.id]: username });
-      this.socket.broadcastToAll("activeUser", activeUser);
+    // new user has logged-in save and emit activeUsers
+    this.socket.on("addUser", (username) => {
+      activeUser[username] = this.socket.id;
+      this.socket.broadcastToAll("userUpdated", activeUser);
     });
   }
 
@@ -20,8 +23,15 @@ class ChatController {
   }
 
   onClose(socket) {
-    console.log("---disconnected socket id %s", socket.id);
+    deleteActiveUserProp(socket.id);
+    this.topic.broadcast("userUpdated", activeUser);
   }
 }
+
+const deleteActiveUserProp = (val) => {
+  for (let key in activeUser) {
+    if (activeUser[key] == val) delete activeUser[key];
+  }
+};
 
 module.exports = ChatController;
