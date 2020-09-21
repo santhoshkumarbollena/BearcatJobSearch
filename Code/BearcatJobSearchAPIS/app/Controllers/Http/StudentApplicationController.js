@@ -32,6 +32,19 @@ class StudentApplicationController {
 
           return "Student Applied";
     }
+
+    async StudentGotApproved({ request, auth, response, params })
+    {
+        console.log(params.studentId,params.jobId);
+        const job = await Job.find(params.jobId);
+        const student = await Student.find(params.studentId);
+        student.studentApplications().detach(student.id,job.id);
+        student.studentApplications().attach([job.id], (studentApplication) => {
+            studentApplication.status = "Approved";
+          });
+
+          return "Student Approved";
+    }
    
 
 }
