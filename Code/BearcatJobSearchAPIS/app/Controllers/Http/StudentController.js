@@ -35,7 +35,8 @@ class StudentController {
         if (queryParam && queryParam.search) {
             students = await Student.query()
                 .where(function () {
-                    this.Where('StudentId', 'like', '%' + queryParam.search + '%')
+                    this.where('StudentName', 'like', '%' + queryParam.search + '%')
+                        .orWhere('StudentId', 'like', '%' + queryParam.search + '%')
                 })
                 .fetch();
         } else {
