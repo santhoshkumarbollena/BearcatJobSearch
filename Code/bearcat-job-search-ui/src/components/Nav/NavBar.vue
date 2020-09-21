@@ -1,5 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-default">
+  <img src="BearcatJobSearch.PNG" alt="BearcatJobSearch" width="50" height="50">
     <div class="container">
       <a class="navbar-brand nav-link nav-link-icon" href="#">
         <i class="fa fa-home"></i> Home
