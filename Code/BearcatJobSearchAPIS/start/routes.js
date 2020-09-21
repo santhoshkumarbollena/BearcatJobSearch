@@ -43,6 +43,7 @@ Route.group(() => {
 
 Route.group(() => {
   Route.get("StudentApplyJob/:studentId/:jobId", "StudentApplicationController.StudentApplyJob");
+  Route.get("StudentGotRejected/:studentId/:jobId", "StudentApplicationController.StudentGotRejected");
   
 }).prefix("api/v1/studentApplication");
 
