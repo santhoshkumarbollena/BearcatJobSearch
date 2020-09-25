@@ -20,4 +20,8 @@ export default {
 #app {
   font-family: "Noto Sans JP", sans-serif;
 }
+
+f-16 {
+  font-size: 16px;
+}
 </style>
