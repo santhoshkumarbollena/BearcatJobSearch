@@ -1,83 +1,65 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-default">
-  <!-- <img src="BearcatJobSearch.PNG" alt="BearcatJobSearch" width="50" height="50"> -->
-    <div class="container">
-      <a class="navbar-brand nav-link nav-link-icon" href="#">
-        <i class="fa fa-home"></i> Home
-      </a>
-      <a class="navbar-brand nav-link nav-link-icon" href="#">
-        <i class="fa fa-book"></i> Careers
-      </a>
-      <a class="navbar-brand nav-link nav-link-icon" href="#">
-        <i class="fa fa-phone-square"></i> About us
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbar-default"
-        aria-controls="navbar-default"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbar-default">
-        <div class="navbar-collapse-header">
-          <div class="row">
-            <div class="col-6 collapse-brand">
-              <a href="#">
-                <img src="assets/img/brand/blue.png" />
-              </a>
-            </div>
-            <div class="col-6 collapse-close">
-              <button
-                type="button"
-                class="navbar-toggler"
-                data-toggle="collapse"
-                data-target="#navbar-default"
-                aria-controls="navbar-default"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span></span>
-                <span></span>
-              </button>
-            </div>
-          </div>
-        </div>
+  <div>
+    <b-navbar toggleable="lg" type="dark" variant="primary">
+      <b-navbar-brand class="f-16">Bearcat Job Search</b-navbar-brand>
 
-        <ul class="navbar-nav ml-lg-auto">
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="#" @click="logout">
-              <i class="fa fa-sign-out"></i> sign-out
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link nav-link-icon"
-              href="#"
-              id="navbar-default_dropdown_1"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item class="m-0">
+            <router-link to="/home" active>
+              <i class="fa fa-briefcase m-0"></i> Jobs
+            </router-link>
+          </b-nav-item>
+
+          <b-nav-item class="m-0">
+            <router-link to="/faqs">
+              <i class="fa fa-book m-0"></i> Carres
+            </router-link>
+          </b-nav-item>
+
+          <b-nav-item class="m-0">
+            <router-link to="/faqs">
+              <i class="fa fa-question-circle m-0"></i> FAQ's
+            </router-link>
+          </b-nav-item>
+
+          <b-nav-item class="m-0">
+            <router-link to="/faqs">
+              <i class="fa fa-phone-square m-0"></i> About Us
+            </router-link>
+          </b-nav-item>
+        </b-navbar-nav>
+
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto">
+          <b-nav-form>
+            <b-form-input
+              size="sm"
+              class="mr-sm-2"
+              placeholder="Search"
+            ></b-form-input>
+            <b-button size="sm" class="my-2 my-sm-0" type="submit"
+              >Search</b-button
             >
-              <i class="ni ni-settings-gear-65"></i> settings
-            </a>
-            <div
-              class="dropdown-menu dropdown-menu-right"
-              aria-labelledby="navbar-default_dropdown_1"
+          </b-nav-form>
+
+          <b-nav-item-dropdown right class="color-white">
+            <template v-slot:button-content>
+              User
+            </template>
+            <b-dropdown-item href="#">
+              <i class="fa fa-cog mr-1"></i>Settings</b-dropdown-item
             >
-              <router-link to="/change-password">
-                <a class="dropdown-item">Change Password</a>
-              </router-link>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+            <b-dropdown-item @click="logout">
+              <i class="fa fa-sign-out mr-1" />Sign Out</b-dropdown-item
+            >
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div>
 </template>
 
 <script>
@@ -95,5 +77,19 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+a {
+  color: #eee;
+  font-weight: 500;
+}
+
+a:hover {
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.router-link-active {
+  color: #fff !important;
+  font-weight: 700;
+}
 </style>
