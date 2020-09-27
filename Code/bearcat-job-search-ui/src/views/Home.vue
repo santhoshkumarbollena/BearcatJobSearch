@@ -1,13 +1,29 @@
 <template>
   <div>
     <NavBar />
-    <SubHeader />
-    <ChatList />
+    <SubHeader :breadcrumb="breadcrumb" />
+    <b-row>
+      <b-col sm="8" md="8">
+        <b-nav-form>
+          <b-form-input
+            class="mr-sm-2 ml-3"
+            placeholder="Search for jobs"
+          ></b-form-input>
+          <b-button variant="info" class="my-2 my-sm-0" type="submit"
+            >Search</b-button
+          >
+        </b-nav-form>
+      </b-col>
+      <b-col sm="4" md="4">
+        <ChatList />
+      </b-col>
+    </b-row>
 
     <div v-if="loader">
       <Loader v-if="loader"></Loader>
     </div>
     <div v-else>
+      <hr class="mt-3 mb-3" />
       <b-row>
         <b-col sm="4" lg="4" v-for="job in jobs" :key="job.id">
           <b-card :title="job.jobTitle" class="mb-2 card-bg">
@@ -40,6 +56,12 @@ export default {
   data() {
     return {
       loader: true,
+      breadcrumb: [
+        {
+          text: "Jobs List",
+          href: "/home"
+        }
+      ],
       jobs: [],
       error: null
     };

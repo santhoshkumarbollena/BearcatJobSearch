@@ -34,20 +34,10 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <b-form-input
-              size="sm"
-              class="mr-sm-2"
-              placeholder="Search"
-            ></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit"
-              >Search</b-button
-            >
-          </b-nav-form>
-
           <b-nav-item-dropdown right class="color-white">
             <template v-slot:button-content>
-              User
+              <i class="fa fa-user-circle mr-1"></i>
+              {{ userName }}
             </template>
             <b-dropdown-item href="#">
               <i class="fa fa-cog mr-1"></i>Settings</b-dropdown-item
@@ -66,7 +56,9 @@
 export default {
   name: "NavBar",
   data() {
-    return {};
+    return {
+      userName: localStorage.getItem("user_name")
+    };
   },
   methods: {
     logout() {
