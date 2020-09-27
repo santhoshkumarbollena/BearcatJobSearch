@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <b-button class="pull-right mr-2" variant="success" v-b-toggle.chat-list>Chat</b-button>
+  <div class="float-right">
+    <b-button class="pull-right mr-2" variant="success" v-b-toggle.chat-list>
+      <i class="fa fa-comments mr-1"></i>
+      Chat</b-button
+    >
     <b-sidebar
       id="chat-list"
       title="Active Users"
@@ -13,9 +16,12 @@
       <hr class="m-3" />
       <div class="px-3 py-2">
         <b-list-group>
-          <b-list-group-item v-for="user in Object.keys(getActiveUsers)" :key="user">
+          <b-list-group-item
+            v-for="user in Object.keys(getActiveUsers)"
+            :key="user"
+          >
             <font-awesome-icon icon="circle" class="active-icon mr-1" />
-            <span class="mr-auto">{{user}}</span>
+            <span class="mr-auto">{{ user }}</span>
             <span v-if="userName == user">(You)</span>
             <b-button
               size="sm"
@@ -24,12 +30,13 @@
               v-show="userName !== user"
               v-b-toggle.chat-list
               @click="chatUser(user)"
-            >Chat</b-button>
+              >Chat</b-button
+            >
           </b-list-group-item>
         </b-list-group>
       </div>
     </b-sidebar>
-    <div v-if="Object.keys(chatWith).length>0">
+    <div v-if="Object.keys(chatWith).length > 0">
       <ChatWindow :chatUser="chatWith" :closeWindow="closeWindow" />
     </div>
   </div>
