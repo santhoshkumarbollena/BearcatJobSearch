@@ -1,7 +1,11 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="primary">
-      <b-navbar-brand class="f-16">Bearcat Job Search</b-navbar-brand>
+      <b-navbar-brand>
+        <span class="f-20">
+          Bearcat Job Search
+        </span>
+      </b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -39,11 +43,14 @@
               <i class="fa fa-user-circle mr-1"></i>
               {{ userName }}
             </template>
-            <b-dropdown-item href="#">
-              <i class="fa fa-cog mr-1"></i>Settings</b-dropdown-item
+            <b-dropdown-item disabled>
+              <i class="fa fa-user-secret mr-2"></i> Admin</b-dropdown-item
+            >
+            <b-dropdown-item>
+              <i class="fa fa-cog mr-2"></i>Settings</b-dropdown-item
             >
             <b-dropdown-item @click="logout">
-              <i class="fa fa-sign-out mr-1" />Sign Out</b-dropdown-item
+              <i class="fa fa-sign-out mr-2" />Sign Out</b-dropdown-item
             >
           </b-nav-item-dropdown>
         </b-navbar-nav>

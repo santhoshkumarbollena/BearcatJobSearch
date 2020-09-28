@@ -26,13 +26,25 @@
       <b-container fluid>
         <b-row>
           <b-col sm="4" lg="4" v-for="job in jobs" :key="job.id">
-            <b-card :title="job.jobTitle" class="mb-2 card-bg">
-              <b-card-text>Description: {{ job.jobDescription }}</b-card-text>
-              <b-card-text
-                >Employment Type: {{ job.employmentType }}</b-card-text
-              >
-              <b-card-text>Salary: ${{ job.salary }}</b-card-text>
-
+            <b-card
+              :title="job.jobTitle"
+              class="mb-2 m-auto card-1"
+              :img-src="require(`../assets/frontend.png`)"
+              img-alt="logo"
+              img-top
+              style="max-width: 22rem;"
+            >
+              <b-card-text class="mb-0">
+                Description:
+                <span class="fw-650 ml-2"> {{ job.jobDescription }}</span>
+              </b-card-text>
+              <b-card-text class="mb-0">
+                Employment-Type:
+                <span class="fw-650 ml-1">{{ job.employmentType }}</span>
+              </b-card-text>
+              <b-card-text>
+                Salary: <span class="fw-650 ml-1">${{ job.salary }}</span>
+              </b-card-text>
               <b-button href="#" variant="primary">Apply</b-button>
             </b-card>
           </b-col>
