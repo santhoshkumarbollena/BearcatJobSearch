@@ -44,8 +44,9 @@
               {{ userName }}
             </template>
             <b-dropdown-item disabled>
-              <i class="fa fa-user-secret mr-2"></i> Admin</b-dropdown-item
-            >
+              <i class="fa fa-user-secret mr-2"></i>
+              <span style="text-transform: capitalize;">{{ userRole }}</span>
+            </b-dropdown-item>
             <b-dropdown-item>
               <i class="fa fa-cog mr-2"></i>Settings</b-dropdown-item
             >
@@ -64,7 +65,8 @@ export default {
   name: "NavBar",
   data() {
     return {
-      userName: localStorage.getItem("user_name")
+      userName: localStorage.getItem("user_name"),
+      userRole: localStorage.getItem("role")
     };
   },
   methods: {
