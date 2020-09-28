@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <NavBar />
+    <NavBar v-if="userName" />
     <router-view />
-    <Footer />
+    <Footer v-if="userName" />
   </div>
 </template>
 
@@ -17,7 +17,9 @@ export default {
     Footer
   },
   data() {
-    return {};
+    return {
+      userName: localStorage.getItem("user_name")
+    };
   },
   methods: {}
 };
