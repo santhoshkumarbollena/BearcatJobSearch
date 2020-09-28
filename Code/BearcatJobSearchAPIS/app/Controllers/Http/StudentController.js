@@ -27,5 +27,24 @@ class StudentController {
         return response.status(200).json(job);
     }
 
+    async searchStudent({ params, request, response }) {
+
+        const queryParam = request.all();
+        let students;
+        
+        if (queryParam && queryParam.search) {
+            students = await Student.query()
+                .where(function () {
+                    this.where('StudentName', 'like', '%' + queryParam.search + '%')
+                        .orWhere('StudentId', 'like', '%' + queryParam.search + '%')
+                })
+                .fetch();
+        } else {
+             students = await Student.all();
+        }
+
+        return response.ok(students);
+    }
+
 }
 module.exports = StudentController;

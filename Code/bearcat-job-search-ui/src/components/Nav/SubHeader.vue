@@ -1,27 +1,17 @@
 <template>
   <div>
-    <b-breadcrumb :items="items"></b-breadcrumb>
-    <ChatList />
+    <b-breadcrumb :items="breadcrumb"></b-breadcrumb>
   </div>
 </template>
 
 <script>
-import ChatList from "../Chat/ChatList";
-
 export default {
   name: "SubHeader",
-  components: {
-    ChatList
+  props: {
+    breadcrumb: Array
   },
   data() {
-    return {
-      items: [
-        {
-          text: "List All Jobs",
-          href: "/home"
-        }
-      ]
-    };
+    return {};
   }
 };
 </script>

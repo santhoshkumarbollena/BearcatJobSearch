@@ -22,7 +22,9 @@
 			addon-left-icon="fa fa-unlock"
 		></base-input>
 		<base-button type="primary pull-left" icon="fa fa-save" >Save</base-button>
+		<router-link to="/home">
 		<base-button type="primary pull-right" icon="fa fa-times" >Cancel</base-button>
+		</router-link>
       </div>
     </div>
 	</div>

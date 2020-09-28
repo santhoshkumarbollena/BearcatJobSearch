@@ -1,40 +1,51 @@
 <template>
-  <div id="main-background">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
-          <h1 class="text-center">LOGIN</h1>
-          <form>
-            <base-input
-              placeholder="Enter your username or email id"
-              addon-left-icon="fa fa-user"
-              v-model="credentials.email"
-            ></base-input>
-            <base-input
-              type="password"
-              placeholder="Enter your password"
-              addon-left-icon="fa fa-unlock"
-              v-model="credentials.password"
-              autocomplete="on"
-            ></base-input>
-          </form>
-          <div class="pb-2">
-            <router-link to="/forgot-password">
-              <a href="#">Forgot password?</a>
+  <div v-if="loader">
+    <Loader v-if="loader"></Loader>
+  </div>
+  <div v-else>
+    <div id="main-background">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 offset-md-4 v-center p-4 border-2px">
+            <h1 class="text-center">LOGIN</h1>
+            <form>
+              <base-input
+                placeholder="Enter your username or email id"
+                addon-left-icon="fa fa-user"
+                v-model="credentials.email"
+              ></base-input>
+              <base-input
+                type="password"
+                placeholder="Enter your password"
+                addon-left-icon="fa fa-unlock"
+                v-model="credentials.password"
+                autocomplete="on"
+              ></base-input>
+            </form>
+            <div class="pb-2">
+              <router-link to="/forgot-password">
+                <a href="#">Forgot password?</a>
+              </router-link>
+            </div>
+            <base-button
+              type="primary"
+              class="pull-left mb-5"
+              icon="fa fa-sign-in"
+              @click.prevent.stop="login"
+              >Login</base-button
+            >
+            <router-link to="/register">
+              <base-button
+                type="secondary"
+                class="pull-right mb-5"
+                icon="fa fa-registered"
+                >Register</base-button
+              >
             </router-link>
-          </div>
-          <base-button
-            type="primary"
-            class="pull-left mb-5"
-            icon="fa fa-sign-in"
-            @click.prevent.stop="login"
-          >Login</base-button>
-          <router-link to="/register">
-            <base-button type="secondary" class="pull-right mb-5" icon="fa fa-registered">Register</base-button>
-          </router-link>
-          <Loader v-if="loader"></Loader>
-          <div class="mt-5">
-            <b-alert show variant="danger" v-if="error">{{error}}</b-alert>
+            <Loader v-if="loader"></Loader>
+            <div class="mt-5">
+              <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
+            </div>
           </div>
         </div>
       </div>
@@ -52,13 +63,16 @@ export default {
   },
   data() {
     return {
+      loader: true,
       credentials: {
         email: "",
         password: ""
       },
-      error: null,
-      loader: false
+      error: null
     };
+  },
+  mounted() {
+    this.loader = false;
   },
   methods: {
     async login() {
@@ -81,6 +95,8 @@ export default {
             "Bearer " + response.data.token;
           localStorage.setItem("access_token", "Bearer " + response.data.token);
           localStorage.setItem("user_name", response.data.name);
+          localStorage.setItem("role", response.data.role);
+          this.$router.go();
           this.$router.push({ name: "home" });
         })
         .catch(error => {

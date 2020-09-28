@@ -18,8 +18,7 @@ class ChatController {
   }
 
   onMessage(message) {
-    console.log("---received message", message);
-    this.socket.broadcastToAll("message", message);
+    this.socket.emitTo("message", message, [message.emitTo]);
   }
 
   onClose(socket) {

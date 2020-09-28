@@ -21,23 +21,32 @@ ws.on("open", () => {
 /** subscribe to chat channel **/
 const wsChat = ws.subscribe("chat");
 
-wsChat.on("userUpdated", (activeUser) => {
-  console.log("------userUpdated", activeUser);
+wsChat.on("message", (res) => {
+  // commit("updateMsg", res);
+  state.messages = [...state.messages, res];
 });
 
 const state = {
   activeUsers: [],
+  messages: [],
 };
 
 const getters = {
   getActiveUsers: (state) => {
     return state.activeUsers;
   },
+  getMesages: (state) => {
+    return state.messages;
+  },
 };
 
 const mutations = {
   setActiveUser: (state, users) => {
     state.activeUsers = users;
+  },
+
+  updateMsg: (state, msg) => {
+    state.messages = [...state.messages, msg];
   },
 };
 
@@ -53,6 +62,11 @@ const actions = {
     wsChat.on("userUpdated", (activeUser) => {
       commit("setActiveUser", activeUser);
     });
+  },
+
+  emitMessage: ({ commit }, payload) => {
+    commit("updateMsg", payload);
+    wsChat.emit("message", payload);
   },
 };
 

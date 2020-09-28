@@ -4,6 +4,7 @@ const _ = use("lodash");
 const Hash = use("Hash");
 const Student = use("App/Models/Student");
 const Job = use("App/Models/Job")
+const StudentApplication = use("App/Models/StudentApplication")
 
 class JobController {
 
@@ -43,6 +44,15 @@ class JobController {
         return response.status(200).json(job);
     }
    
+    async appliedStudentsOfJob({ request, auth, response, params })
+    {
+        console.log(params.jobId);
+        let studetsAppliedJobds = await StudentApplication.query()
+        .where("status","Applied")
+        .fetch()
+
+        return response.status(200).json(studetsAppliedJobds);
+    }
 
 }
 module.exports = JobController;
