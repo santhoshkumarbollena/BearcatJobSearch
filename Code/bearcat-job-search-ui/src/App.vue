@@ -2,17 +2,19 @@
   <div id="app">
     <NavBar />
     <router-view />
-    <!-- <footer></footer> -->
+    <Footer />
   </div>
 </template>
 
 <script>
 import NavBar from "./components/Nav/NavBar";
+import Footer from "./components/utils/Footer";
 
 export default {
   name: "App",
   components: {
-    NavBar
+    NavBar,
+    Footer
   },
   data() {
     return {};
@@ -24,6 +26,10 @@ export default {
 <style>
 #app {
   font-family: "Noto Sans JP", sans-serif;
+}
+
+.f-12 {
+  font-size: 12px;
 }
 
 .f-16 {
