@@ -1,26 +1,26 @@
 <template>
-  <div>
-    <SubHeader :breadcrumb="breadcrumb" />
+  <div v-if="loader">
+    <Loader v-if="loader"></Loader>
+  </div>
+  <div v-else>
     <div>
-      <ChatList />
-      <b-navbar-nav class="ml-auto">
-        <b-nav-form>
-          <b-form-input
-            class="mr-2 ml-5"
-            placeholder="Search for jobs"
-          ></b-form-input>
-          <b-button variant="info" class="my-2 my-sm-0" type="submit">
-            <i class="fa fa-search mr-1"></i>
-            Search</b-button
-          >
-        </b-nav-form>
-      </b-navbar-nav>
-    </div>
+      <SubHeader :breadcrumb="breadcrumb" />
+      <div>
+        <ChatList />
+        <b-navbar-nav class="ml-auto">
+          <b-nav-form>
+            <b-form-input
+              class="mr-2 ml-5"
+              placeholder="Search for jobs"
+            ></b-form-input>
+            <b-button variant="info" class="my-2 my-sm-0" type="submit">
+              <i class="fa fa-search mr-1"></i>
+              Search</b-button
+            >
+          </b-nav-form>
+        </b-navbar-nav>
+      </div>
 
-    <div v-if="loader">
-      <Loader v-if="loader"></Loader>
-    </div>
-    <div v-else>
       <hr class="mt-3 mb-3" />
       <b-container fluid>
         <b-row>
