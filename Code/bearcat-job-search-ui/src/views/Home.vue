@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavBar />
     <SubHeader :breadcrumb="breadcrumb" />
     <div>
       <ChatList />
@@ -70,7 +69,6 @@
 </template>
 
 <script>
-import NavBar from "../components/Nav/NavBar";
 import SubHeader from "../components/Nav/SubHeader";
 import ChatList from "../components/Chat/ChatList";
 import Loader from "../components/utils/Loader.vue";
@@ -78,7 +76,6 @@ import Loader from "../components/utils/Loader.vue";
 export default {
   name: "Home",
   components: {
-    NavBar,
     ChatList,
     SubHeader,
     Loader
