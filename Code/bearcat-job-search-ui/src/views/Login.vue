@@ -28,13 +28,19 @@
             class="pull-left mb-5"
             icon="fa fa-sign-in"
             @click.prevent.stop="login"
-          >Login</base-button>
+            >Login</base-button
+          >
           <router-link to="/register">
-            <base-button type="secondary" class="pull-right mb-5" icon="fa fa-registered">Register</base-button>
+            <base-button
+              type="secondary"
+              class="pull-right mb-5"
+              icon="fa fa-registered"
+              >Register</base-button
+            >
           </router-link>
           <Loader v-if="loader"></Loader>
           <div class="mt-5">
-            <b-alert show variant="danger" v-if="error">{{error}}</b-alert>
+            <b-alert show variant="danger" v-if="error">{{ error }}</b-alert>
           </div>
         </div>
       </div>
@@ -81,6 +87,7 @@ export default {
             "Bearer " + response.data.token;
           localStorage.setItem("access_token", "Bearer " + response.data.token);
           localStorage.setItem("user_name", response.data.name);
+          localStorage.setItem("role", response.data.role);
           this.$router.push({ name: "home" });
         })
         .catch(error => {

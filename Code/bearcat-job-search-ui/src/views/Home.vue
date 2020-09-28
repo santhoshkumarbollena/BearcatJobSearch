@@ -7,7 +7,7 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
           <b-form-input
-            class="mr-2 ml-3"
+            class="mr-2 ml-5"
             placeholder="Search for jobs"
           ></b-form-input>
           <b-button variant="info" class="my-2 my-sm-0" type="submit">
@@ -45,7 +45,22 @@
               <b-card-text>
                 Salary: <span class="fw-650 ml-1">${{ job.salary }}</span>
               </b-card-text>
-              <b-button href="#" variant="primary">Apply</b-button>
+
+              <b-button variant="info">
+                <i class="fa fa-info-circle"></i
+              ></b-button>
+
+              <b-button variant="info" v-if="userRole == 'student'">
+                <i class="fa fa-check-square-o mr-1"></i>
+                Apply</b-button
+              >
+
+              <b-button variant="info" v-if="userRole == 'admin'">
+                <i class="fa fa-edit mr-1" /> Edit</b-button
+              >
+              <b-button variant="danger" v-if="userRole == 'admin'">
+                <i class="fa fa-trash mr-1"></i> Delete</b-button
+              >
             </b-card>
           </b-col>
         </b-row>
@@ -71,6 +86,7 @@ export default {
   data() {
     return {
       loader: true,
+      userRole: localStorage.getItem("role"),
       breadcrumb: [
         {
           text: "Jobs List",

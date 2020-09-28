@@ -9,7 +9,6 @@ const Student = use("App/Models/Student");
 const myCache = new nodeCache({ stdTTL: 600 });
 
 class Auth {
-
   //Student Registration logic
   async registrationForStudent({ request, response, auth }) {
     //Getting all the details from the registration form.
@@ -58,8 +57,7 @@ class Auth {
     }
   }
 
-
-  //Student Login logic 
+  //Student Login logic
   async login({ request, auth, response }) {
     //Getting the user data to login.
     const userData = request.post();
@@ -110,6 +108,7 @@ class Auth {
       studentId: user.studentId,
       userId: user.userId,
       email: user.email,
+      role: "student",
     });
 
     //Sending the succesful student details along with the access token.
@@ -118,7 +117,6 @@ class Auth {
 
   //Forgot password for a student function.
   async forgotPassword({ request, auth, response }) {
-
     //Getting the student email to send the password manage link.
     const studentEmail = request.all();
     console.log(studentEmail.email, " will get a mail to reset password");
@@ -270,6 +268,5 @@ class Auth {
       result,
     });
   }
-
 }
 module.exports = Auth;
