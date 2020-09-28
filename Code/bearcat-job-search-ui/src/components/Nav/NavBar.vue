@@ -18,8 +18,8 @@
           </b-nav-item>
 
           <b-nav-item class="m-0">
-            <router-link to="/faqs">
-              <i class="fa fa-book m-0"></i> Carres
+            <router-link to="/careers">
+              <i class="fa fa-book m-0"></i> Careers
             </router-link>
           </b-nav-item>
 
@@ -30,7 +30,7 @@
           </b-nav-item>
 
           <b-nav-item class="m-0">
-            <router-link to="/faqs">
+            <router-link to="/about">
               <i class="fa fa-phone-square m-0"></i> About Us
             </router-link>
           </b-nav-item>
