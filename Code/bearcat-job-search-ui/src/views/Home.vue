@@ -17,7 +17,13 @@
               <i class="fa fa-search mr-1"></i>
               Search</b-button
             >
+            <router-link :to="{ name: 'add-job' }">
+                <b-button variant="info" v-if="userRole == 'admin'">
+                <i class="fa fa-edit mr-1" /> Add Job</b-button
+              >
+          </router-link>
           </b-nav-form>
+          
         </b-navbar-nav>
       </div>
 
@@ -54,9 +60,12 @@
                 Apply</b-button
               >
 
-              <b-button variant="info" v-if="userRole == 'admin'">
+              
+              <router-link :to="{ name: 'edit-job' }">
+                <b-button variant="info" v-if="userRole == 'admin'">
                 <i class="fa fa-edit mr-1" /> Edit</b-button
               >
+              </router-link>
               <b-button variant="danger" v-if="userRole == 'admin'">
                 <i class="fa fa-trash mr-1"></i> Delete</b-button
               >
