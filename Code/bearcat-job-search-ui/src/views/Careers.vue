@@ -77,3 +77,55 @@
       </b-container>
   </div>
 </template>
+
+<script>
+import ChatList from "../components/Chat/ChatList";
+import SubHeader from "../components/Nav/SubHeader";
+import Loader from "../components/utils/Loader.vue";
+
+export default {
+  name: "Careers",
+  components: {
+    ChatList,
+    SubHeader,
+    Loader
+  },
+  data() {
+    return {
+      loader: true,
+      userRole: localStorage.getItem("role"),
+      studentId : localStorage.getItem("id"),
+      Appliedjobs:"",
+      jobs : [],
+      breadcrumb: [
+        {
+          text: "Careers",
+          href: "/careers"
+        }
+      ]
+    };
+  },
+  mounted() {
+    this.loader = false;
+    
+     this.$http
+      .get("studentApplication/getStudentAppliedJobs/"+this.studentId)
+      .then(response => {
+        this.Appliedjobs = response.data;
+        for(const job in this.Appliedjobs){
+          this.jobs.push(this.Appliedjobs[job].job)
+        }
+        console.log(this.jobs)
+        this.loader = false;
+      })
+      .catch(error => {
+        this.loader = false;
+        this.error = error.response ? error.response.data.error.message : error;
+      });
+  },
+  methods: {}
+};
+</script>
+
+<style scoped>
+</style>
