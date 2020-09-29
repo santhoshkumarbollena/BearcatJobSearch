@@ -4,10 +4,10 @@ import axios from "axios";
 import Ws from "@adonisjs/websocket-client/index";
 
 // axios.defaults.baseURL = process.env.API_BASE_URL;
-axios.defaults.baseURL = "http://localhost:3006/api/v1";
+axios.defaults.baseURL = "http://localhost:3099/api/v1";
 
 // setting up web-socket provider
-const ws = Ws("ws://localhost:3006");
+const ws = Ws("ws://localhost:3099");
 ws.connect();
 ws.on("open", () => {
   console.log("--------web socket connection is open");

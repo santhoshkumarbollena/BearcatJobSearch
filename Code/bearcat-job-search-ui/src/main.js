@@ -30,7 +30,7 @@ Vue.use(Argon);
 // Integrating axios with vue as $http
 Vue.prototype.$http = axios.create({
   // baseURL: process.env.API_BASE_URL,
-  baseURL: "http://localhost:3006/api/v1/",
+  baseURL: "http://localhost:3099/api/v1/",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
