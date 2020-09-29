@@ -9,10 +9,12 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
           <b-form-input
+          id="search"
             class="mr-2 ml-5"
             placeholder="Search for applied jobs"
+
           ></b-form-input>
-          <b-button variant="info" class="my-2 my-sm-0" type="submit">
+          <b-button variant="info" class="my-2 my-sm-0" @click="findAppliedjob()" type="submit">
             <i class="fa fa-search mr-1"></i>
             Search</b-button
           >
@@ -96,6 +98,7 @@ export default {
       userRole: localStorage.getItem("role"),
       studentId : localStorage.getItem("id"),
       Appliedjobs:"",
+      search:"",
       jobs : [],
       breadcrumb: [
         {
@@ -111,11 +114,8 @@ export default {
      this.$http
       .get("studentApplication/getStudentAppliedJobs/"+this.studentId)
       .then(response => {
-        this.Appliedjobs = response.data;
-        for(const job in this.Appliedjobs){
-          this.jobs.push(this.Appliedjobs[job].job)
-        }
-        console.log(this.jobs)
+        this.jobs = response.data;
+        
         this.loader = false;
       })
       .catch(error => {
@@ -123,7 +123,29 @@ export default {
         this.error = error.response ? error.response.data.error.message : error;
       });
   },
-  methods: {}
+  methods: {
+
+findAppliedjob() {
+      this.search = document.getElementById("search").value
+      this.getJobs();
+    },
+    getJobs()
+    {
+       this.$http
+      .get("studentApplication/getStudentAppliedJobs/"+this.studentId+"/search/"+this.search)
+      .then(response => {
+        this.jobs = response.data;
+        
+        this.loader = false;
+      })
+      .catch(error => {
+        this.loader = false;
+        this.error = error.response ? error.response.data.error.message : error;
+      });
+
+    }
+
+  }
 };
 </script>
 
