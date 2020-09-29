@@ -96,6 +96,8 @@ export default {
           localStorage.setItem("access_token", "Bearer " + response.data.token);
           localStorage.setItem("user_name", response.data.name);
           localStorage.setItem("role", response.data.role);
+          // console.log("response.data",response.data)
+          localStorage.setItem("id", response.data.studentId);
           this.$router.go();
           this.$router.push({ name: "home" });
         })
