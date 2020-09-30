@@ -3,7 +3,7 @@
     <form class="form-container">
       <h6 class="bg-primary mb-0 p-2 text-white">
         <font-awesome-icon icon="circle" class="active-icon mr-1" />
-        {{userName}}
+        {{ userName }}
         <font-awesome-icon
           icon="times"
           class="float-right"
@@ -12,12 +12,23 @@
         />
       </h6>
       <div ref="chatArea" class="chat-area" id="chatArea">
-        <p
-          v-for="message in getMesages"
-          class="message"
-          :class="{ 'message-out': message.author !== userName, 'message-in': message.author === userName }"
-          :key="message.body"
-        >{{ message.body }}</p>
+        <div v-for="message in getMesages" :key="message.body">
+          <div v-if="message.author !== userName" style="margin-left: 55%;">
+            <em class="f-12">You,</em>
+          </div>
+          <div v-if="message.author === userName">
+            <em class="f-12">{{ userName }},</em>
+          </div>
+          <p
+            class="message"
+            :class="{
+              'message-out': message.author !== userName,
+              'message-in': message.author === userName
+            }"
+          >
+            {{ message.body }}
+          </p>
+        </div>
       </div>
       <b-form inline @submit.prevent="sendMessage('out')" id="person2-form">
         <b-input
@@ -106,6 +117,8 @@ export default {
 <style scoped>
 /* The popup chat - hidden by default */
 .chat-popup {
+  font-family: system-ui;
+  font-weight: 400;
   display: none;
   position: fixed;
   bottom: 0;
@@ -159,18 +172,19 @@ export default {
 }
 .message {
   width: 45%;
-  border-radius: 10px;
   padding: 0.5em;
-  /*   margin-bottom: .5em; */
   font-size: 0.8em;
 }
 .message-out {
+  font-weight: 400;
   background: #407fff;
+  border-radius: 0px 13px 13px 13px;
   color: white;
   margin-left: 55%;
 }
 .message-in {
   background: #fff;
+  border-radius: 0px 13px 13px 13px;
   color: black;
 }
 .chat-inputs {
