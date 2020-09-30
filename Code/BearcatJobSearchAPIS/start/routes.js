@@ -46,6 +46,8 @@ Route.group(() => {
   Route.get("StudentApplyJob/:studentId/:jobId", "StudentApplicationController.StudentApplyJob");
   Route.get("StudentGotRejected/:studentId/:jobId", "StudentApplicationController.StudentGotRejected");
   Route.get("StudentGotApproved/:studentId/:jobId", "StudentApplicationController.StudentGotApproved");
+  Route.get("getStudentAppliedJobs/:studentId", "StudentApplicationController.getStudentAppliedJobs");
+  Route.get("getStudentAppliedJobs/:studentId/search/:search", "StudentApplicationController.getStudentAppliedJobsSearch");
 
 }).prefix("api/v1/studentApplication");
 

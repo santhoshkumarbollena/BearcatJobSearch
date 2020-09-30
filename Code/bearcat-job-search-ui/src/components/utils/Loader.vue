@@ -12,6 +12,6 @@ export default {
 
 <style scoped>
 .mt-30 {
-  margin-top: 20%;
+  margin-top: 15%;
 }
 </style>

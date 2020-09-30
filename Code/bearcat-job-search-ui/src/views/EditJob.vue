@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loader">
+  <!-- <div v-if="loader">
     <Loader v-if="loader"></Loader>
   </div>
   <div v-else>
@@ -27,6 +27,9 @@
         </b-col>
       </b-row>
     </b-container>
+  </div> -->
+  <div>
+      <p>Editing Job</p>
   </div>
 </template>
 
@@ -55,6 +58,7 @@ export default {
   },
   mounted() {
     this.loader = false;
+    console.log("In editing job job")
   },
   methods: {}
 };
