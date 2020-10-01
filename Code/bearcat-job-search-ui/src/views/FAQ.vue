@@ -30,14 +30,15 @@
       <b-row>
         <b-col sm="4" lg="4">
           <b-card
-            :title="Question1"
+            :title="FAQQuestion"
             class="mb-2 m-auto card-1"
             :img-src="require(`../assets/Question.png`)"
-            img-alt="logo"
             img-top
             style="max-width: 22rem;"
           >
-            <b-card-text class="mb-0">Description: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+            <b-card-text class="mb-0">FAQAnswer: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+            <b-card-text class="mb-0">category: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+            <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
           </b-card>
         </b-col>
       </b-row>
