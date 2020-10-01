@@ -20,7 +20,7 @@
     <b-container fluid>
       <b-row>
         <b-col sm="12" lg="12">
-          <h1>Frequently Asked Questions</h1>
+          <h3>Frequently Asked Questions</h3>
         </b-col>
       </b-row>
     </b-container>
@@ -28,9 +28,9 @@
 
     <b-container fluid>
       <b-row>
-        <b-col sm="4" lg="4">
+        <b-col sm="6" lg="6">
           <b-card
-            :title="FAQQuestion"
+            title="FAQ Question"
             class="mb-2 m-auto card-1"
             :img-src="require(`../assets/Question.png`)"
             img-top
@@ -41,9 +41,9 @@
             <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
           </b-card>
         </b-col>
-        <b-col sm="4" lg="4">
+        <b-col sm="6" lg="6">
           <b-card
-            :title="FAQQuestion"
+            title="FAQQuestion"
             class="mb-2 m-auto card-1"
             :img-src="require(`../assets/Question.png`)"
             img-top
@@ -54,9 +54,39 @@
             <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
           </b-card>
         </b-col>
-        <b-col sm="4" lg="4">
+      </b-row>
+      <b-row>
+        <b-col sm="12" lg="12">
           <b-card
-            :title="FAQQuestion"
+            title="FAQQuestion"
+            class="mb-2 m-auto card-1"
+            :img-src="require(`../assets/Question.png`)"
+            img-top
+            style="max-width: 22rem;"
+          >
+            <b-card-text class="mb-0">FAQAnswer: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+            <b-card-text class="mb-0">category: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+            <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col sm="6" lg="6">
+          <b-card
+            title="FAQ Question"
+            class="mb-2 m-auto card-1"
+            :img-src="require(`../assets/Question.png`)"
+            img-top
+            style="max-width: 22rem;"
+          >
+            <b-card-text class="mb-0">FAQAnswer: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+            <b-card-text class="mb-0">category: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+            <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+          </b-card>
+        </b-col>
+        <b-col sm="6" lg="6">
+          <b-card
+            title="FAQQuestion"
             class="mb-2 m-auto card-1"
             :img-src="require(`../assets/Question.png`)"
             img-top
