@@ -8,14 +8,11 @@
       <ChatList />
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
-          <b-form-input
-            class="mr-2 ml-5"
-            placeholder="Search for applied jobs"
-          ></b-form-input>
+          <b-form-input class="mr-2 ml-5" placeholder="Search for FAQ's"></b-form-input>
           <b-button variant="info" class="my-2 my-sm-0" type="submit">
             <i class="fa fa-search mr-1"></i>
-            Search</b-button
-          >
+            Search
+          </b-button>
         </b-nav-form>
       </b-navbar-nav>
     </div>
@@ -23,7 +20,25 @@
     <b-container fluid>
       <b-row>
         <b-col sm="12" lg="12">
-          <h1>This is faq page</h1>
+          <h1>Frequently Asked Questions</h1>
+        </b-col>
+      </b-row>
+    </b-container>
+    <hr class="mt-3 mb-3" />
+
+    <b-container fluid>
+      <b-row>
+        <b-col sm="4" lg="4">
+          <b-card
+            :title="Question1"
+            class="mb-2 m-auto card-1"
+            :img-src="require(`../assets/Question.png`)"
+            img-alt="logo"
+            img-top
+            style="max-width: 22rem;"
+          >
+            <b-card-text class="mb-0">Description: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+          </b-card>
         </b-col>
       </b-row>
     </b-container>
