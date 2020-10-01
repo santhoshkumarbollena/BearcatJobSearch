@@ -13,6 +13,9 @@
                 v-model="email"
          ></base-input>
          <base-button block type="primary"  icon="fa fa-link" @click.prevent="sendLink">Send Link</base-button>
+         <router-link to="/login">
+         <base-button block type="primary" class="mt-2" icon="fa fa-sign-in" >Login</base-button>
+         </router-link>
          <Loader v-if="loader" class="mt-4"></Loader>
          <div class="alert alert-danger" role="alert" v-if="error">{{error}}</div>
          <div class="alert alert-success" role="alert" v-if="success">{{success}}</div>
