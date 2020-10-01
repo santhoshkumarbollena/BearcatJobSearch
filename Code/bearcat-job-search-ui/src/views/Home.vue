@@ -61,7 +61,7 @@
               >
 
               
-              <router-link :to="{ name: 'edit-job' }">
+              <router-link :to="{ name: 'edit-job',params: {jobId:job.id } }">
                 <b-button variant="info" v-if="userRole == 'admin'">
                 <i class="fa fa-edit mr-1" /> Edit</b-button
               >
