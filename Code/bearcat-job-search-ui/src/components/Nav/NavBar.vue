@@ -17,9 +17,15 @@
             </router-link>
           </b-nav-item>
 
-          <b-nav-item class="m-0">
+          <b-nav-item class="m-0"  v-if="userRole=='student'">
             <router-link to="/careers">
               <i class="fa fa-book m-0"></i> Careers
+            </router-link>
+          </b-nav-item>
+
+          <b-nav-item class="m-0" v-if="userRole=='admin'">
+            <router-link to="/students">
+              <i class="fa fa-book m-0"></i> Students
             </router-link>
           </b-nav-item>
 
@@ -63,6 +69,7 @@
 <script>
 export default {
   name: "NavBar",
+    userRole: localStorage.getItem("role"),
   data() {
     return {
       userName: localStorage.getItem("user_name"),
