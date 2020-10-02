@@ -134,52 +134,6 @@ export default {
       ],
       proj: [],
       projects: [
-        {
-          studentId: 9348756,
-          studentName: "jobapp",
-          email: "jobapp@gmail.com",
-          dob: "2020-09-28T05:00:00.000Z",
-          phoneNumber: "2345678767",
-          gender: "Male",
-          ugUniversity: null,
-          ugDegree: null,
-          ugDepartment: null,
-          ugScore: null,
-          graduateUniversity: null,
-          graduateDegree: null,
-          graduateDepartment: null,
-          graduateScore: null,
-          experienceYears: null,
-          expectedSalary: null,
-          employementType: null,
-          gitHubUrl: null,
-          linkedInUrl: null,
-          created_at: "2020-09-28 13:09:12",
-          updated_at: "2020-09-28 13:09:12"
-        },
-        {
-          studentId: "919111111",
-          studentName: "testing",
-          email: "testing@gmail.com",
-          dob: "2020-07-02T05:00:00.000Z",
-          phoneNumber: "1234567890",
-          gender: "Male",
-          ugUniversity: null,
-          ugDegree: null,
-          ugDepartment: null,
-          ugScore: null,
-          graduateUniversity: null,
-          graduateDegree: null,
-          graduateDepartment: null,
-          graduateScore: null,
-          experienceYears: null,
-          expectedSalary: null,
-          employementType: null,
-          gitHubUrl: null,
-          linkedInUrl: null,
-          created_at: "2020-07-03 13:57:03",
-          updated_at: "2020-07-03 13:57:03"
-        }
       ],
       currentPage: 1
     };
@@ -188,9 +142,9 @@ export default {
     this.loader = false;
 
     this.$http
-      .get("student/getAllStudents/")
+      .get("student/getAllStudents")
       .then(response => {
-        this.students = response.data;
+        this.projects = response.data;
 
         this.loader = false;
       })
@@ -206,9 +160,9 @@ export default {
     },
     getStudents() {
       this.$http
-        .get("student/getAllStudents/")
+        .get("student/searchStudent?search="+this.search)
         .then(response => {
-          this.students = response.data;
+          this.projects = response.data;
 
           this.loader = false;
         })
