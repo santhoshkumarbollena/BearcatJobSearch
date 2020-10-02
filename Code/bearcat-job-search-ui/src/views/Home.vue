@@ -9,22 +9,23 @@
         <ChatList />
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <b-form-input
-              class="mr-2 ml-5"
-              placeholder="Search for jobs"
-              id="search"
-            ></b-form-input>
-            <b-button variant="info" class="my-2 my-sm-0" @click="searchjob()" id="btnclick" type="submit">
-              <i class="fa fa-search mr-1"></i>
-              Search</b-button
+            <b-form-input class="mr-2 ml-5" placeholder="Search for jobs" id="search"></b-form-input>
+            <b-button
+              variant="info"
+              class="my-2 my-sm-0"
+              @click="searchjob()"
+              id="btnclick"
+              type="submit"
             >
+              <i class="fa fa-search mr-1"></i>
+              Search
+            </b-button>
             <router-link :to="{ name: 'add-job' }">
-                <b-button variant="info" v-if="userRole == 'admin'">
-                <i class="fa fa-edit mr-1" /> Add Job</b-button
-              >
-          </router-link>
+              <b-button variant="info" v-if="userRole == 'admin'">
+                <i class="fa fa-edit mr-1" /> Add Job
+              </b-button>
+            </router-link>
           </b-nav-form>
-          
         </b-navbar-nav>
       </div>
 
@@ -42,34 +43,34 @@
             >
               <b-card-text class="mb-0">
                 Description:
-                <span class="fw-650 ml-2"> {{ job.jobDescription }}</span>
+                <span class="fw-650 ml-2">{{ job.jobDescription }}</span>
               </b-card-text>
               <b-card-text class="mb-0">
                 Employment-Type:
                 <span class="fw-650 ml-1">{{ job.employmentType }}</span>
               </b-card-text>
               <b-card-text>
-                Salary: <span class="fw-650 ml-1">${{ job.salary }}</span>
+                Salary:
+                <span class="fw-650 ml-1">${{ job.salary }}</span>
               </b-card-text>
 
               <b-button variant="info">
-                <i class="fa fa-info-circle"></i
-              ></b-button>
+                <i class="fa fa-info-circle"></i>
+              </b-button>
 
               <b-button variant="info" v-if="userRole == 'student'">
                 <i class="fa fa-check-square-o mr-1"></i>
-                Apply</b-button
-              >
+                Apply
+              </b-button>
 
-              
               <router-link :to="{ name: 'edit-job',params: {jobId:job.id } }">
                 <b-button variant="info" v-if="userRole == 'admin'">
-                <i class="fa fa-edit mr-1" /> Edit</b-button
-              >
+                  <i class="fa fa-edit mr-1" /> Edit
+                </b-button>
               </router-link>
               <b-button variant="danger" v-if="userRole == 'admin'">
-                <i class="fa fa-trash mr-1"></i> Delete</b-button
-              >
+                <i class="fa fa-trash mr-1"></i> Delete
+              </b-button>
             </b-card>
           </b-col>
         </b-row>
@@ -105,10 +106,10 @@ export default {
       error: null
     };
   },
-  methods:{
-      searchjob(){
-        this.search =  document.getElementById("search").value;
-          this.$http
+  methods: {
+    searchjob() {
+      this.search = document.getElementById("search").value;
+      this.$http
         .get(
           "studentApplication/getStudentAppliedJobs/" +
             this.studentId +
@@ -125,7 +126,7 @@ export default {
             ? error.response.data.error.message
             : error;
         });
-      },
+    }
   },
   created() {
     this.$http
@@ -139,13 +140,14 @@ export default {
         this.error = error.response ? error.response.data.error.message : error;
       });
 
-      document.getElementById("search")
+    document
+      .getElementById("search")
       .addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode === 13) {
-            document.getElementById("btnclick").click();
+          document.getElementById("btnclick").click();
         }
-});
+      });
   }
 };
 </script>
