@@ -50,6 +50,7 @@ class StudentController {
              students = await Student.all();
         }
 
+        console.log(students)
         return response.ok(students);
     }
 
