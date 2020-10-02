@@ -20,6 +20,13 @@ class StudentController {
 
     }
 
+    async getAllStudents({request, auth, response, params}) {
+        const student = await Student.all();
+        console.log(student)
+        return response.status(200).json(student);
+
+    }
+
     async getJobBasedOnId({ request, auth, response,params }) {
         //console.log(params.jobId)
         const job = await Job.find(params.jobId);
