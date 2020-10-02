@@ -41,7 +41,9 @@
               img-alt="logo"
               img-top
               style="max-width: 22rem;"
+              v-if="job.jobApplications.length>0"
             >
+           
               <b-card-text class="mb-0">
                 Description:
                 <span class="fw-650 ml-2"> {{ job.jobDescription }}</span>
