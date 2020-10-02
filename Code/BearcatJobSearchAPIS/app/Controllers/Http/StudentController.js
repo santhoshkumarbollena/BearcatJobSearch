@@ -44,6 +44,9 @@ class StudentController {
                 .where(function () {
                     this.where('StudentName', 'like', '%' + queryParam.search + '%')
                         .orWhere('StudentId', 'like', '%' + queryParam.search + '%')
+                        .orWhere('phoneNumber', 'like', '%' + queryParam.search + '%')
+                        .orWhere('email', 'like', '%' + queryParam.search + '%')
+                        
                 })
                 .fetch();
         } else {
