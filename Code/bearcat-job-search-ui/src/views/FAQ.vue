@@ -17,14 +17,6 @@
       </b-navbar-nav>
     </div>
     <hr class="mt-3 mb-3" />
-    <b-container fluid>
-      <b-row>
-        <b-col sm="12" lg="12">
-          <h3>Frequently Asked Questions</h3>
-        </b-col>
-      </b-row>
-    </b-container>
-    <hr class="mt-3 mb-3" />
 
     <b-container fluid>
       <b-row>
