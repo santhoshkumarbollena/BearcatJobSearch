@@ -24,32 +24,6 @@
         </b-col>
       </b-row>
     </b-container>
-    
-      <hr class="mt-3 mb-3" />
-      <b-container fluid>
-        <b-row>
-          <b-col sm="4" lg="4" v-for="job in jobs" :key="job.id">
-            <b-card
-              :title="job.jobTitle"
-              class="mb-2 m-auto card-1"
-              :img-src="require(`../assets/frontend.png`)"
-              img-alt="logo"
-              img-top
-              style="max-width: 22rem;"
-              v-if="job.jobApplications.length>0"
-            >
-           
-              <b-card-text class="mb-0">
-                Description:
-                <span class="fw-650 ml-2"> {{ job.jobDescription }}</span>
-              </b-card-text>
-              <b-card-text class="mb-0">
-                Employment-Type:
-                <span class="fw-650 ml-1">{{ job.employmentType }}</span>
-              </b-card-text>
-              <b-card-text>
-                Salary: <span class="fw-650 ml-1">${{ job.salary }}</span>
-              </b-card-text>
 
     <hr class="mt-3 mb-3" />
     <b-container fluid>
@@ -107,7 +81,6 @@
 import ChatList from "../components/Chat/ChatList";
 import SubHeader from "../components/Nav/SubHeader";
 import Loader from "../components/utils/Loader.vue";
-
 export default {
   name: "Careers",
   components: {
@@ -133,12 +106,10 @@ export default {
   },
   mounted() {
     this.loader = false;
-
     this.$http
       .get("studentApplication/getStudentAppliedJobs/" + this.studentId)
       .then(response => {
         this.jobs = response.data;
-
         this.loader = false;
       })
       .catch(error => {
@@ -161,7 +132,6 @@ export default {
         )
         .then(response => {
           this.jobs = response.data;
-
           this.loader = false;
         })
         .catch(error => {
