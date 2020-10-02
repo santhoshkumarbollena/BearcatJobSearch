@@ -12,8 +12,9 @@
             <b-form-input
               class="mr-2 ml-5"
               placeholder="Search for jobs"
+              id="search"
             ></b-form-input>
-            <b-button variant="info" class="my-2 my-sm-0" type="submit">
+            <b-button variant="info" class="my-2 my-sm-0" @click="searchjob()" type="submit">
               <i class="fa fa-search mr-1"></i>
               Search</b-button
             >
@@ -93,6 +94,7 @@ export default {
     return {
       loader: true,
       userRole: localStorage.getItem("role"),
+      search: "",
       breadcrumb: [
         {
           text: "Jobs List",
@@ -102,6 +104,28 @@ export default {
       jobs: [],
       error: null
     };
+  },
+  methods:{
+      searchjob(){
+        this.search =  document.getElementById("search").value;
+          this.$http
+        .get(
+          "studentApplication/getStudentAppliedJobs/" +
+            this.studentId +
+            "/search/" +
+            this.search
+        )
+        .then(response => {
+          this.jobs = response.data;
+          this.loader = false;
+        })
+        .catch(error => {
+          this.loader = false;
+          this.error = error.response
+            ? error.response.data.error.message
+            : error;
+        });
+      }
   },
   created() {
     this.$http
