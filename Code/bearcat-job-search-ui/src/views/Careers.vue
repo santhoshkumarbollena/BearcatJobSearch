@@ -29,13 +29,14 @@
     <b-container fluid>
       <b-row>
         <b-col sm="4" lg="4" v-for="job in jobs" :key="job.id">
-          <b-card
+          <b-card 
             :title="job.jobTitle"
             class="mb-2 m-auto card-1"
             :img-src="require(`../assets/frontend.png`)"
             img-alt="logo"
             img-top
             style="max-width: 22rem;"
+             v-if="job.jobApplications.length>0"
           >
             <b-card-text class="mb-0">
               Description:
