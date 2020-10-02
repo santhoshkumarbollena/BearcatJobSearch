@@ -6,11 +6,34 @@
           <h1 class="text-center">ADD JOBS</h1>
           <base-input
             type="text"
-            placeholder="Job Description"
-            addon-left-icon="fa fa-file"
-            v-model="form.description"
+            placeholder="Job ID"
+            addon-left-icon="fa fa-id-card"
+            v-model="form.jobid"
             required
           ></base-input>
+           <small v-if="error.jobid" class="col-12 text-left text-danger">{{error.jobid}}</small>
+          <base-input
+            type="text"
+            placeholder="Job Title"
+            addon-left-icon="fa fa-id-badge"
+            v-model="form.jobtitle"
+            required
+          ></base-input>
+           <small v-if="error.jobtitle" class="col-12 text-left text-danger">{{error.jobtitle}}</small>
+         <base-input
+            type="text"
+            placeholder="User ID"
+            addon-left-icon="fa fa-user"
+            v-model="form.userid"
+            required
+          ></base-input>
+           <small v-if="error.userid" class="col-12 text-left text-danger">{{error.userid}}</small>
+          <textarea class="form-control mb-3" 
+            placeholder="Job Description"
+            v-model="form.description"
+            required
+            rows="4">
+          </textarea>
            <small v-if="error.description" class="col-12 text-left text-danger">{{error.description}}</small>
           <base-input
             type="text"
@@ -59,11 +82,17 @@ export default {
   data() {
     return {
        error: {
+        jobid:"",
+        jobtitle:"",
+        userid:"",
         description: "",
         employment: "",
         salary: ""
       },
       form: {
+        jobid:"",
+        jobtitle:"",
+        userid:"",
         description: "",
         employment: "",
         salary: ""
@@ -89,6 +118,22 @@ export default {
         console.log("Error for salary");
         this.error.studentName = "please enter salary";
       }
+
+       if (!this.form.userid) {
+        console.log("Error for userid");
+        this.error.studentName = "please enter userid";
+      }
+
+      if (!this.form.jobid) {
+        console.log("Error for jobid");
+        this.error.studentName = "please enter jobid";
+      }
+
+      if (!this.form.jobtitle) {
+        console.log("Error for jobtitle");
+        this.error.studentName = "please enter jobtitle";
+      }
+
 
       console.log(Object.keys(this.error).length);
       if (Object.keys(this.error).length) {
