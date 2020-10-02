@@ -76,8 +76,11 @@ import SubHeader from "../components/Nav/SubHeader";
 import Loader from "../components/utils/Loader.vue";
 
 export default {
+  name: "addjob",
   components: {
-   
+   ChatList,
+    SubHeader,
+    Loader
   },
   data() {
     return {
@@ -107,31 +110,31 @@ export default {
 
       if (!this.form.description) {
         console.log("Error for job description");
-        this.error.studentId = "please enter job description";
+        this.error.description = "please enter job description";
       }
       if (!this.form.employment) {
         console.log("Error for employment type");
-        this.error.studentName = "please enter employment type";
+        this.error.employment = "please enter employment type";
       }
 
       if (!this.form.salary) {
         console.log("Error for salary");
-        this.error.studentName = "please enter salary";
+        this.error.salary = "please enter salary";
       }
 
        if (!this.form.userid) {
         console.log("Error for userid");
-        this.error.studentName = "please enter userid";
+        this.error.userid = "please enter userid";
       }
 
       if (!this.form.jobid) {
         console.log("Error for jobid");
-        this.error.studentName = "please enter jobid";
+        this.error.jobid = "please enter jobid";
       }
 
       if (!this.form.jobtitle) {
         console.log("Error for jobtitle");
-        this.error.studentName = "please enter jobtitle";
+        this.error.jobtitle = "please enter jobtitle";
       }
 
 
@@ -141,18 +144,17 @@ export default {
         return;
       }
 
-      // this.$http
-      //   .post("save", this.form)
-      //   .then(response => {
-      //     this.endResult = "Saved successfully...!!";
-      //     alert("Saved succesfully");
-      //     window.location = "http://localhost:8080/#/home";
-      //   })
-      //   .catch(error => {
-      //     this.endResult = error.response
-      //       ? error.response.data.error.message
-      //       : error;
-      //   });
+      this.$http
+        .post("addjob", this.form)
+        .then(response => {
+          this.endResult = "Added successfully...!!";
+          window.location = "http://localhost:8080/#/home";
+        })
+        .catch(error => {
+          this.endResult = error.response
+            ? error.response.data.error.message
+            : error;
+        });
     }
   }
 };
