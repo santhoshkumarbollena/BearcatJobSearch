@@ -14,7 +14,7 @@
               placeholder="Search for jobs"
               id="search"
             ></b-form-input>
-            <b-button variant="info" class="my-2 my-sm-0" @click="searchjob()" type="submit">
+            <b-button variant="info" class="my-2 my-sm-0" @click="searchjob()" id="btnclick" type="submit">
               <i class="fa fa-search mr-1"></i>
               Search</b-button
             >
@@ -125,7 +125,7 @@ export default {
             ? error.response.data.error.message
             : error;
         });
-      }
+      },
   },
   created() {
     this.$http
@@ -138,6 +138,14 @@ export default {
         this.loader = false;
         this.error = error.response ? error.response.data.error.message : error;
       });
+
+      document.getElementById("search")
+      .addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("btnclick").click();
+        }
+});
   }
 };
 </script>
