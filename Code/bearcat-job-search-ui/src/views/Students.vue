@@ -85,9 +85,8 @@ export default {
       loader: true,
       userRole: localStorage.getItem("role"),
       studentId: localStorage.getItem("id"),
-      Appliedjobs: "",
       search: "",
-      jobs: [],
+      students: [],
       breadcrumb: [
         {
           text: "Students",
@@ -100,7 +99,7 @@ export default {
     this.loader = false;
 
     this.$http
-      .get("student/getAllStudents/" + this.studentId)
+      .get("student/getAllStudents/")
       .then(response => {
         this.students = response.data;
 
@@ -119,7 +118,7 @@ export default {
     getStudents() {
       this.$http
         .get(
-          "student/getAllStudents/" + this.studentId + "/search/" + this.search
+          "student/getAllStudents/"
         )
         .then(response => {
           this.students = response.data;
