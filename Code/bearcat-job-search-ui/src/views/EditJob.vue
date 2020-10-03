@@ -150,11 +150,6 @@ export default {
       //   this.error.userid = "please enter userid";
       // }
 
-      if (!this.form.id) {
-        console.log("Error for jobid");
-        this.error.id = "please enter jobid";
-      }
-
       if (!this.form.jobTitle) {
         console.log("Error for jobTitle");
         this.error.jobTitle = "please enter jobTitle";
@@ -165,9 +160,9 @@ export default {
         console.log("In error");
         return;
       }
-
+      console.log("this is log of url Id"+this.jobs.id)
       this.$http
-        .patch("job/update-job/1", this.form)
+        .patch("job/update-job/"+this.jobs.id, this.form)
         .then(response => {
           this.endResult = "Edited successfully...!!";
            alert("Edited succesfully");
