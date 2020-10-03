@@ -53,6 +53,26 @@ class JobController {
 
         return response.status(200).json(studetsAppliedJobds);
     }
+    async searchJob({ params, request, response }) {
+
+        const queryParam = request.all();
+        let jobs;
+        
+        if (queryParam && queryParam.search) {
+            jobs = await Job.query()
+                .where(function () {
+                    this.where('id', 'like', '%' + queryParam.search + '%')
+                        .orWhere('jobTitle', 'like', '%' + queryParam.search + '%')
+                        .orWhere('jobDescription', 'like', '%' + queryParam.search + '%')
+                })
+                .fetch();
+        } else {
+             jobs = await Job.all();
+        }
+
+        console.log(jobs)
+        return response.ok(jobs);
+    }
 
 }
 module.exports = JobController;
