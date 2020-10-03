@@ -108,12 +108,15 @@ export default {
   },
   methods: {
     searchjob() {
+      console.log("In search")
       this.search = document.getElementById("search").value;
+      this.getJobs();
+    },
+    getJobs() {
       this.$http
         .get(
-          "studentApplication/getStudentAppliedJobs/" +
-            this.studentId +
-            "/search/" +
+          "job/searchJob" +
+            "?search=" +
             this.search
         )
         .then(response => {
@@ -127,6 +130,26 @@ export default {
             : error;
         });
     }
+    // searchjob() {
+    //   this.search = document.getElementById("search").value;
+    //   this.$http
+    //     .get(
+    //       "job/searchJob" +
+    //         this.studentId +
+    //         "?search/" +
+    //         this.search
+    //     )
+    //     .then(response => {
+    //       this.jobs = response.data;
+    //       this.loader = false;
+    //     })
+    //     .catch(error => {
+    //       this.loader = false;
+    //       this.error = error.response
+    //         ? error.response.data.error.message
+    //         : error;
+    //     });
+    // }
   },
   created() {
     this.$http
