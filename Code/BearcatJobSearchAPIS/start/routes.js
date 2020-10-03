@@ -60,6 +60,7 @@ Route.group(() => {
   Route.patch("update-job/:id", "JobController.updateJob");
   Route.delete("delete-job/:id", "JobController.deleteJob");
   Route.delete(" appliedStudentsOfJob/:id", "JobController.appliedStudentsOfJob");
+  Route.get("searchJob", "JobController.searchJob");
 }).prefix("api/v1/job");
 
 Route.group(() => {
