@@ -8,41 +8,41 @@
             type="text"
             placeholder="Job ID"
             addon-left-icon="fa fa-id-card"
-            v-model="form.jobid"
-            required
+            v-model="form.id"
+            readonly
           ></base-input>
-           <small v-if="error.jobid" class="col-12 text-left text-danger">{{error.jobid}}</small>
+           <small v-if="error.id" class="col-12 text-left text-danger">{{error.id}}</small>
           <base-input
             type="text"
             placeholder="Job Title"
             addon-left-icon="fa fa-id-badge"
-            v-model="form.jobtitle"
+            v-model="form.jobTitle"
             required
           ></base-input>
-           <small v-if="error.jobtitle" class="col-12 text-left text-danger">{{error.jobtitle}}</small>
-         <base-input
+           <small v-if="error.jobTitle" class="col-12 text-left text-danger">{{error.jobTitle}}</small>
+         <!-- <base-input
             type="text"
             placeholder="User ID"
             addon-left-icon="fa fa-user"
             v-model="form.userid"
             required
           ></base-input>
-           <small v-if="error.userid" class="col-12 text-left text-danger">{{error.userid}}</small>
+           <small v-if="error.userid" class="col-12 text-left text-danger">{{error.userid}}</small> -->
           <textarea class="form-control mb-3" 
             placeholder="Job Description"
-            v-model="form.description"
+            v-model="form.jobDescription"
             required
             rows="4">
           </textarea>
-           <small v-if="error.description" class="col-12 text-left text-danger">{{error.description}}</small>
+           <small v-if="error.jobDescription" class="col-12 text-left text-danger">{{error.jobDescription}}</small>
           <base-input
             type="text"
             placeholder="Employment Type"
             addon-left-icon="fa fa-briefcase"
-            v-model="form.employment"
+            v-model="form.employmentType"
             required
           ></base-input>
-           <small v-if="error.employment" class="col-12 text-left text-danger">{{error.employment}}</small>
+           <small v-if="error.employmentType" class="col-12 text-left text-danger">{{error.employmentType}}</small>
            <base-input
             type="number"
             placeholder="Salary"
@@ -84,20 +84,19 @@ export default {
   },
   data() {
     return {
+      jobs:[],
       error: {
-        jobid:"",
-        jobtitle:"",
-        userid:"",
-        description: "",
-        employment: "",
+        id:"",
+        jobTitle:"",
+        jobDescription: "",
+        employmentType: "",
         salary: ""
       },
       form: {
-        jobid:"",
-        jobtitle:"",
-        userid:"",
-        description: "",
-        employment: "",
+        id:"",
+        jobTitle:"",
+        jobDescription: "",
+        employmentType: "",
         salary: ""
       }
     };
@@ -105,6 +104,26 @@ export default {
   mounted() {
     this.loader = false;
     console.log("In editing job")
+    let url = document.URL;
+    console.log("this is"+document.URL)
+    const path_id = url.substring(url.lastIndexOf('/') + 1);
+    this.$http
+        .get("job/getJob/"+path_id)
+        .then(response => {
+         this.jobs = response.data;
+         this.loader = false;
+         this.form.id = this.jobs.id;
+          this.form.jobDescription = this.jobs.jobDescription;
+          this.form.jobTitle = this.jobs.jobTitle;
+          this.form.employmentType = this.jobs.employmentType;
+          this.form.salary = this.jobs.salary;
+        })
+        .catch(error => {
+          this.endResult = error.response
+            ? error.response.data.error.message
+            : error;
+        });
+       
   },
   methods: {
      save() {
@@ -112,13 +131,13 @@ export default {
       this.error = null;
       this.error = {};
 
-      if (!this.form.description) {
+      if (!this.form.jobDescription) {
         console.log("Error for job description");
-        this.error.description = "please enter job description";
+        this.error.jobDescription = "please enter job description";
       }
-      if (!this.form.employment) {
+      if (!this.form.employmentType) {
         console.log("Error for employment type");
-        this.error.employment = "please enter employment type";
+        this.error.employmentType = "please enter employment type";
       }
 
       if (!this.form.salary) {
@@ -126,19 +145,14 @@ export default {
         this.error.salary = "please enter salary";
       }
 
-      if (!this.form.userid) {
-        console.log("Error for userid");
-        this.error.userid = "please enter userid";
-      }
+      // if (!this.form.userid) {
+      //   console.log("Error for userid");
+      //   this.error.userid = "please enter userid";
+      // }
 
-      if (!this.form.jobid) {
-        console.log("Error for jobid");
-        this.error.jobid = "please enter jobid";
-      }
-
-      if (!this.form.jobtitle) {
-        console.log("Error for jobtitle");
-        this.error.jobtitle = "please enter jobtitle";
+      if (!this.form.jobTitle) {
+        console.log("Error for jobTitle");
+        this.error.jobTitle = "please enter jobTitle";
       }
 
       console.log(Object.keys(this.error).length);
@@ -146,11 +160,12 @@ export default {
         console.log("In error");
         return;
       }
-
+      console.log("this is log of url Id"+this.jobs.id)
       this.$http
-        .post("save", this.form)
+        .patch("job/update-job/"+this.jobs.id, this.form)
         .then(response => {
           this.endResult = "Edited successfully...!!";
+           alert("Edited succesfully");
           window.location = "http://localhost:8080/#/home";
         })
         .catch(error => {
