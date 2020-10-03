@@ -58,7 +58,7 @@
                 <i class="fa fa-info-circle"></i>
               </b-button>
 
-              <b-button variant="info" v-if="userRole == 'student'">
+              <b-button variant="info" v-if="userRole == 'student'" @click="applyJob(job)">
                 <i class="fa fa-check-square-o mr-1"></i>
                 Apply
               </b-button>
@@ -95,6 +95,7 @@ export default {
     return {
       loader: true,
       userRole: localStorage.getItem("role"),
+      studentId: localStorage.getItem("id"),
       search: "",
       breadcrumb: [
         {
@@ -107,6 +108,25 @@ export default {
     };
   },
   methods: {
+    applyJob(job)
+    {
+       console.log("Apply job"+job.id+" STudent id"+this.studentId)
+      //  http://127.0.0.1:3006/api/v1/studentApplication/StudentApplyJob/919583579/1
+       this.$http
+        .get(
+          "studentApplication/StudentApplyJob/" +this.studentId+"/"+job.id
+        )
+        .then(response => {
+          console.log(response.data)
+          this.loader = false;
+        })
+        .catch(error => {
+          this.loader = false;
+          this.error = error.response
+            ? error.response.data.error.message
+            : error;
+        });
+    },
     searchjob() {
       console.log("In search")
       this.search = document.getElementById("search").value;
