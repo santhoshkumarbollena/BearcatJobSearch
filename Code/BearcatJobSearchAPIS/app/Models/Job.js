@@ -8,8 +8,8 @@ class Job extends Model {
     return "id";
   }
 
-  createdBy() {
-    return this.hasOne("App/Models/User");
+  admin_user() {
+    return this.hasOne("App/Models/User", "createdBy", "userId");
   }
 
   jobApplications() {

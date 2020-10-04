@@ -8,8 +8,12 @@ const StudentApplication = use("App/Models/StudentApplication");
 
 class JobController {
   async getAllJobs({ request, auth, response, params }) {
-    const job = await Job.all();
-    return response.status(200).json(job);
+    try {
+      const job = await Job.query().with("admin_user").fetch();
+      return response.status(200).json(job);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async getJobBasedOnId({ request, auth, response, params }) {

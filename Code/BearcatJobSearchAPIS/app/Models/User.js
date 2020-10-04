@@ -9,7 +9,7 @@ class User extends Model {
   }
 
   createdJobs() {
-    return this.belongsToMany("App/Models/Job");
+    return this.hasMany("App/Models/Job", "userId", "createdBy");
   }
 }
 
