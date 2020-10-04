@@ -20,73 +20,34 @@
 
     <b-container fluid>
       <b-row>
-        <b-col sm="6" lg="6">
+        <b-col sm="4" lg="4" v-for="faq in projects" :key="faq.FAQQuestion">
           <b-card
-            title="FAQ Question"
+            :title="faq.FAQQuestion"
             class="mb-2 m-auto card-1"
             :img-src="require(`../assets/Question.png`)"
             img-top
             style="max-width: 22rem;"
           >
-            <b-card-text class="mb-0">FAQAnswer: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">category: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-          </b-card>
-        </b-col>
-        <b-col sm="6" lg="6">
-          <b-card
-            title="FAQQuestion"
-            class="mb-2 m-auto card-1"
-            :img-src="require(`../assets/Question.png`)"
-            img-top
-            style="max-width: 22rem;"
-          >
-            <b-card-text class="mb-0">FAQAnswer: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">category: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-          </b-card>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col sm="12" lg="12">
-          <b-card
-            title="FAQQuestion"
-            class="mb-2 m-auto card-1"
-            :img-src="require(`../assets/Question.png`)"
-            img-top
-            style="max-width: 22rem;"
-          >
-            <b-card-text class="mb-0">FAQAnswer: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">category: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-          </b-card>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col sm="6" lg="6">
-          <b-card
-            title="FAQ Question"
-            class="mb-2 m-auto card-1"
-            :img-src="require(`../assets/Question.png`)"
-            img-top
-            style="max-width: 22rem;"
-          >
-            <b-card-text class="mb-0">FAQAnswer: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">category: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-          </b-card>
-        </b-col>
-        <b-col sm="6" lg="6">
-          <b-card
-            title="FAQQuestion"
-            class="mb-2 m-auto card-1"
-            :img-src="require(`../assets/Question.png`)"
-            img-top
-            style="max-width: 22rem;"
-          >
-            <b-card-text class="mb-0">FAQAnswer: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">category: qwertyuiopasdfghjklzxcvbnm</b-card-text>
-            <b-card-text class="mb-0">role: qwertyuiopasdfghjklzxcvbnm</b-card-text>
+            <b-card-text class="mb-0">
+              FAQAnswer:
+              <span class="fw-650 ml-1">{{ faq.FAQAnswer }}</span>
+            </b-card-text>
+            <b-card-text class="mb-0">
+              category:
+              <span class="fw-650 ml-1">{{ faq.category }}</span>
+            </b-card-text>
+            <b-card-text class="mb-0">
+              role:
+              <span class="fw-650 ml-1">{{ faq.role }}</span>
+            </b-card-text>
+            <router-link :to="{ name: 'edit-faq', params: { FAQQuestion: faq.FAQQuestion } }">
+              <b-button variant="info" v-if="userRole == 'admin'">
+                <i class="fa fa-edit mr-1" /> Edit
+              </b-button>
+            </router-link>
+            <b-button variant="danger" v-if="userRole == 'admin'" class="ml-2">
+              <i class="fa fa-trash mr-1"></i> Delete
+            </b-button>
           </b-card>
         </b-col>
       </b-row>
@@ -109,16 +70,29 @@ export default {
   data() {
     return {
       loader: true,
+      userRole: localStorage.getItem("role"),
       breadcrumb: [
         {
           text: "FAQ's",
           href: "/faqs"
         }
-      ]
+      ],
+      projects: []
     };
   },
   mounted() {
     this.loader = false;
+    this.$http
+      .get("faq/get/all/faqs")
+      .then(response => {
+        this.projects = response.data;
+
+        this.loader = false;
+      })
+      .catch(error => {
+        this.loader = false;
+        this.error = error.response ? error.response.data.error.message : error;
+      });
   },
   methods: {}
 };
