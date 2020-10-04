@@ -32,7 +32,7 @@
         :data="projects"
       >
         <el-table-column min-width="50px">
-          <template>
+          <template v-slot={row}>
             <div class="media align-items-center">
               <a href="#" class="avatar rounded-circle mr-3">
                 <img alt="Image placeholder" :src="require(`../assets/student.jpg`)" />
@@ -86,6 +86,16 @@
             </div>
           </template>
         </el-table-column>
+        <el-table-column label="More Information" min-width="260px" sortable>
+          <template v-slot={row}>
+            <div class="d-flex align-items-center">
+              <router-link :to="{ name: 'student-info',params: {studentId:row.studentId } }">
+              <base-button type="primary">Click for More info</base-button>
+              </router-link>
+            </div>
+          </template>
+        </el-table-column>
+
       </el-table>
 
       <div class="card-footer py-4 d-flex justify-content-end">
