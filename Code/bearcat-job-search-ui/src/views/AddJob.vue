@@ -1,68 +1,67 @@
 <template>
- <div id="main-background">
+  <div id="main-background">
+    <SubHeader :breadcrumb="breadcrumb" />
     <div class="container">
       <div class="row">
-        <div class="col-md-6 v-center p-4 ">
-          <h1 class="text-center">ADD JOBS</h1>
-          <base-input
-            type="text"
-            placeholder="Job ID"
-            addon-left-icon="fa fa-id-card"
-            v-model="form.jobid"
-            required
-          ></base-input>
-           <small v-if="error.jobid" class="col-12 text-left text-danger">{{error.jobid}}</small>
+        <div class="col-md-6 v-center">
+          <h1>ADD JOBS</h1>
           <base-input
             type="text"
             placeholder="Job Title"
             addon-left-icon="fa fa-id-badge"
-            v-model="form.jobtitle"
+            v-model="form.jobTitle"
             required
           ></base-input>
-           <small v-if="error.jobtitle" class="col-12 text-left text-danger">{{error.jobtitle}}</small>
-         <base-input
-            type="text"
-            placeholder="User ID"
-            addon-left-icon="fa fa-user"
-            v-model="form.userid"
-            required
-          ></base-input>
-           <small v-if="error.userid" class="col-12 text-left text-danger">{{error.userid}}</small>
-          <textarea class="form-control mb-3" 
+          <small v-if="error.jobTitle" class="col-12 text-left text-danger">{{
+            error.jobTitle
+          }}</small>
+          <textarea
+            class="form-control mb-3"
             placeholder="Job Description"
-            v-model="form.description"
+            v-model="form.jobDescription"
             required
-            rows="4">
+            rows="4"
+          >
           </textarea>
-           <small v-if="error.description" class="col-12 text-left text-danger">{{error.description}}</small>
+          <small
+            v-if="error.jobDescription"
+            class="col-12 text-left text-danger"
+            >{{ error.jobDescription }}</small
+          >
           <base-input
             type="text"
-            placeholder="Employment Type"
+            placeholder="Employment Type (part-time / full-time)"
             addon-left-icon="fa fa-briefcase"
-            v-model="form.employment"
+            v-model="form.employmentType"
             required
           ></base-input>
-           <small v-if="error.employment" class="col-12 text-left text-danger">{{error.employment}}</small>
-           <base-input
+          <small v-if="error.employmentType" class="col-12 text-left text-danger">{{
+            error.employmentType
+          }}</small>
+          <base-input
             type="number"
             placeholder="Salary"
             addon-left-icon="fa fa-money"
             v-model="form.salary"
             required
           ></base-input>
-            <small v-if="error.salary" class="col-12 text-left text-danger">{{error.salary}}</small>
+          <small v-if="error.salary" class="col-12 text-left text-danger">{{
+            error.salary
+          }}</small>
           <base-button
-              type="primary"
-              class="btn pull-left mt-3 btn-icon btn-primary"
-              icon="fa fa-save"
-              @click.prevent.stop="add"
-            >Add</base-button>
+            type="primary"
+            class="btn pull-left mt-3 btn-icon btn-primary"
+            icon="fa fa-save"
+            @click.prevent.stop="add"
+            >Save Job</base-button
+          >
           <router-link to="/home">
-          <base-button
-              type="primary"
+            <base-button
+              type="danger"
               class="btn pull-right mt-3 btn-icon btn-primary"
               icon="fa fa-ban"
-            >Cancel</base-button>
+              >Cancel</base-button
+            >
           </router-link>
         </div>
       </div>
@@ -78,26 +77,32 @@ import Loader from "../components/utils/Loader.vue";
 export default {
   name: "addjob",
   components: {
-   ChatList,
+    ChatList,
     SubHeader,
     Loader
   },
   data() {
     return {
-       error: {
-        jobid:"",
-        jobtitle:"",
-        userid:"",
-        description: "",
-        employment: "",
+      breadcrumb: [
+        {
+          text: "Jobs",
+          href: "#/home"
+        },
+        {
+          text: "Add New Job",
+          href: ""
+        }
+      ],
+      error: {
+        jobTitle: "",
+        jobDescription: "",
+        employmentType: "",
         salary: ""
       },
       form: {
-        jobid:"",
-        jobtitle:"",
-        userid:"",
-        description: "",
-        employment: "",
+        jobTitle: "",
+        jobDescription: "",
+        employmentType: "",
         salary: ""
       }
     };
@@ -108,13 +113,13 @@ export default {
       this.error = null;
       this.error = {};
 
-      if (!this.form.description) {
-        console.log("Error for job description");
-        this.error.description = "please enter job description";
+      if (!this.form.jobDescription) {
+        console.log("Error for job jobDescription");
+        this.error.jobDescription = "please enter job description";
       }
-      if (!this.form.employment) {
+      if (!this.form.employmentType) {
         console.log("Error for employment type");
-        this.error.employment = "please enter employment type";
+        this.error.employmentType = "please enter employment type";
       }
 
       if (!this.form.salary) {
@@ -122,30 +127,18 @@ export default {
         this.error.salary = "please enter salary";
       }
 
-       if (!this.form.userid) {
-        console.log("Error for userid");
-        this.error.userid = "please enter userid";
+      if (!this.form.jobTitle) {
+        console.log("Error for jobTitle");
+        this.error.jobTitle = "please enter jobtitle";
       }
 
-      if (!this.form.jobid) {
-        console.log("Error for jobid");
-        this.error.jobid = "please enter jobid";
-      }
-
-      if (!this.form.jobtitle) {
-        console.log("Error for jobtitle");
-        this.error.jobtitle = "please enter jobtitle";
-      }
-
-
-      console.log(Object.keys(this.error).length);
       if (Object.keys(this.error).length) {
         console.log("In error");
         return;
       }
 
       this.$http
-        .post("addjob", this.form)
+        .post("job/create-job", this.form)
         .then(response => {
           this.endResult = "Added successfully...!!";
           window.location = "http://localhost:8080/#/home";
