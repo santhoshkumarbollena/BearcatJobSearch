@@ -61,7 +61,7 @@ Route.group(() => {
   Route.delete("delete-job/:id", "JobController.deleteJob");
   Route.delete(" appliedStudentsOfJob/:id", "JobController.appliedStudentsOfJob");
   Route.get("searchJob", "JobController.searchJob");
-}).prefix("api/v1/job");
+}).prefix("api/v1/job").middleware("auth");
 
 Route.group(() => {
   Route.get("getAllUsers", "UserController.getAllUsers");

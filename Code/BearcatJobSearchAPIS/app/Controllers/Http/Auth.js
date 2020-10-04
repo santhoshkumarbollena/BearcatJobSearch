@@ -38,6 +38,7 @@ class Auth {
     try {
       const hashPassword = await Hash.make(student.password);
       student.password = hashPassword;
+      student.role = "student";
 
       //Storing the student details in database.
       let studentInDB = await Student.create(student);
@@ -108,7 +109,7 @@ class Auth {
       studentId: user.studentId,
       userId: user.userId,
       email: user.email,
-      role: "student",
+      role: user.role,
     });
 
     //Sending the succesful student details along with the access token.
@@ -240,7 +241,6 @@ class Auth {
 
     //compare old password and hashed password from db
     const userData = request.all();
-    console.log(userData);
     const hashedPassword = await Hash.verify(
       userData.password,
       student.password

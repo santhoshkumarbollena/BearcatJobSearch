@@ -23,6 +23,11 @@ export default {
       userName: localStorage.getItem("user_name")
     };
   },
+  created() {
+    this.$http.defaults.headers.common["Authorization"] = localStorage.getItem(
+      "access_token"
+    );
+  },
   methods: {}
 };
 </script>
