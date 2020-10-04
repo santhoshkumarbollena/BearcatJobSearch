@@ -3,6 +3,7 @@
     <Loader v-if="loader"></Loader>
   </div>
   <div v-else>
+    <SubHeader :breadcrumb="breadcrumb" />
     <div class="container">
       <div class="row">
         <div class="offset-md-4">
@@ -227,6 +228,16 @@ export default {
       userRole: localStorage.getItem("role"),
       search: "",
       students: [],
+       breadcrumb: [
+         {
+          text: "Students",
+          href: "#/students"
+        },
+        {
+          text: "Student Info",
+          href: ""
+        }
+      ],
       form: {
         studentId: "",
         studentName: ""
