@@ -1,5 +1,6 @@
 <template>
  <div id="main-background">
+   <SubHeader :breadcrumb="breadcrumb" />
     <div class="container">
       <div class="row">
         <div class="col-md-6 v-center p-4 ">
@@ -124,11 +125,8 @@
             required
           ></base-input>
             <small v-if="error.expsalary" class="col-12 text-left text-danger">{{error.expsalary}}</small>
-             <base-button
-              type="primary"
-              class="btn pull-left mt-3 mb-4 btn-icon btn-primary"
-              icon="fa fa-save"
-            >Resume Upload</base-button>
+            
+            <input type="file"/>
             <base-input
             type="number"
             placeholder="Employment Type"
@@ -171,6 +169,12 @@ export default {
   data() {
     return {
       jobs:[],
+        breadcrumb: [
+        {
+          text: "Profile",
+          href: "#/StudentProfile"
+        }
+      ],
       error: {
         id:"",
         jobTitle:"",
