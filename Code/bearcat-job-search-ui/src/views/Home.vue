@@ -7,6 +7,11 @@
       <SubHeader :breadcrumb="breadcrumb" />
       <div>
         <ChatList />
+         <router-link :to="{ name: 'add-admin' }">
+          <b-button variant="info" v-if="userRole == 'admin'" class="float-right mr-2">
+            <i class="fa fa-plus-square mr-1" /> Add Admin
+          </b-button>
+        </router-link>
         <router-link :to="{ name: 'add-job' }">
           <b-button variant="info" v-if="userRole == 'admin'" class="float-right mr-2">
             <i class="fa fa-plus-square mr-1" /> Add Job
