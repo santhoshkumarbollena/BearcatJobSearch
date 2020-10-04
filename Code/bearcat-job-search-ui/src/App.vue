@@ -73,4 +73,8 @@ input {
 textarea {
   color: #3a3a3a !important;
 }
+
+small {
+  display: block;
+}
 </style>

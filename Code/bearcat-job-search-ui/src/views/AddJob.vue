@@ -150,13 +150,27 @@ export default {
       this.$http
         .post("job/create-job", this.form)
         .then(response => {
-          this.endResult = "Added successfully...!!";
-          window.location = "http://localhost:8080/#/home";
+          this.$root.$bvToast.toast(
+            `${response.data.jobTitle} job added successfully`,
+            {
+              title: "Success",
+              autoHideDelay: 5000,
+              variant: "success"
+            }
+          );
+
+          this.$router.go(-1);
         })
         .catch(error => {
           this.endResult = error.response
             ? error.response.data.error.message
             : error;
+
+          this.$bvToast.toast("error while creating new job", {
+            title: "Error",
+            autoHideDelay: 5000,
+            variant: "danger"
+          });
         });
     }
   }
