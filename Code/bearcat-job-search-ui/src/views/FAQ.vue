@@ -40,6 +40,14 @@
               role:
               <span class="fw-650 ml-1">{{ faq.role }}</span>
             </b-card-text>
+            <router-link :to="{ name: 'edit-faq', params: { FAQQuestion: faq.FAQQuestion } }">
+              <b-button variant="info" v-if="userRole == 'admin'">
+                <i class="fa fa-edit mr-1" /> Edit
+              </b-button>
+            </router-link>
+            <b-button variant="danger" v-if="userRole == 'admin'" class="ml-2">
+              <i class="fa fa-trash mr-1"></i> Delete
+            </b-button>
           </b-card>
         </b-col>
       </b-row>
@@ -62,6 +70,7 @@ export default {
   data() {
     return {
       loader: true,
+      userRole: localStorage.getItem("role"),
       breadcrumb: [
         {
           text: "FAQ's",
