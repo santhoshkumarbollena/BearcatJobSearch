@@ -1,0 +1,202 @@
+<template>
+ <div id="main-background">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 v-center p-4 ">
+          <h1 class="text-center">STUDENT PROFILE</h1>
+           <base-input
+            type="text"
+            placeholder="Student Id"
+            addon-left-icon="fa fa-id-card"
+            v-model="form.id"
+            readonly
+          ></base-input>
+           <small v-if="error.id" class="col-12 text-left text-danger">{{error.id}}</small>
+          <base-input
+            type="text"
+            placeholder="Student Name"
+            addon-left-icon="fa fa-user"
+            v-model="form.studentName"
+            required
+          ></base-input>
+           <small v-if="error.studentName" class="col-12 text-left text-danger">{{error.studentName}}</small>
+          <base-input
+            type="email"
+            placeholder="Email Id"
+            addon-left-icon="fa fa-envelope"
+            v-model="form.email"
+            required
+          ></base-input>
+           <small v-if="error.email" class="col-12 text-left text-danger">{{error.email}}</small>
+           <base-input
+            type="password"
+            placeholder="Password"
+            addon-left-icon="fa fa-key"
+            v-model="form.password"
+            required
+          ></base-input>
+            <small v-if="error.password" class="col-12 text-left text-danger">{{error.password}}</small>
+            <base-input
+            type="number"
+            placeholder="Phone Number"
+            addon-left-icon="fa fa-phone"
+            v-model="form.phone"
+            required
+          ></base-input>
+            <small v-if="error.phone" class="col-12 text-left text-danger">{{error.phone}}</small>
+            <base-input
+            type="gender"
+            placeholder="Gender"
+            addon-left-icon="fa fa-user"
+            v-model="form.gender"
+            required
+          ></base-input>
+            <small v-if="error.gender" class="col-12 text-left text-danger">{{error.gender}}</small>
+            <base-input
+            type="text"
+            placeholder="UG University"
+            addon-left-icon="fa fa-university"
+            v-model="form.uguniv"
+            required
+          ></base-input>
+            <small v-if="error.uguniv" class="col-12 text-left text-danger">{{error.uguniv}}</small>
+            <base-input
+            type="text"
+            placeholder="UG Degree"
+            addon-left-icon="fa fa-university"
+            v-model="form.ugdegree"
+            required
+          ></base-input>
+            <small v-if="error.ugdegree" class="col-12 text-left text-danger">{{error.ugdegree}}</small>
+            <base-input
+            type="text"
+            placeholder="UG Department"
+            addon-left-icon="fa fa-university"
+            v-model="form.ugdepart"
+            required
+          ></base-input>
+            <small v-if="error.ugdepart" class="col-12 text-left text-danger">{{error.ugdepart}}</small>
+            <base-input
+            type="number"
+            placeholder="UG Score"
+            addon-left-icon="fa fa-university"
+            v-model="form.ugscore"
+            required
+          ></base-input>
+            <small v-if="error.ugscore" class="col-12 text-left text-danger">{{error.ugscore}}</small>
+            <base-input
+            type="text"
+            placeholder="Graduate University"
+            addon-left-icon="fa fa-university"
+            v-model="form.graduniv"
+            required
+          ></base-input>
+            <small v-if="error.graduniv" class="col-12 text-left text-danger">{{error.graduniv}}</small>
+            <base-input
+            type="text"
+            placeholder="Graduate Degree"
+            addon-left-icon="fa fa-university"
+            v-model="form.gradegre"
+            required
+          ></base-input>
+            <small v-if="error.gradegre" class="col-12 text-left text-danger">{{error.gradegre}}</small>
+            <base-input
+            type="number"
+            placeholder="Graduate Score"
+            addon-left-icon="fa fa-university"
+            v-model="form.gradscore"
+            required
+          ></base-input>
+            <small v-if="error.gradscore" class="col-12 text-left text-danger">{{error.gradscore}}</small>
+            <base-input
+            type="number"
+            placeholder="Experience (in yrs)"
+            addon-left-icon="fa fa-user"
+            v-model="form.experience"
+            required
+          ></base-input>
+            <small v-if="error.experience" class="col-12 text-left text-danger">{{error.experience}}</small>
+            <base-input
+            type="number"
+            placeholder="Expected Salary"
+            addon-left-icon="fa fa-money"
+            v-model="form.expsalary"
+            required
+          ></base-input>
+            <small v-if="error.expsalary" class="col-12 text-left text-danger">{{error.expsalary}}</small>
+             <base-button
+              type="primary"
+              class="btn pull-left mt-3 mb-4 btn-icon btn-primary"
+              icon="fa fa-save"
+            >Resume Upload</base-button>
+            <base-input
+            type="number"
+            placeholder="Employment Type"
+            addon-left-icon="fa fa-briefcase"
+            v-model="form.emptype"
+            required
+          ></base-input>
+            <small v-if="error.emptype" class="col-12 text-left text-danger">{{error.emptype}}</small>
+          <base-button
+              type="primary"
+              class="btn pull-left mt-3 btn-icon btn-primary"
+              icon="fa fa-save"
+              @click.prevent.stop="save"
+            >Save</base-button>
+          <router-link to="/home">
+          <base-button
+              type="primary"
+              class="btn pull-right mt-3 btn-icon btn-primary"
+              icon="fa fa-ban"
+            >Cancel</base-button>
+          </router-link>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import ChatList from "../components/Chat/ChatList";
+import SubHeader from "../components/Nav/SubHeader";
+import Loader from "../components/utils/Loader.vue";
+
+export default {
+  name: "StudentProfile",
+   components: {
+   ChatList,
+    SubHeader,
+    Loader
+  },
+  data() {
+    return {
+      jobs:[],
+      error: {
+        id:"",
+        jobTitle:"",
+        jobDescription: "",
+        employmentType: "",
+        salary: ""
+      },
+      form: {
+        id:"",
+        jobTitle:"",
+        jobDescription: "",
+        employmentType: "",
+        salary: ""
+      }
+    };
+  },
+  mounted() {
+
+       
+  },
+  methods: {
+  
+    
+  }
+};
+</script>
+
+<style scoped>
+</style>
