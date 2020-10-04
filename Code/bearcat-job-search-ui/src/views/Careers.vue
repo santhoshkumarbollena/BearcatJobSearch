@@ -32,7 +32,7 @@
           <b-card 
             :title="job.jobTitle"
             class="mb-2 m-auto card-1"
-            :img-src="require(`../assets/frontend.png`)"
+            :img-src="require(`../assets/1.png`)"
             img-alt="logo"
             img-top
             style="max-width: 22rem;"
