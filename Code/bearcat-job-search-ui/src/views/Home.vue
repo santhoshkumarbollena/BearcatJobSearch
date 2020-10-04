@@ -49,11 +49,17 @@
       <hr class="mt-3 mb-3" />
       <b-container fluid>
         <b-row>
-          <b-col sm="4" lg="4" v-for="job in jobs" :key="job.id" class="mb-5">
+          <b-col
+            sm="4"
+            lg="4"
+            v-for="(job, index) in jobs"
+            :key="job.id"
+            class="mb-5"
+          >
             <b-card
               :title="job.jobTitle"
               class="mb-2 m-auto card-1"
-              :img-src="images[(Math.floor(Math.random() * 6 + 1) % 6) + '']"
+              :img-src="images[(index % 6) + '']"
               img-alt="logo"
               img-top
               style="max-width: 22rem;"
@@ -91,7 +97,11 @@
                   <i class="fa fa-edit mr-1" /> Edit
                 </b-button>
               </router-link>
-              <b-button variant="danger" v-if="userRole == 'admin'">
+              <b-button
+                variant="danger"
+                v-if="userRole == 'admin'"
+                class="ml-2"
+              >
                 <i class="fa fa-trash mr-1"></i> Delete
               </b-button>
             </b-card>
@@ -220,5 +230,10 @@ export default {
 .card-bg {
   background: #eee;
   color: black;
+}
+
+img {
+  max-height: 170px;
+  min-height: 170px;
 }
 </style>
