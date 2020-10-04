@@ -1,17 +1,20 @@
 <template>
- <div id="main-background">
+  <div id="main-background">
+    <SubHeader :breadcrumb="breadcrumb" />
     <div class="container">
       <div class="row">
         <div class="col-md-6 v-center p-4 ">
           <h1 class="text-center">EDIT JOBS</h1>
-           <base-input
+          <base-input
             type="text"
             placeholder="Job ID"
             addon-left-icon="fa fa-id-card"
             v-model="form.id"
             readonly
           ></base-input>
-           <small v-if="error.id" class="col-12 text-left text-danger">{{error.id}}</small>
+          <small v-if="error.id" class="col-12 text-left text-danger">{{
+            error.id
+          }}</small>
           <base-input
             type="text"
             placeholder="Job Title"
@@ -19,8 +22,10 @@
             v-model="form.jobTitle"
             required
           ></base-input>
-           <small v-if="error.jobTitle" class="col-12 text-left text-danger">{{error.jobTitle}}</small>
-         <!-- <base-input
+          <small v-if="error.jobTitle" class="col-12 text-left text-danger">{{
+            error.jobTitle
+          }}</small>
+          <!-- <base-input
             type="text"
             placeholder="User ID"
             addon-left-icon="fa fa-user"
@@ -28,13 +33,19 @@
             required
           ></base-input>
            <small v-if="error.userid" class="col-12 text-left text-danger">{{error.userid}}</small> -->
-          <textarea class="form-control mb-3" 
+          <textarea
+            class="form-control mb-3"
             placeholder="Job Description"
             v-model="form.jobDescription"
             required
-            rows="4">
+            rows="4"
+          >
           </textarea>
-           <small v-if="error.jobDescription" class="col-12 text-left text-danger">{{error.jobDescription}}</small>
+          <small
+            v-if="error.jobDescription"
+            class="col-12 text-left text-danger"
+            >{{ error.jobDescription }}</small
+          >
           <base-input
             type="text"
             placeholder="Employment Type"
@@ -42,27 +53,35 @@
             v-model="form.employmentType"
             required
           ></base-input>
-           <small v-if="error.employmentType" class="col-12 text-left text-danger">{{error.employmentType}}</small>
-           <base-input
+          <small
+            v-if="error.employmentType"
+            class="col-12 text-left text-danger"
+            >{{ error.employmentType }}</small
+          >
+          <base-input
             type="number"
             placeholder="Salary"
             addon-left-icon="fa fa-money"
             v-model="form.salary"
             required
           ></base-input>
-            <small v-if="error.salary" class="col-12 text-left text-danger">{{error.salary}}</small>
+          <small v-if="error.salary" class="col-12 text-left text-danger">{{
+            error.salary
+          }}</small>
           <base-button
-              type="primary"
-              class="btn pull-left mt-3 btn-icon btn-primary"
-              icon="fa fa-save"
-              @click.prevent.stop="save"
-            >Save</base-button>
+            type="primary"
+            class="btn pull-left mt-3 btn-icon btn-primary"
+            icon="fa fa-save"
+            @click.prevent.stop="save"
+            >Save</base-button
+          >
           <router-link to="/home">
-          <base-button
+            <base-button
               type="primary"
               class="btn pull-right mt-3 btn-icon btn-primary"
               icon="fa fa-ban"
-            >Cancel</base-button>
+              >Cancel</base-button
+            >
           </router-link>
         </div>
       </div>
@@ -77,24 +96,34 @@ import Loader from "../components/utils/Loader.vue";
 
 export default {
   name: "editjob",
-   components: {
-   ChatList,
+  components: {
+    ChatList,
     SubHeader,
     Loader
   },
   data() {
     return {
-      jobs:[],
+      jobs: [],
+      breadcrumb: [
+        {
+          text: "Jobs",
+          href: "#/home"
+        },
+        {
+          text: "Edit Job",
+          href: ""
+        }
+      ],
       error: {
-        id:"",
-        jobTitle:"",
+        id: "",
+        jobTitle: "",
         jobDescription: "",
         employmentType: "",
         salary: ""
       },
       form: {
-        id:"",
-        jobTitle:"",
+        id: "",
+        jobTitle: "",
         jobDescription: "",
         employmentType: "",
         salary: ""
@@ -103,30 +132,29 @@ export default {
   },
   mounted() {
     this.loader = false;
-    console.log("In editing job")
+    console.log("In editing job");
     let url = document.URL;
-    console.log("this is"+document.URL)
-    const path_id = url.substring(url.lastIndexOf('/') + 1);
+    console.log("this is" + document.URL);
+    const path_id = url.substring(url.lastIndexOf("/") + 1);
     this.$http
-        .get("job/getJob/"+path_id)
-        .then(response => {
-         this.jobs = response.data;
-         this.loader = false;
-         this.form.id = this.jobs.id;
-          this.form.jobDescription = this.jobs.jobDescription;
-          this.form.jobTitle = this.jobs.jobTitle;
-          this.form.employmentType = this.jobs.employmentType;
-          this.form.salary = this.jobs.salary;
-        })
-        .catch(error => {
-          this.endResult = error.response
-            ? error.response.data.error.message
-            : error;
-        });
-       
+      .get("job/getJob/" + path_id)
+      .then(response => {
+        this.jobs = response.data;
+        this.loader = false;
+        this.form.id = this.jobs.id;
+        this.form.jobDescription = this.jobs.jobDescription;
+        this.form.jobTitle = this.jobs.jobTitle;
+        this.form.employmentType = this.jobs.employmentType;
+        this.form.salary = this.jobs.salary;
+      })
+      .catch(error => {
+        this.endResult = error.response
+          ? error.response.data.error.message
+          : error;
+      });
   },
   methods: {
-     save() {
+    save() {
       this.loader = true;
       this.error = null;
       this.error = {};
@@ -160,12 +188,12 @@ export default {
         console.log("In error");
         return;
       }
-      console.log("this is log of url Id"+this.jobs.id)
+      console.log("this is log of url Id" + this.jobs.id);
       this.$http
-        .patch("job/update-job/"+this.jobs.id, this.form)
+        .patch("job/update-job/" + this.jobs.id, this.form)
         .then(response => {
           this.endResult = "Edited successfully...!!";
-           alert("Edited succesfully");
+          alert("Edited succesfully");
           window.location = "http://localhost:8080/#/home";
         })
         .catch(error => {

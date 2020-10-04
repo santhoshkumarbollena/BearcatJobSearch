@@ -130,7 +130,7 @@ export default {
       search: "",
       breadcrumb: [
         {
-          text: "Jobs List",
+          text: "Jobs",
           href: "/home"
         }
       ],
