@@ -1,5 +1,6 @@
 import Vue from "vue";
 import axios from "axios";
+import moment from 'moment';
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -36,6 +37,24 @@ Vue.prototype.$http = axios.create({
     Accept: "application/json",
   },
 });
+
+Vue.filter('formatDate', function (value, formatType) {
+  console.log(value, formatType)
+  if (formatType == 'date' && value) {
+    return moment(new Date(String(value))).format('MMMM Do YYYY');
+    return ""
+  }
+
+  if (formatType == 'time' && value) {
+    const time = value.split(":");
+    if (time[0] <= 12) {
+      return `${time[0].padStart(2, "0")}:${time[1].padStart(2, "0")} AM`;
+    } else {
+      return `${(time[0] - 12).toString().padStart(2, "0")}:${time[1].padStart(2, "0")} PM`;
+    }
+  }
+});
+
 
 new Vue({
   router,
