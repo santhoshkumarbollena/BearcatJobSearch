@@ -3,8 +3,9 @@
     <SubHeader :breadcrumb="breadcrumb" />
     <div class="container">
       <div class="row">
-        <div class="col-md-6 v-center p-4 ">
-          <h1 class="text-center">EDIT JOBS</h1>
+        <div class="col-md-6 v-center">
+          <h1>EDIT JOBS</h1>
+          <label for="jobId" class="font-weight-bold">Job Id:</label>
           <base-input
             type="text"
             placeholder="Job ID"
@@ -15,6 +16,8 @@
           <small v-if="error.id" class="col-12 text-left text-danger">{{
             error.id
           }}</small>
+
+          <label for="jobId" class="font-weight-bold">Job Name:</label>
           <base-input
             type="text"
             placeholder="Job Title"
@@ -25,14 +28,8 @@
           <small v-if="error.jobTitle" class="col-12 text-left text-danger">{{
             error.jobTitle
           }}</small>
-          <!-- <base-input
-            type="text"
-            placeholder="User ID"
-            addon-left-icon="fa fa-user"
-            v-model="form.userid"
-            required
-          ></base-input>
-           <small v-if="error.userid" class="col-12 text-left text-danger">{{error.userid}}</small> -->
+
+          <label for="jobId" class="font-weight-bold">Job Description:</label>
           <textarea
             class="form-control mb-3"
             placeholder="Job Description"
@@ -46,6 +43,8 @@
             class="col-12 text-left text-danger"
             >{{ error.jobDescription }}</small
           >
+
+          <label for="jobId" class="font-weight-bold">Job Type:</label>
           <base-input
             type="text"
             placeholder="Employment Type"
@@ -58,6 +57,8 @@
             class="col-12 text-left text-danger"
             >{{ error.employmentType }}</small
           >
+
+          <label for="jobId" class="font-weight-bold">Salary:</label>
           <base-input
             type="number"
             placeholder="Salary"
@@ -73,11 +74,11 @@
             class="btn pull-left mt-3 btn-icon btn-primary"
             icon="fa fa-save"
             @click.prevent.stop="save"
-            >Save</base-button
+            >Update</base-button
           >
           <router-link to="/home">
             <base-button
-              type="primary"
+              type="danger"
               class="btn pull-right mt-3 btn-icon btn-primary"
               icon="fa fa-ban"
               >Cancel</base-button
@@ -173,33 +174,39 @@ export default {
         this.error.salary = "please enter salary";
       }
 
-      // if (!this.form.userid) {
-      //   console.log("Error for userid");
-      //   this.error.userid = "please enter userid";
-      // }
-
       if (!this.form.jobTitle) {
         console.log("Error for jobTitle");
         this.error.jobTitle = "please enter jobTitle";
       }
 
-      console.log(Object.keys(this.error).length);
       if (Object.keys(this.error).length) {
-        console.log("In error");
         return;
       }
-      console.log("this is log of url Id" + this.jobs.id);
+
       this.$http
         .patch("job/update-job/" + this.jobs.id, this.form)
         .then(response => {
-          this.endResult = "Edited successfully...!!";
-          alert("Edited succesfully");
-          window.location = "http://localhost:8080/#/home";
+          this.$root.$bvToast.toast(
+            `${response.data.jobTitle} job updated successfully`,
+            {
+              title: "Success",
+              autoHideDelay: 5000,
+              variant: "success"
+            }
+          );
+
+          this.$router.go(-1);
         })
         .catch(error => {
           this.endResult = error.response
             ? error.response.data.error.message
             : error;
+
+          this.$root.$bvToast.toast("erroe while updating the job", {
+            title: "Error",
+            autoHideDelay: 5000,
+            variant: "danger"
+          });
         });
     }
   }
