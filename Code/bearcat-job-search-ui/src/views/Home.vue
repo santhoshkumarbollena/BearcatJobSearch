@@ -7,9 +7,22 @@
       <SubHeader :breadcrumb="breadcrumb" />
       <div>
         <ChatList />
+        <router-link :to="{ name: 'add-job' }">
+          <b-button
+            variant="info"
+            v-if="userRole == 'admin'"
+            class="float-right mr-2"
+          >
+            <i class="fa fa-plus-square mr-1" /> Add Job
+          </b-button>
+        </router-link>
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <b-form-input class="mr-2 ml-5" placeholder="Search for jobs" id="search"></b-form-input>
+            <b-form-input
+              class="mr-2 ml-5"
+              placeholder="Search for jobs"
+              id="search"
+            ></b-form-input>
             <b-button
               variant="info"
               class="my-2 my-sm-0"
@@ -20,11 +33,15 @@
               <i class="fa fa-search mr-1"></i>
               Search
             </b-button>
-            <router-link :to="{ name: 'add-job' }">
-              <b-button variant="info" v-if="userRole == 'admin'">
-                <i class="fa fa-edit mr-1" /> Add Job
-              </b-button>
-            </router-link>
+
+            <b-button
+              variant="info"
+              class="my-2 my-sm-0"
+              @click="clearSearch()"
+            >
+              <i class="fa fa-times mr-1"></i>
+              Clear
+            </b-button>
           </b-nav-form>
         </b-navbar-nav>
       </div>
@@ -58,12 +75,18 @@
                 <i class="fa fa-info-circle"></i>
               </b-button>
 
-              <b-button variant="info" v-if="userRole == 'student'" @click="applyJob(job)">
+              <b-button
+                variant="info"
+                v-if="userRole == 'student'"
+                @click="applyJob(job)"
+              >
                 <i class="fa fa-check-square-o mr-1"></i>
                 Apply
               </b-button>
 
-              <router-link :to="{ name: 'edit-job',params: {jobId:job.id } }">
+              <router-link
+                :to="{ name: 'edit-job', params: { jobId: job.id } }"
+              >
                 <b-button variant="info" v-if="userRole == 'admin'">
                   <i class="fa fa-edit mr-1" /> Edit
                 </b-button>
@@ -108,16 +131,20 @@ export default {
     };
   },
   methods: {
-    applyJob(job)
-    {
-       console.log("Apply job"+job.id+" STudent id"+this.studentId)
+    clearSearch() {
+      document.getElementById("search").value = "";
+      this.search = "";
+      this.getJobs();
+    },
+    applyJob(job) {
+      console.log("Apply job" + job.id + " STudent id" + this.studentId);
       //  http://127.0.0.1:3006/api/v1/studentApplication/StudentApplyJob/919583579/1
-       this.$http
+      this.$http
         .get(
-          "studentApplication/StudentApplyJob/" +this.studentId+"/"+job.id
+          "studentApplication/StudentApplyJob/" + this.studentId + "/" + job.id
         )
         .then(response => {
-          console.log(response.data)
+          console.log(response.data);
           this.loader = false;
         })
         .catch(error => {
@@ -128,17 +155,13 @@ export default {
         });
     },
     searchjob() {
-      console.log("In search")
+      console.log("In search");
       this.search = document.getElementById("search").value;
       this.getJobs();
     },
     getJobs() {
       this.$http
-        .get(
-          "job/searchJob" +
-            "?search=" +
-            this.search
-        )
+        .get("job/searchJob" + "?search=" + this.search)
         .then(response => {
           this.jobs = response.data;
           this.loader = false;
@@ -165,8 +188,7 @@ export default {
     //     })
     //     .catch(error => {
     //       this.loader = false;
-    //       this.error = error.response
-    //         ? error.response.data.error.message
+    //       this.error = error.response ? error.response.data.error.message
     //         : error;
     //     });
     // }
@@ -181,15 +203,6 @@ export default {
       .catch(error => {
         this.loader = false;
         this.error = error.response ? error.response.data.error.message : error;
-      });
-
-    document
-      .getElementById("search")
-      .addEventListener("keyup", function(event) {
-        event.preventDefault();
-        if (event.keyCode === 13) {
-          document.getElementById("btnclick").click();
-        }
       });
   }
 };
