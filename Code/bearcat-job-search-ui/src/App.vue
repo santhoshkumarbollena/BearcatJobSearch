@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <NavBar v-if="userName" />
-    <router-view />
+    <div class="height-70">
+      <router-view />
+    </div>
     <Footer v-if="userName" />
   </div>
 </template>
@@ -53,5 +55,9 @@ export default {
 
 .card-1:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 10px 10px rgba(0, 0, 0, 0.32);
+}
+
+.height-70 {
+  min-height: 70vh;
 }
 </style>

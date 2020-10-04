@@ -49,11 +49,11 @@
       <hr class="mt-3 mb-3" />
       <b-container fluid>
         <b-row>
-          <b-col sm="4" lg="4" v-for="job in jobs" :key="job.id">
+          <b-col sm="4" lg="4" v-for="job in jobs" :key="job.id" class="mb-5">
             <b-card
               :title="job.jobTitle"
               class="mb-2 m-auto card-1"
-              :img-src="require(`../assets/frontend.png`)"
+              :img-src="images[(Math.floor(Math.random() * 6 + 1) % 6) + '']"
               img-alt="logo"
               img-top
               style="max-width: 22rem;"
@@ -116,6 +116,14 @@ export default {
   },
   data() {
     return {
+      images: {
+        "0": require(`../assets/1.png`),
+        "1": require(`../assets/2.jpg`),
+        "2": require(`../assets/3.jpg`),
+        "3": require(`../assets/4.jpg`),
+        "4": require(`../assets/5.jpg`),
+        "5": require(`../assets/6.png`)
+      },
       loader: true,
       userRole: localStorage.getItem("role"),
       studentId: localStorage.getItem("id"),
