@@ -125,10 +125,10 @@
             required
           ></base-input>
             <small v-if="error.expsalary" class="col-12 text-left text-danger">{{error.expsalary}}</small>
-            
             <input type="file"/>
             <base-input
             type="number"
+            class="mt-3"
             placeholder="Employment Type"
             addon-left-icon="fa fa-briefcase"
             v-model="form.emptype"
