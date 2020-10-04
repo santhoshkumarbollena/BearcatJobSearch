@@ -59,8 +59,8 @@
               <i class="fa fa-user-secret mr-2"></i>
               <span style="text-transform: capitalize;">{{ userRole }}</span>
             </b-dropdown-item>
-            <b-dropdown-item>
-              <i class="fa fa-cog mr-2"></i>Settings</b-dropdown-item
+            <b-dropdown-item :to="{ name: 'change-password' }">
+              <i class="fa fa-key mr-2"></i>Change Password</b-dropdown-item
             >
             <b-dropdown-item @click="logout">
               <i class="fa fa-sign-out mr-2" />Sign Out</b-dropdown-item
