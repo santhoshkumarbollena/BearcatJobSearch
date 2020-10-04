@@ -23,6 +23,12 @@
             </router-link>
           </b-nav-item>
 
+          <b-nav-item class="m-0"  v-if="userRole=='student'">
+            <router-link to="/StudentProfile">
+              <i class="fa fa-user-md m-0"></i> Profile
+            </router-link>
+          </b-nav-item>
+
           <b-nav-item class="m-0" v-if="userRole=='admin'">
             <router-link to="/students">
               <i class="fa fa-book m-0"></i> Students
