@@ -5,6 +5,7 @@
       <div class="row">
         <div class="col-md-6 v-center">
           <h1>ADD JOBS</h1>
+          <label for="jobId" class="font-weight-bold">Job Title:</label>
           <base-input
             type="text"
             placeholder="Job Title"
@@ -15,6 +16,8 @@
           <small v-if="error.jobTitle" class="col-12 text-left text-danger">{{
             error.jobTitle
           }}</small>
+
+          <label for="jobId" class="font-weight-bold">Job Description:</label>
           <textarea
             class="form-control mb-3"
             placeholder="Job Description"
@@ -28,6 +31,8 @@
             class="col-12 text-left text-danger"
             >{{ error.jobDescription }}</small
           >
+
+          <label for="jobId" class="font-weight-bold">Employment Type:</label>
           <base-input
             type="text"
             placeholder="Employment Type (part-time / full-time)"
@@ -35,9 +40,13 @@
             v-model="form.employmentType"
             required
           ></base-input>
-          <small v-if="error.employmentType" class="col-12 text-left text-danger">{{
-            error.employmentType
-          }}</small>
+          <small
+            v-if="error.employmentType"
+            class="col-12 text-left text-danger"
+            >{{ error.employmentType }}</small
+          >
+
+          <label for="jobId" class="font-weight-bold">Salary:</label>
           <base-input
             type="number"
             placeholder="Salary"
@@ -48,6 +57,7 @@
           <small v-if="error.salary" class="col-12 text-left text-danger">{{
             error.salary
           }}</small>
+
           <base-button
             type="primary"
             class="btn pull-left mt-3 btn-icon btn-primary"
