@@ -17,139 +17,178 @@
             </label>
           </div>
           <div class="offset-md-4" style="position:relative; right:210px">
-             <base-button
-              type="primary"
-              class="btn pull-right mt-3 btn-icon btn-primary"
-              icon="fa fa-downlaod"
-            >Here</base-button> 
-          </div>
-        </div>
-        <div class="col-md-4 v-center p-4">
-          <div class="offset-md-2" style="position:relative; top:10px;">
-            <label for="example-url-input" class="col-form-label form-control-label">
-              <h4>Student ID:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:23px;">
-            <label>
-              <h4>Student Name:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:36px;">
-            <label>
-              <h4>Email:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:52px;">
-            <label>
-              <h4>Date of Birth:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:67px;">
-            <label>
-              <h4>Contact Number:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:81px;">
-            <label>
-              <h4>Gender:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:95px;">
-            <label>
-              <h4>UG University:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:109px;">
-            <label>
-              <h4>UG Degree:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:123px;">
-            <label>
-              <h4>UG Department:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:137px;">
-            <label>
-              <h4>UG Score:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:151px;">
-            <label>
-              <h4>Graduate University:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:165px;">
-            <label>
-              <h4>Graduate Degree:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:173px;">
-            <label>
-              <h4>Graduate Department:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:178px;">
-            <label>
-              <h4>Graduate Score:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:188px;">
-            <label>
-              <h4>Experience in Years:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:200px;">
-            <label>
-              <h4>Expected Salary:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:215px;">
-            <label>
-              <h4>Employement Type:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:229px;">
-            <label>
-              <h4>GitHub URL:</h4>
-            </label>
-          </div>
-          <div class="offset-md-2" style="position:relative; top:240px;">
-            <label>
-              <h4>LinkedIn URL:</h4>
-            </label>
-          </div>
-        </div>
-        <div class="col-md-4 v-center p-4">
-          <base-input type="text" v-model="form.studentId" readonly></base-input>
-
-          <base-input type="text" v-model="form.studentName" readonly></base-input>
-          <base-input type="text" v-model="form.email" readonly></base-input>
-          <base-input type="text" v-model="form.dob" readonly></base-input>
-          <base-input type="text" v-model="form.phoneNumber" readonly></base-input>
-          <base-input type="text" v-model="form.gender" readonly></base-input>
-          <base-input type="text" v-model="form.ugUniversity" readonly></base-input>
-          <base-input type="text" v-model="form.ugDegree" readonly></base-input>
-          <base-input type="text" v-model="form.ugDepartment" readonly></base-input>
-          <base-input type="text" v-model="form.ugScore" readonly></base-input>
-          <base-input type="text" v-model="form.graduateUniversity" readonly></base-input>
-          <base-input type="text" v-model="form.graduateDegree" readonly></base-input>
-          <base-input type="text" v-model="form.graduateDepartment" readonly></base-input>
-          <base-input type="text" v-model="form.graduateScore" readonly></base-input>
-          <base-input type="text" v-model="form.experienceYears" readonly></base-input>
-          <base-input type="text" v-model="form.expectedSalary" readonly></base-input>
-          <base-input type="text" v-model="form.employementType" readonly></base-input>
-          <base-input type="text" v-model="form.gitHubUrl" readonly></base-input>
-          <base-input type="text" v-model="form.linkedInUrl" readonly></base-input>
-
-          <router-link to="/students">
             <base-button
               type="primary"
               class="btn pull-right mt-3 btn-icon btn-primary"
-              icon="fa fa-arrow-left"
-            >Go-Back</base-button>
-          </router-link>
+              icon="fa fa-downlaod"
+            >Here</base-button>
+          </div>
+        </div>
+        <div class="col-md-8 v-center p-4">
+          <div>
+            <div class="form-group row">
+              <label for="sid" class="col-md-2 col-form-label form-control-label">ID:</label>
+              <div class="col-md-10">
+                <base-input id="sid" v-model="form.studentId" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="sname" class="col-md-2 col-form-label form-control-label">Name:</label>
+              <div class="col-md-10">
+                <base-input id="sname" v-model="form.studentName" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="mail" class="col-md-2 col-form-label form-control-label">Email</label>
+              <div class="col-md-10">
+                <base-input id="mail" v-model="form.email" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="dob"
+                class="col-md-2 col-form-label form-control-label"
+              >DOB:</label>
+              <div class="col-md-10">
+                <base-input id="dob" v-model="form.dob" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="phone"
+                class="col-md-2 col-form-label form-control-label"
+              >Contact:</label>
+              <div class="col-md-10">
+                <base-input id="phone" v-model="form.phoneNumber" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="sex"
+                class="col-md-2 col-form-label form-control-label"
+              >Gender:</label>
+              <div class="col-md-10">
+                <base-input id="sex" v-model="form.gender" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="ugu"
+                class="col-md-2 col-form-label form-control-label"
+              >UG University:</label>
+              <div class="col-md-10">
+                <base-input id="ugu" v-model="form.ugUniversity" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="ugd"
+                class="col-md-2 col-form-label form-control-label"
+              >UG Degree:</label>
+              <div class="col-md-10">
+                <base-input id="ugd" v-model="form.ugDegree" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="ugdep"
+                class="col-md-2 col-form-label form-control-label"
+              >UG Department:</label>
+              <div class="col-md-10">
+                <base-input id="ugdep" v-model="form.ugDepartment" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="ugs"
+                class="col-md-2 col-form-label form-control-label"
+              >UG Score:</label>
+              <div class="col-md-10">
+                <base-input id="ugs" v-model="form.ugScore" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="gu"
+                class="col-md-2 col-form-label form-control-label"
+              >Graduate University:</label>
+              <div class="col-md-10">
+                <base-input id="gu" v-model="form.graduateUniversity" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="gd"
+                class="col-md-2 col-form-label form-control-label"
+              >Graduate Degree:</label>
+              <div class="col-md-10">
+                <base-input id="gd" v-model="form.graduateDegree" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="gdep"
+                class="col-md-2 col-form-label form-control-label"
+              >Graduate Department:</label>
+              <div class="col-md-10">
+                <base-input id="gdep" v-model="form.graduateDepartment" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="gscore"
+                class="col-md-2 col-form-label form-control-label"
+              >Graduate Score:</label>
+              <div class="col-md-10">
+                <base-input id="gscore" v-model="form.graduateScore" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="exp"
+                class="col-md-2 col-form-label form-control-label"
+              >Experience in Years:</label>
+              <div class="col-md-10">
+                <base-input id="exp" v-model="form.experienceYears" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="sal"
+                class="col-md-2 col-form-label form-control-label"
+              >Expected Salary:</label>
+              <div class="col-md-10">
+                <base-input id="sal" v-model="form.expectedSalary" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="etype"
+                class="col-md-2 col-form-label form-control-label"
+              >Employee type:</label>
+              <div class="col-md-10">
+                <base-input id="etype" v-model="form.employementType" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="git"
+                class="col-md-2 col-form-label form-control-label"
+              >GitHub URL:</label>
+              <div class="col-md-10">
+                <base-input id="git" v-model="form.gitHubUrl" readonly></base-input>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="linkedin"
+                class="col-md-2 col-form-label form-control-label"
+              >LinkedIn URL:</label>
+              <div class="col-md-10">
+                <base-input id="linkedin" v-model="form.linkedInUrl" readonly></base-input>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
