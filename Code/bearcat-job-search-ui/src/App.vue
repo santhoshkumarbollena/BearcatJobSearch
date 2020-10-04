@@ -65,4 +65,12 @@ export default {
 .height-70 {
   min-height: 70vh;
 }
+
+input {
+  color: #3a3a3a !important;
+}
+
+textarea {
+  color: #3a3a3a !important;
+}
 </style>
