@@ -94,10 +94,6 @@
           </template>
         </el-table-column>
       </el-table>
-
-      <div class="card-footer py-4 d-flex justify-content-end">
-        <base-pagination v-model="currentPage" :total="50"></base-pagination>
-      </div>
     </div>
   </div>
 </template>
@@ -183,7 +179,7 @@ export default {
       document.getElementById("search").value = "";
       this.search = "";
       this.getStudents();
-    },
+    }
   }
 };
 </script>
