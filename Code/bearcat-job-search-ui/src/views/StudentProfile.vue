@@ -194,11 +194,22 @@ export default {
     };
   },
   mounted() {
-  
+    console.log("On mounted getting student info")
+ this.$http
+      .get("student/getStudent/" + this.studentId)
+      .then(response => {
+        this.form = response.data;
+        
+      })
+      .catch(error => {
+        console.log("error")
+      });
        
   },
   methods: {
   
+    
+  }
     
   }
 };
