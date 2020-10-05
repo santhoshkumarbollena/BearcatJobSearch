@@ -202,7 +202,7 @@ export default {
             ? error.response.data.error.message
             : error;
 
-          this.$root.$bvToast.toast("erroe while updating the job", {
+          this.$root.$bvToast.toast("error while updating the job", {
             title: "Error",
             autoHideDelay: 5000,
             variant: "danger"
