@@ -9,6 +9,7 @@ class AdminController {
    async createAdmin({ request, auth, response, params }) {
         let userInput = request.all();
      let student={};
+     userInput.userId = Math.floor(Math.random() * 1000000000);
        
     }
 
