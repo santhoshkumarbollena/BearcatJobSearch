@@ -34,6 +34,8 @@ class StudentController {
     return response.status(200).json(job);
   }
 
+  
+
   async searchStudent({ params, request, response }) {
     const queryParam = request.all();
     let students;
