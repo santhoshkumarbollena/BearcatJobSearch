@@ -1,7 +1,13 @@
 <template>
   <div>
-     <SubHeader :breadcrumb="breadcrumb" />
-    <h1>This is about page</h1>
+    <SubHeader :breadcrumb="breadcrumb" />
+    <div>
+      <router-link :to="{ name: 'add-faq' }">
+        <b-button variant="info" v-if="userRole == 'admin'" class="float-right mr-2">
+          <i class="fa fa-plus-square mr-1" /> Add FAQ
+        </b-button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -9,17 +15,18 @@
 import SubHeader from "../components/Nav/SubHeader";
 export default {
   name: "About",
-   components: {
+  components: {
     SubHeader
   },
   data() {
     return {
-       breadcrumb: [
+      breadcrumb: [
         {
           text: "About Us",
           href: "#/about"
         }
-      ]
+      ],
+      userRole: localStorage.getItem("role"),
     };
   },
   mounted() {},
