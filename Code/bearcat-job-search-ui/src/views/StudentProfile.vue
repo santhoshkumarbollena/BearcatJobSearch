@@ -207,7 +207,17 @@ export default {
        
   },
   methods: {
-  
+  save(){
+    console.log("this.form",this.form)//update/student/
+    this.$http
+      .patch("student/update/student/" + this.studentId,this.form)
+      .then(response => {
+        console.log(response.data)
+        
+      })
+      .catch(error => {
+        console.log("error")
+      });
     
   }
     
