@@ -3,7 +3,7 @@
     <SubHeader :breadcrumb="breadcrumb" />
     <div>
       <router-link :to="{ name: 'add-faq' }">
-        <b-button variant="info" v-if="userRole == 'admin'" class="float-right mr-2">
+        <b-button variant="info" class="float-right mr-2">
           <i class="fa fa-plus-square mr-1" /> Add FAQ
         </b-button>
       </router-link>
@@ -26,7 +26,6 @@ export default {
           href: "#/about"
         }
       ],
-      userRole: localStorage.getItem("role"),
     };
   },
   mounted() {},
