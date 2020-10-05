@@ -24,7 +24,7 @@ class StudentApplicationController {
     const appliedJobs = await Job.query()
       .with("jobApplications", (builder) => {
         builder
-          .where("student_applications.status", "Applied")
+          // .where("student_applications.status", "Applied")
           .where("student_applications.studentId", params.studentId);
       })
       .fetch();
@@ -48,13 +48,21 @@ class StudentApplicationController {
   }
 
   async StudentGotRejected({ request, auth, response, params }) {
-    console.log(params.studentId, params.jobId);
-    const job = await Job.find(params.jobId);
-    const student = await Student.find(params.studentId);
-    student.studentApplications().detach(student.id, job.id);
-    student.studentApplications().attach([job.id], (studentApplication) => {
-      studentApplication.status = "Rejected";
-    });
+    try {
+      console.log(params.studentId, params.jobId, params.status);
+      const job = await Job.find(params.jobId);
+      const student = await Student.find(params.studentId);
+
+      await student.studentApplications().detach();
+
+      await student
+        .studentApplications()
+        .attach([job.id], (studentApplication) => {
+          studentApplication.status = params.status;
+        });
+    } catch (err) {
+      console.log(err);
+    }
 
     return "Student Applied";
   }

@@ -53,7 +53,7 @@ Route.group(() => {
     "StudentApplicationController.StudentApplyJob"
   );
   Route.get(
-    "StudentGotRejected/:studentId/:jobId",
+    "StudentGotRejected/:studentId/:jobId/:status",
     "StudentApplicationController.StudentGotRejected"
   );
   Route.get(
