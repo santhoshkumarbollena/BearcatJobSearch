@@ -106,10 +106,10 @@
             type="number"
             placeholder="Graduate Score"
             addon-left-icon="fa fa-university"
-            v-model="form.gradscore"
+            v-model="form.graduateScore"
             required
           ></base-input>
-            <small v-if="error.graduateScore" class="col-12 text-left text-danger">{{error.gradscore}}</small>
+            <small v-if="error.graduateScore" class="col-12 text-left text-danger">{{error.graduateScore}}</small>
             <base-input
             type="number"
             placeholder="Experience (in yrs)"
@@ -132,7 +132,7 @@
             class="mt-3"
             placeholder="Employment Type"
             addon-left-icon="fa fa-briefcase"
-            v-model="form.employmentType"
+            v-model="form.employementType"
             required
           ></base-input>
             <small v-if="error.emptype" class="col-12 text-left text-danger">{{error.emptype}}</small>
@@ -181,7 +181,7 @@ export default {
         studentId:"",
         jobTitle:"",
         jobDescription: "",
-        employmentType: "",
+        employementType: "",
         salary: "",
         ugUniversity: "",
         ugDegree: "",
@@ -199,7 +199,7 @@ export default {
         studentId:"",
         jobTitle:"",
         jobDescription: "",
-        employmentType: "",
+        employementType: "",
         salary: "",
         ugUniversity: "",
         ugDegree: "",
