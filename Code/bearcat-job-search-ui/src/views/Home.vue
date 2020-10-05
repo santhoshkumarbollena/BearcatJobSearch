@@ -85,12 +85,7 @@
                 Salary:
                 <span class="fw-650 ml-1">${{ job.salary }}</span>
               </b-card-text>
-              <b-card-text>
-                Organization:
-                <span class="fw-650 ml-1">{{
-                  job.admin_user.userOrganization
-                }}</span>
-              </b-card-text>
+             
 
               <router-link
                 :to="{ name: 'job-details', params: { jobId: job.id } }"
