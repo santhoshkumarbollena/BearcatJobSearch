@@ -55,20 +55,25 @@
               Employment-Type:
               <span class="fw-650 ml-1">{{ job.employmentType }}</span>
             </b-card-text>
-            <b-card-text>
+            <b-card-text class="mb-0">
               Salary:
               <span class="fw-650 ml-1">${{ job.salary }}</span>
             </b-card-text>
 
-            <b-card-text>
+            <b-card-text class="bg-green text-white">
               Status:
-              <span class="fw-650 ml-1">Applied</span>
+              <span class="fw-650 ml-1">{{
+                job.jobApplications[0].pivot.status
+              }}</span>
             </b-card-text>
 
-            <b-button variant="info">
-              <i class="fa fa-info-circle"></i>
-            </b-button>
-
+            <router-link
+              :to="{ name: 'job-details', params: { jobId: job.id } }"
+            >
+              <b-button variant="info" class="mr-2">
+                <i class="fa fa-info-circle"></i>
+              </b-button>
+            </router-link>
             <b-button variant="danger" v-if="userRole == 'student'">
               <i class="fa fa-check-square-o mr-1"></i>
               cancel
