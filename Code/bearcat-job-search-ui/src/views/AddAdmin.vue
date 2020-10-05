@@ -152,7 +152,27 @@ export default {
     };
   },
   methods: {
-    
+    add(){
+      console.log("Add admin"+this.form)
+      this.form.role="admin"
+      this.$http
+      .post("admin/create-admin",this.form)
+      .then(response => {
+        console.log(response.data)
+        this.$root.$bvToast.toast(
+            `Student updated sucessfully`,
+            {
+              title: "Success",
+              autoHideDelay: 5000,
+              variant: "success"
+            }
+          );
+        
+      })
+      .catch(error => {
+        console.log("error")
+      });
+    }
 
   }
 };
