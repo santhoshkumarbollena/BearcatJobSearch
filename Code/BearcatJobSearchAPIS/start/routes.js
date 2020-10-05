@@ -68,6 +68,10 @@ Route.group(() => {
     "getStudentAppliedJobs/:studentId/search/:search",
     "StudentApplicationController.getStudentAppliedJobsSearch"
   );
+  Route.get(
+    "get/student/applied/jobs/:jobId",
+    "StudentApplicationController.getAppliedStudentForJob"
+  );
 }).prefix("api/v1/studentApplication");
 
 // Data fetching routers
@@ -98,7 +102,6 @@ Route.group(() => {
   // Route.get("getAllUsers", "UserController.getAllUsers");
   // Route.get("getUser/:userId", "UserController.getUserBasedOnId");
   Route.post("create-admin", "AdminController.createAdmin");
-
 }).prefix("api/v1/admin");
 
 //FAQ Data fetching routers

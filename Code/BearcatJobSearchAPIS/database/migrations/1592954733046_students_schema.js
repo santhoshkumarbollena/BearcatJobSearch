@@ -27,6 +27,7 @@ class StudentsSchema extends Schema {
       table.string("employementType", 10);
       table.string("gitHubUrl", 100);
       table.string("linkedInUrl", 100);
+      table.string("role", 20);
       table.timestamps();
     });
   }
