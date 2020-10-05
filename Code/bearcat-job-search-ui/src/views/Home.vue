@@ -81,14 +81,24 @@
                 Employment-Type:
                 <span class="fw-650 ml-1">{{ job.employmentType }}</span>
               </b-card-text>
-              <b-card-text>
+              <b-card-text class="mb-0">
                 Salary:
                 <span class="fw-650 ml-1">${{ job.salary }}</span>
               </b-card-text>
+              <b-card-text>
+                Organization:
+                <span class="fw-650 ml-1">{{
+                  job.admin_user.userOrganization
+                }}</span>
+              </b-card-text>
 
-              <b-button variant="info">
-                <i class="fa fa-info-circle"></i>
-              </b-button>
+              <router-link
+                :to="{ name: 'job-details', params: { jobId: job.id } }"
+              >
+                <b-button variant="info" class="mr-2">
+                  <i class="fa fa-info-circle"></i>
+                </b-button>
+              </router-link>
 
               <b-button
                 variant="info"
@@ -264,6 +274,7 @@ export default {
     this.$http
       .get("job/getAllJobs", this.credentials)
       .then(response => {
+        console.log(" response.data: ", response.data);
         this.jobs = response.data;
         this.loader = false;
       })
