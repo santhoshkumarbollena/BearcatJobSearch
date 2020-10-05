@@ -6,7 +6,10 @@ const Student = use("App/Models/Student");
 const User = use("App/Models/User")
 
 class AdminController {
-   
+   async createAdmin({ request, auth, response, params }) {
+        let userInput = request.all();
+       
+    }
 
 }
 module.exports = AdminController;
