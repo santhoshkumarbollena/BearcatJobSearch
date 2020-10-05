@@ -20,7 +20,7 @@
 
     <b-container fluid>
       <b-row>
-        <b-col sm="4" lg="4" v-for="faq in projects" :key="faq.FAQQuestion">
+        <b-col sm="4" lg="4" v-for="faq in projects" :key="faq.FAQQuestion" class="mb-5">
           <b-card
             :title="faq.FAQQuestion"
             class="mb-2 m-auto card-1"

@@ -8,19 +8,14 @@
       <ChatList />
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
-          <b-form-input
-            id="search"
-            class="mr-2 ml-5"
-            placeholder="Search for Students"
-          ></b-form-input>
-          <b-button
-            variant="info"
-            class="my-2 my-sm-0"
-            @click="findStudents()"
-            type="submit"
-          >
+          <b-form-input id="search" class="mr-2 ml-5" placeholder="Search for Students"></b-form-input>
+          <b-button variant="info" class="my-2 my-sm-0" @click="findStudents()" type="submit">
             <i class="fa fa-search mr-1"></i>
             Search
+          </b-button>
+          <b-button variant="info" class="my-2 my-sm-0" @click="clearSearch()">
+            <i class="fa fa-times mr-1"></i>
+            Clear
           </b-button>
         </b-nav-form>
       </b-navbar-nav>
@@ -31,42 +26,33 @@
           <template v-slot="{ row }">
             <div class="media align-items-center">
               <a href="#" class="avatar rounded-circle mr-3">
-                <img
-                  alt="Image placeholder"
-                  :src="require(`../assets/student.jpg`)"
-                />
+                <img alt="Image placeholder" :src="require(`../assets/student.jpg`)" />
               </a>
             </div>
           </template>
         </el-table-column>
-        <el-table-column
-          label="Student ID"
-          min-width="200px"
-          prop="name"
-          sortable
-        >
+        <el-table-column label="Student ID" min-width="200px" prop="name" sortable>
           <template v-slot="{ row }">
             <div class="media align-items-center">
               <div class="media-body mb-4 mt-4">
-                <span class="font-weight-600 name mb-0 text-sm">{{
+                <span class="font-weight-600 name mb-0 text-sm">
+                  {{
                   row.studentId
-                }}</span>
+                  }}
+                </span>
               </div>
             </div>
           </template>
         </el-table-column>
-        <el-table-column
-          label="Student Name"
-          prop="budget"
-          min-width="140px"
-          sortable
-        >
+        <el-table-column label="Student Name" prop="budget" min-width="140px" sortable>
           <template v-slot="{ row }">
             <div class="media align-items-center">
               <div class="media-body">
-                <span class="font-weight-600 name mb-0 text-sm">{{
+                <span class="font-weight-600 name mb-0 text-sm">
+                  {{
                   row.studentName
-                }}</span>
+                  }}
+                </span>
               </div>
             </div>
           </template>
@@ -76,20 +62,17 @@
           <template v-slot="{ row }">
             <div class="media align-items-center">
               <div class="media-body">
-                <span class="font-weight-600 mb-0 text-sm">{{
+                <span class="font-weight-600 mb-0 text-sm">
+                  {{
                   row.dob | formatDate("date")
-                }}</span>
+                  }}
+                </span>
               </div>
             </div>
           </template>
         </el-table-column>
 
-        <el-table-column
-          label="Contact Number"
-          prop="completion"
-          min-width="260px"
-          sortable
-        >
+        <el-table-column label="Contact Number" prop="completion" min-width="260px" sortable>
           <template v-slot="{ row }">
             <div class="d-flex align-items-center">
               <span class="completion mr-2">{{ row.phoneNumber }}</span>
@@ -195,7 +178,12 @@ export default {
             ? error.response.data.error.message
             : error;
         });
-    }
+    },
+    clearSearch() {
+      document.getElementById("search").value = "";
+      this.search = "";
+      this.getStudents();
+    },
   }
 };
 </script>
