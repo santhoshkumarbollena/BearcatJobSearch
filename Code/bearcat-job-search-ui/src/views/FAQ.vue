@@ -9,9 +9,13 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
           <b-form-input class="mr-2 ml-5" placeholder="Search for FAQ's"></b-form-input>
-          <b-button variant="info" class="my-2 my-sm-0" type="submit">
+          <b-button variant="info" class="my-2 my-sm-0" @click="findFAQs()" type="submit">
             <i class="fa fa-search mr-1"></i>
             Search
+          </b-button>
+          <b-button variant="info" class="my-2 my-sm-0" @click="clearSearch()">
+            <i class="fa fa-times mr-1"></i>
+            Clear
           </b-button>
         </b-nav-form>
       </b-navbar-nav>
@@ -94,7 +98,32 @@ export default {
         this.error = error.response ? error.response.data.error.message : error;
       });
   },
-  methods: {}
+  methods: {
+    findFAQs() {
+      this.search = document.getElementById("search").value;
+      this.getFAQs();
+    },
+    getFAQs() {
+      this.$http
+        .get("faq/search/faq?search=" + this.search)
+        .then(response => {
+          this.projects = response.data;
+
+          this.loader = false;
+        })
+        .catch(error => {
+          this.loader = false;
+          this.error = error.response
+            ? error.response.data.error.message
+            : error;
+        });
+    },
+    clearSearch() {
+      document.getElementById("search").value = "";
+      this.search = "";
+      this.getFAQs();
+    }
+  }
 };
 </script>
 
