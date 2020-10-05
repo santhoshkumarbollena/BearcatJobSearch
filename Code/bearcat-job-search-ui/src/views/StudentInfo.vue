@@ -6,8 +6,21 @@
     <SubHeader :breadcrumb="breadcrumb" />
     <div class="container">
       <div class="row">
-        <div class="offset-md-4">
-          <h1>Student Info</h1>
+        <div class="col-md-8 v-center p-4">
+          <div class="offset-md-4">
+            <h1>Student Info</h1>
+          </div>
+        </div>
+        <div class="col-md-4 v-center p-4">
+          <div class="offset-md-4" style="position:relative;">
+            <router-link to="/students">
+              <base-button
+                type="primary"
+                class="btn pull-right mt-3 btn-icon btn-primary"
+                icon="fa fa-arrow-left"
+              >Back</base-button>
+            </router-link>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -46,64 +59,43 @@
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="dob"
-                class="col-md-2 col-form-label form-control-label"
-              >DOB:</label>
+              <label for="dob" class="col-md-2 col-form-label form-control-label">DOB:</label>
               <div class="col-md-10">
                 <base-input id="dob" v-model="form.dob" readonly></base-input>
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="phone"
-                class="col-md-2 col-form-label form-control-label"
-              >Contact:</label>
+              <label for="phone" class="col-md-2 col-form-label form-control-label">Contact:</label>
               <div class="col-md-10">
                 <base-input id="phone" v-model="form.phoneNumber" readonly></base-input>
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="sex"
-                class="col-md-2 col-form-label form-control-label"
-              >Gender:</label>
+              <label for="sex" class="col-md-2 col-form-label form-control-label">Gender:</label>
               <div class="col-md-10">
                 <base-input id="sex" v-model="form.gender" readonly></base-input>
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="ugu"
-                class="col-md-2 col-form-label form-control-label"
-              >UG University:</label>
+              <label for="ugu" class="col-md-2 col-form-label form-control-label">UG University:</label>
               <div class="col-md-10">
                 <base-input id="ugu" v-model="form.ugUniversity" readonly></base-input>
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="ugd"
-                class="col-md-2 col-form-label form-control-label"
-              >UG Degree:</label>
+              <label for="ugd" class="col-md-2 col-form-label form-control-label">UG Degree:</label>
               <div class="col-md-10">
                 <base-input id="ugd" v-model="form.ugDegree" readonly></base-input>
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="ugdep"
-                class="col-md-2 col-form-label form-control-label"
-              >UG Department:</label>
+              <label for="ugdep" class="col-md-2 col-form-label form-control-label">UG Department:</label>
               <div class="col-md-10">
                 <base-input id="ugdep" v-model="form.ugDepartment" readonly></base-input>
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="ugs"
-                class="col-md-2 col-form-label form-control-label"
-              >UG Score:</label>
+              <label for="ugs" class="col-md-2 col-form-label form-control-label">UG Score:</label>
               <div class="col-md-10">
                 <base-input id="ugs" v-model="form.ugScore" readonly></base-input>
               </div>
@@ -118,10 +110,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="gd"
-                class="col-md-2 col-form-label form-control-label"
-              >Graduate Degree:</label>
+              <label for="gd" class="col-md-2 col-form-label form-control-label">Graduate Degree:</label>
               <div class="col-md-10">
                 <base-input id="gd" v-model="form.graduateDegree" readonly></base-input>
               </div>
@@ -136,10 +125,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="gscore"
-                class="col-md-2 col-form-label form-control-label"
-              >Graduate Score:</label>
+              <label for="gscore" class="col-md-2 col-form-label form-control-label">Graduate Score:</label>
               <div class="col-md-10">
                 <base-input id="gscore" v-model="form.graduateScore" readonly></base-input>
               </div>
@@ -154,42 +140,41 @@
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="sal"
-                class="col-md-2 col-form-label form-control-label"
-              >Expected Salary:</label>
+              <label for="sal" class="col-md-2 col-form-label form-control-label">Expected Salary:</label>
               <div class="col-md-10">
                 <base-input id="sal" v-model="form.expectedSalary" readonly></base-input>
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="etype"
-                class="col-md-2 col-form-label form-control-label"
-              >Employee type:</label>
+              <label for="etype" class="col-md-2 col-form-label form-control-label">Employee type:</label>
               <div class="col-md-10">
                 <base-input id="etype" v-model="form.employementType" readonly></base-input>
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="git"
-                class="col-md-2 col-form-label form-control-label"
-              >GitHub URL:</label>
+              <label for="git" class="col-md-2 col-form-label form-control-label">GitHub URL:</label>
               <div class="col-md-10">
                 <base-input id="git" v-model="form.gitHubUrl" readonly></base-input>
               </div>
             </div>
             <div class="form-group row">
-              <label
-                for="linkedin"
-                class="col-md-2 col-form-label form-control-label"
-              >LinkedIn URL:</label>
+              <label for="linkedin" class="col-md-2 col-form-label form-control-label">LinkedIn URL:</label>
               <div class="col-md-10">
                 <base-input id="linkedin" v-model="form.linkedInUrl" readonly></base-input>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="offset-md-4" style="position:relative;">
+          <router-link to="/students">
+          <base-button
+            type="primary"
+            class="btn pull-right mt-3 btn-icon btn-primary"
+            icon="fa fa-arrow-left"
+          >Back</base-button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -228,8 +213,8 @@ export default {
       userRole: localStorage.getItem("role"),
       search: "",
       students: [],
-       breadcrumb: [
-         {
+      breadcrumb: [
+        {
           text: "Students",
           href: "#/students"
         },
