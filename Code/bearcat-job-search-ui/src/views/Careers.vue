@@ -36,8 +36,11 @@
 
     <hr class="mt-3 mb-3" />
     <b-container fluid>
-      <b-row>
-        <b-col sm="4" lg="4" v-for="(job, index) in jobs" :key="job.id">
+      <div class="row" v-for="(job, index) in jobs" :key="job.id">
+        <div
+          class="col-sm-4"
+          v-if="job.jobApplications && job.jobApplications.length > 0"
+        >
           <b-card
             :title="job.jobTitle"
             class="mb-2 m-auto card-1"
@@ -45,7 +48,6 @@
             img-alt="logo"
             img-top
             style="max-width: 22rem;"
-            v-if="job.jobApplications.length > 0"
           >
             <b-card-text class="mb-0">
               Description:
@@ -60,7 +62,20 @@
               <span class="fw-650 ml-1">${{ job.salary }}</span>
             </b-card-text>
 
-            <b-card-text class="bg-green text-white">
+            <b-card-text
+              class="bg-green text-white"
+              v-if="job.jobApplications[0].pivot.status == 'Applied'"
+            >
+              Status:
+              <span class="fw-650 ml-1">{{
+                job.jobApplications[0].pivot.status
+              }}</span>
+            </b-card-text>
+
+            <b-card-text
+              class="bg-warning text-white"
+              v-if="job.jobApplications[0].pivot.status == 'Cancel'"
+            >
               Status:
               <span class="fw-650 ml-1">{{
                 job.jobApplications[0].pivot.status
@@ -74,7 +89,11 @@
                 <i class="fa fa-info-circle"></i>
               </b-button>
             </router-link>
-            <b-button variant="danger" v-if="userRole == 'student'">
+            <b-button
+              variant="danger"
+              v-if="userRole == 'student'"
+              @click="cancelJobRequest(job.id)"
+            >
               <i class="fa fa-check-square-o mr-1"></i>
               cancel
             </b-button>
@@ -86,13 +105,13 @@
               <i class="fa fa-trash mr-1"></i> Delete
             </b-button>
           </b-card>
-        </b-col>
-        <b-col sm="12" md="12" v-if="jobs.length === 0">
-          <div class="alert alert-warning" role="alert">
-            You have not applied for any job yet...!!!
-          </div>
-        </b-col>
-      </b-row>
+        </div>
+      </div>
+      <div sm="12" md="12" v-if="jobs.length === 0">
+        <div class="alert alert-warning" role="alert">
+          You have not applied for any job yet...!!!
+        </div>
+      </div>
     </b-container>
   </div>
 </template>
@@ -161,6 +180,26 @@ export default {
         .then(response => {
           this.jobs = response.data;
           this.loader = false;
+        })
+        .catch(error => {
+          this.loader = false;
+          this.error = error.response
+            ? error.response.data.error.message
+            : error;
+        });
+    },
+
+    cancelJobRequest(jobId) {
+      this.$http
+        .get(
+          "studentApplication/StudentGotRejected/" +
+            this.studentId +
+            "/" +
+            jobId +
+            "/Cancel"
+        )
+        .then(response => {
+          this.$router.go();
         })
         .catch(error => {
           this.loader = false;
