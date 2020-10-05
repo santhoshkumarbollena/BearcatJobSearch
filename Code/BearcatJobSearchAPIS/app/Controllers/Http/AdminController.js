@@ -20,7 +20,7 @@ class AdminController {
         student.phoneNumber = userInput.phoneNumber
         student.role = "admin";
       userInput = _.omit(userInput, ["gender","dob","password"]);
-       
+       const user = await User.findOrCreate(userInput);
     }
 
 }
