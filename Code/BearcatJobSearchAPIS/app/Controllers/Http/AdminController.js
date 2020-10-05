@@ -8,6 +8,7 @@ const User = use("App/Models/User")
 class AdminController {
    async createAdmin({ request, auth, response, params }) {
         let userInput = request.all();
+     let student={};
        
     }
 
