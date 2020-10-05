@@ -237,11 +237,20 @@ export default {
       this.getJobs();
     },
     applyJob(job) {
+      this.loader = true;
       this.$http
         .get(
           "studentApplication/StudentApplyJob/" + this.studentId + "/" + job.id
         )
         .then(response => {
+          this.$bvToast.toast(
+            `You have successfully applied for ${job.jobTitle}`,
+            {
+              title: "Success",
+              autoHideDelay: 5000,
+              variant: "success"
+            }
+          );
           this.loader = false;
         })
         .catch(error => {
@@ -249,6 +258,12 @@ export default {
           this.error = error.response
             ? error.response.data.error.message
             : error;
+
+          this.$bvToast.toast(`Error while applying job`, {
+            title: "Error",
+            autoHideDelay: 5000,
+            variant: "danger"
+          });
         });
     },
     searchjob() {
