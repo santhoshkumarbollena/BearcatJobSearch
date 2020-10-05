@@ -5,21 +5,12 @@
       <div class="row">
         <div class="col-md-6 v-center">
           <h1>ADD ADMIN</h1>
-          <base-input
-            type="text"
-            placeholder="User Id"
-            addon-left-icon="fa fa-id-badge"
-            v-model="form.userid"
-            required
-          ></base-input>
-          <small v-if="error.userid" class="col-12 text-left text-danger">{{
-            error.userid
-          }}</small>
+         
           <base-input
             type="text"
             placeholder="User Name"
             addon-left-icon="fa fa-briefcase"
-            v-model="form.username"
+            v-model="form.userName"
             required
           ></base-input>
           <small v-if="error.username" class="col-12 text-left text-danger">{{
@@ -49,7 +40,7 @@
             type="text"
             placeholder="Phone Number"
             addon-left-icon="fa fa-money"
-            v-model="form.phone"
+            v-model="form.phoneNumber"
             required
           ></base-input>
           <small v-if="error.phone" class="col-12 text-left text-danger">{{
@@ -65,6 +56,36 @@
           <small v-if="error.email" class="col-12 text-left text-danger">{{
             error.email
           }}</small>
+          <base-input
+            type="text"
+            placeholder="Password"
+            addon-left-icon="fa fa-money"
+            v-model="form.password"
+            required
+          ></base-input>
+          <small v-if="error.email" class="col-12 text-left text-danger">{{
+            error.email
+          }}</small>
+           <base-input addon-left-icon="fa fa-calendar">
+            <flat-picker
+              slot-scope="{focus, blur}"
+              @on-open="focus"
+              @on-close="blur"
+              :config="{allowInput: true}"
+              class="form-control datepicker"
+              v-model="form.dob"
+              placeholder="DOB"
+            ></flat-picker>
+          </base-input>
+          <small v-if="error.dob" class="col-12 text-left text-danger">{{error.dob}}</small>
+          <b-form-radio-group
+            v-model="form.gender"
+            :options="options"
+            class="mb-3"
+            value-field="item"
+            text-field="name"
+            disabled-field="notEnabled"
+          ></b-form-radio-group>
           <base-button
             type="primary"
             class="btn pull-left mt-3 btn-icon btn-primary"
@@ -90,13 +111,16 @@
 import ChatList from "../components/Chat/ChatList";
 import SubHeader from "../components/Nav/SubHeader";
 import Loader from "../components/utils/Loader.vue";
+import flatPicker from "vue-flatpickr-component";
+import "flatpickr/dist/flatpickr.css";
 
 export default {
   name: "addadmin",
   components: {
     ChatList,
     SubHeader,
-    Loader
+    Loader,
+    flatPicker
   },
   data() {
     return {
@@ -118,17 +142,17 @@ export default {
         phone: "",
         email: ""
       },
+      options: [
+        { item: "Male", name: "Male" },
+        { item: "Female", name: "Female" }
+      ],
       form: {
-        userid: "",
-        username: "",
-        userOrganization: "",
-        userOrganizationDescription: "",
-        phone: "",
-        email: ""
+        
       }
     };
   },
   methods: {
+    
 
   }
 };
