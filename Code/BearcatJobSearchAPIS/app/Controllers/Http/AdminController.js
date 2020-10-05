@@ -19,7 +19,7 @@ class AdminController {
         student.gender = userInput.gender;
         student.phoneNumber = userInput.phoneNumber
         student.role = "admin";
-
+      userInput = _.omit(userInput, ["gender","dob","password"]);
        
     }
 
