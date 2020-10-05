@@ -160,7 +160,7 @@ export default {
       .then(response => {
         console.log(response.data)
         this.$root.$bvToast.toast(
-            `Student updated sucessfully`,
+            `Admin added sucessfully`,
             {
               title: "Success",
               autoHideDelay: 5000,
