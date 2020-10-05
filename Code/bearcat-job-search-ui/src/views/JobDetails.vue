@@ -123,7 +123,10 @@
           ></base-input>
         </div>
 
-        <div class="col-md-12" v-if="userRole == 'admin'">
+        <div
+          class="col-md-12"
+          v-if="userRole == 'admin' && appliedStudents.length > 0"
+        >
           <div class="mt-3 mb-2 border-bottom">
             <h4>Applied Students</h4>
           </div>
@@ -214,13 +217,26 @@
                     >
                       <base-button type="primary" size="sm">Info</base-button>
                     </router-link>
-                    <base-button type="success" class="ml-1" size="sm">Approve</base-button>
+                    <base-button type="success" class="ml-1" size="sm"
+                      >Approve</base-button
+                    >
                     <base-button type="danger" size="sm">Decline</base-button>
-
                   </div>
                 </template>
               </el-table-column>
             </el-table>
+          </div>
+        </div>
+
+        <div
+          class="col-md-12"
+          v-if="userRole == 'admin' && appliedStudents.length === 0"
+        >
+          <div class="mt-3 mb-2 border-bottom">
+            <h4>Applied Students</h4>
+          </div>
+          <div class="alert alert-warning" role="alert">
+            No students have applied for this job...!
           </div>
         </div>
       </div>
