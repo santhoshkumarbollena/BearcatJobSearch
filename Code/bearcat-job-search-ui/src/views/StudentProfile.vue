@@ -9,7 +9,7 @@
             type="text"
             placeholder="Student Id"
             addon-left-icon="fa fa-id-card"
-            v-model="form.id"
+            v-model="form.studentId"
             readonly
           ></base-input>
            <small v-if="error.id" class="col-12 text-left text-danger">{{error.id}}</small>
@@ -29,19 +29,12 @@
             required
           ></base-input>
            <small v-if="error.email" class="col-12 text-left text-danger">{{error.email}}</small>
-           <base-input
-            type="password"
-            placeholder="Password"
-            addon-left-icon="fa fa-key"
-            v-model="form.password"
-            required
-          ></base-input>
-            <small v-if="error.password" class="col-12 text-left text-danger">{{error.password}}</small>
+           
             <base-input
             type="number"
             placeholder="Phone Number"
             addon-left-icon="fa fa-phone"
-            v-model="form.phone"
+            v-model="form.phoneNumber"
             required
           ></base-input>
             <small v-if="error.phone" class="col-12 text-left text-danger">{{error.phone}}</small>
@@ -57,7 +50,7 @@
             type="text"
             placeholder="UG University"
             addon-left-icon="fa fa-university"
-            v-model="form.uguniv"
+            v-model="form.ugUniversity"
             required
           ></base-input>
             <small v-if="error.uguniv" class="col-12 text-left text-danger">{{error.uguniv}}</small>
@@ -65,7 +58,7 @@
             type="text"
             placeholder="UG Degree"
             addon-left-icon="fa fa-university"
-            v-model="form.ugdegree"
+            v-model="form.ugDegree"
             required
           ></base-input>
             <small v-if="error.ugdegree" class="col-12 text-left text-danger">{{error.ugdegree}}</small>
@@ -73,7 +66,7 @@
             type="text"
             placeholder="UG Department"
             addon-left-icon="fa fa-university"
-            v-model="form.ugdepart"
+            v-model="form.ugDepartment"
             required
           ></base-input>
             <small v-if="error.ugdepart" class="col-12 text-left text-danger">{{error.ugdepart}}</small>
@@ -81,7 +74,7 @@
             type="number"
             placeholder="UG Score"
             addon-left-icon="fa fa-university"
-            v-model="form.ugscore"
+            v-model="form.ugScore"
             required
           ></base-input>
             <small v-if="error.ugscore" class="col-12 text-left text-danger">{{error.ugscore}}</small>
@@ -89,7 +82,7 @@
             type="text"
             placeholder="Graduate University"
             addon-left-icon="fa fa-university"
-            v-model="form.graduniv"
+            v-model="form.graduateUniversity"
             required
           ></base-input>
             <small v-if="error.graduniv" class="col-12 text-left text-danger">{{error.graduniv}}</small>
@@ -97,10 +90,18 @@
             type="text"
             placeholder="Graduate Degree"
             addon-left-icon="fa fa-university"
-            v-model="form.gradegre"
+            v-model="form.graduateDegree"
             required
           ></base-input>
             <small v-if="error.gradegre" class="col-12 text-left text-danger">{{error.gradegre}}</small>
+            <base-input
+            type="text"
+            placeholder="Graduate Department"
+            addon-left-icon="fa fa-university"
+            v-model="form.graduateDepartment"
+            required
+          ></base-input>
+            <small v-if="error.graddepart" class="col-12 text-left text-danger">{{error.ugdepart}}</small>
             <base-input
             type="number"
             placeholder="Graduate Score"
@@ -108,12 +109,12 @@
             v-model="form.gradscore"
             required
           ></base-input>
-            <small v-if="error.gradscore" class="col-12 text-left text-danger">{{error.gradscore}}</small>
+            <small v-if="error.graduateScore" class="col-12 text-left text-danger">{{error.gradscore}}</small>
             <base-input
             type="number"
             placeholder="Experience (in yrs)"
             addon-left-icon="fa fa-user"
-            v-model="form.experience"
+            v-model="form.experienceYears"
             required
           ></base-input>
             <small v-if="error.experience" class="col-12 text-left text-danger">{{error.experience}}</small>
@@ -121,7 +122,7 @@
             type="number"
             placeholder="Expected Salary"
             addon-left-icon="fa fa-money"
-            v-model="form.expsalary"
+            v-model="form.expectedSalary"
             required
           ></base-input>
             <small v-if="error.expsalary" class="col-12 text-left text-danger">{{error.expsalary}}</small>
@@ -131,7 +132,7 @@
             class="mt-3"
             placeholder="Employment Type"
             addon-left-icon="fa fa-briefcase"
-            v-model="form.emptype"
+            v-model="form.employmentType"
             required
           ></base-input>
             <small v-if="error.emptype" class="col-12 text-left text-danger">{{error.emptype}}</small>
@@ -169,6 +170,7 @@ export default {
   data() {
     return {
       jobs:[],
+       studentId: localStorage.getItem("id"),
         breadcrumb: [
         {
           text: "Profile",
@@ -192,7 +194,7 @@ export default {
     };
   },
   mounted() {
-
+  
        
   },
   methods: {
