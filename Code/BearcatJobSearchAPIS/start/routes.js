@@ -44,6 +44,7 @@ Route.group(() => {
   Route.get("getJob/:jobId", "StudentController.getJobBasedOnId");
   Route.get("searchStudent", "StudentController.searchStudent");
   Route.get("getAllStudents", "StudentController.getAllStudents");
+  Route.patch("update/student/:id", "StudentController.updateStudent");
 }).prefix("api/v1/student");
 
 Route.group(() => {
