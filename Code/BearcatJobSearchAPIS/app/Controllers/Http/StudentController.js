@@ -34,6 +34,16 @@ class StudentController {
     return response.status(200).json(job);
   }
 
+  async updateStudent({ request, auth, response, params }) {
+    let studentInput = request.all();
+    console.log(studentInput);
+    studentInput = _.omit(studentInput, ["dob","created_at","updated_at","password"]);
+    let student = await Student.find(params.id);
+    student = _.merge(student, studentInput);
+    await student.save();
+    return response.status(200).json(student);
+  }
+
   async searchStudent({ params, request, response }) {
     const queryParam = request.all();
     let students;
