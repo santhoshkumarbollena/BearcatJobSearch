@@ -8,9 +8,9 @@ class FaqsSchema extends Schema {
     this.create("faqs", (table) => {
       table.increments().primary();
       table.string("FAQQuestion", 400).notNullable();
-      table.string("FAQAnswer", 600).notNullable();
-      table.string("category", 40).notNullable();
-      table.string("role", 40).notNullable();
+      table.string("FAQAnswer", 600);
+      table.string("category", 40);
+      table.string("role", 40);
       table.timestamps();
     });
   }
