@@ -8,7 +8,7 @@
       <ChatList />
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
-          <b-form-input class="mr-2 ml-5" placeholder="Search for FAQ's"></b-form-input>
+          <b-form-input id="search" class="mr-2 ml-5" placeholder="Search for FAQ's"></b-form-input>
           <b-button variant="info" class="my-2 my-sm-0" @click="findFAQs()" type="submit">
             <i class="fa fa-search mr-1"></i>
             Search
