@@ -93,7 +93,7 @@ const router = new Router({
         import(/* webpackChunkName: "about" */ "./views/JobDetails.vue"),
     },
     {
-      path: "/edit-faq/:FAQQuestion",
+      path: "/edit-faq/:id",
       name: "edit-faq",
       meta: { requiresAuth: true },
       component: () =>

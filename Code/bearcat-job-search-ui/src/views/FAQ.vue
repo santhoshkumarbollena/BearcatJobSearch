@@ -8,8 +8,17 @@
       <ChatList />
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
-          <b-form-input id="search" class="mr-2 ml-5" placeholder="Search for FAQ's"></b-form-input>
-          <b-button variant="info" class="my-2 my-sm-0" @click="findFAQs()" type="submit">
+          <b-form-input
+            id="search"
+            class="mr-2 ml-5"
+            placeholder="Search for FAQ's"
+          ></b-form-input>
+          <b-button
+            variant="info"
+            class="my-2 my-sm-0"
+            @click="findFAQs()"
+            type="submit"
+          >
             <i class="fa fa-search mr-1"></i>
             Search
           </b-button>
@@ -24,7 +33,13 @@
 
     <b-container fluid>
       <b-row>
-        <b-col sm="4" lg="4" v-for="faq in projects" :key="faq.FAQQuestion" class="mb-5">
+        <b-col
+          sm="4"
+          lg="4"
+          v-for="faq in projects"
+          :key="faq.FAQQuestion"
+          class="mb-5"
+        >
           <b-card
             :title="faq.FAQQuestion"
             class="mb-2 m-auto card-1"
@@ -44,12 +59,17 @@
               role:
               <span class="fw-650 ml-1">{{ faq.role }}</span>
             </b-card-text>
-            <router-link :to="{ name: 'edit-faq', params: { FAQQuestion: faq.FAQQuestion } }">
+            <router-link :to="{ name: 'edit-faq', params: { id: faq.id } }">
               <b-button variant="info" v-if="userRole == 'admin'">
                 <i class="fa fa-edit mr-1" /> Edit
               </b-button>
             </router-link>
-            <b-button variant="danger" v-if="userRole == 'admin'" class="ml-2">
+            <b-button
+              variant="danger"
+              v-if="userRole == 'admin'"
+              class="ml-2"
+              @click="deleteFaq(faq.id)"
+            >
               <i class="fa fa-trash mr-1"></i> Delete
             </b-button>
           </b-card>
@@ -122,6 +142,30 @@ export default {
       document.getElementById("search").value = "";
       this.search = "";
       this.getFAQs();
+    },
+    deleteFaq(id) {
+      this.$http
+        .delete("faq/delete/faq/" + id)
+        .then(response => {
+          this.$root.$bvToast.toast(`faq deleted successfully`, {
+            title: "Success",
+            autoHideDelay: 5000,
+            variant: "success"
+          });
+
+          this.$router.go();
+        })
+        .catch(error => {
+          this.endResult = error.response
+            ? error.response.data.error.message
+            : error;
+
+          this.$root.$bvToast.toast("error while deleting the faq", {
+            title: "Error",
+            autoHideDelay: 5000,
+            variant: "danger"
+          });
+        });
     }
   }
 };
