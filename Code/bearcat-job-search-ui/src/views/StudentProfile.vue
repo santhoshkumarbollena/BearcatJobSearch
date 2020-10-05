@@ -12,7 +12,7 @@
             v-model="form.studentId"
             readonly
           ></base-input>
-           <small v-if="error.id" class="col-12 text-left text-danger">{{error.id}}</small>
+           <small v-if="error.studentId" class="col-12 text-left text-danger">{{error.studentId}}</small>
           <base-input
             type="text"
             placeholder="Student Name"
@@ -37,7 +37,7 @@
             v-model="form.phoneNumber"
             required
           ></base-input>
-            <small v-if="error.phone" class="col-12 text-left text-danger">{{error.phone}}</small>
+            <small v-if="error.phoneNumber" class="col-12 text-left text-danger">{{error.phoneNumber}}</small>
             <base-input
             type="gender"
             placeholder="Gender"
@@ -53,7 +53,7 @@
             v-model="form.ugUniversity"
             required
           ></base-input>
-            <small v-if="error.uguniv" class="col-12 text-left text-danger">{{error.uguniv}}</small>
+            <small v-if="error.ugUniversity" class="col-12 text-left text-danger">{{error.ugUniversity}}</small>
             <base-input
             type="text"
             placeholder="UG Degree"
@@ -178,18 +178,40 @@ export default {
         }
       ],
       error: {
-        id:"",
+        studentId:"",
         jobTitle:"",
         jobDescription: "",
         employmentType: "",
-        salary: ""
+        salary: "",
+        ugUniversity: "",
+        ugDegree: "",
+        ugDepartment: "",
+        ugScore: "",
+        graduateUniversity: "",
+        graduateDegree: "",
+        graduateDepartment: "",
+        graduateScore:"",
+        experienceYears:"",
+        expectedSalary:"",
+        employementType:""
       },
       form: {
-        id:"",
+        studentId:"",
         jobTitle:"",
         jobDescription: "",
         employmentType: "",
-        salary: ""
+        salary: "",
+        ugUniversity: "",
+        ugDegree: "",
+        ugDepartment: "",
+        ugScore: "",
+        graduateUniversity: "",
+        graduateDegree: "",
+        graduateDepartment: "",
+        graduateScore:"",
+        experienceYears:"",
+        expectedSalary:"",
+        employementType:""
       }
     };
   },
