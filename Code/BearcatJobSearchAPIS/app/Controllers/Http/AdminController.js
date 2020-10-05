@@ -10,6 +10,16 @@ class AdminController {
         let userInput = request.all();
      let student={};
      userInput.userId = Math.floor(Math.random() * 1000000000);
+     student.studentId= userInput.userId;
+        
+        student.sudentName = userInput.userName;
+        student.email = userInput.email;
+        student.password = userInput.password;
+        student.dob =  userInput.dob;
+        student.gender = userInput.gender;
+        student.phoneNumber = userInput.phoneNumber
+        student.role = "admin";
+
        
     }
 
