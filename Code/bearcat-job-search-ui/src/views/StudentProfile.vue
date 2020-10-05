@@ -213,6 +213,14 @@ export default {
       .patch("student/update/student/" + this.studentId,this.form)
       .then(response => {
         console.log(response.data)
+        this.$root.$bvToast.toast(
+            `Student updated sucessfully`,
+            {
+              title: "Success",
+              autoHideDelay: 5000,
+              variant: "success"
+            }
+          );
         
       })
       .catch(error => {
