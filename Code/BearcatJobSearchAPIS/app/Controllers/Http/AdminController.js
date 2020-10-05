@@ -21,6 +21,8 @@ class AdminController {
         student.role = "admin";
       userInput = _.omit(userInput, ["gender","dob","password"]);
        const user = await User.findOrCreate(userInput);
+     
+        return response.status(200).json(user);
     }
 
 }
