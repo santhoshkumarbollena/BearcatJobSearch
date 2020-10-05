@@ -140,7 +140,7 @@ export default {
     this.$http
       .get("job/getJob/" + path_id)
       .then(response => {
-        this.jobs = response.data;
+        this.jobs = response.data[0];
         this.loader = false;
         this.form.id = this.jobs.id;
         this.form.jobDescription = this.jobs.jobDescription;

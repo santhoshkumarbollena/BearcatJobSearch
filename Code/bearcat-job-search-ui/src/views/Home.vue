@@ -85,7 +85,6 @@
                 Salary:
                 <span class="fw-650 ml-1">${{ job.salary }}</span>
               </b-card-text>
-             
 
               <router-link
                 :to="{ name: 'job-details', params: { jobId: job.id } }"
@@ -145,6 +144,12 @@
               </b-button>
             </template>
           </b-modal>
+
+          <b-col sm="12" md="12" v-if="jobs.length === 0">
+            <div class="alert alert-warning" role="alert">
+              No jobs have posted yet...!!!
+            </div>
+          </b-col>
         </b-row>
       </b-container>
     </div>

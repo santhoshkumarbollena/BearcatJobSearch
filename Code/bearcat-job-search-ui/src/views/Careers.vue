@@ -8,8 +8,17 @@
       <ChatList />
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
-          <b-form-input id="search" class="mr-2 ml-5" placeholder="Search for applied jobs"></b-form-input>
-          <b-button variant="info" class="my-2 my-sm-0" @click="findAppliedjob()" type="submit">
+          <b-form-input
+            id="search"
+            class="mr-2 ml-5"
+            placeholder="Search for applied jobs"
+          ></b-form-input>
+          <b-button
+            variant="info"
+            class="my-2 my-sm-0"
+            @click="findAppliedjob()"
+            type="submit"
+          >
             <i class="fa fa-search mr-1"></i>
             Search
           </b-button>
@@ -28,15 +37,15 @@
     <hr class="mt-3 mb-3" />
     <b-container fluid>
       <b-row>
-        <b-col sm="4" lg="4" v-for="(job,index) in jobs" :key="job.id">
-          <b-card 
+        <b-col sm="4" lg="4" v-for="(job, index) in jobs" :key="job.id">
+          <b-card
             :title="job.jobTitle"
             class="mb-2 m-auto card-1"
-           :img-src="images[(index % 6) + '']"
+            :img-src="images[(index % 6) + '']"
             img-alt="logo"
             img-top
             style="max-width: 22rem;"
-             v-if="job.jobApplications.length>0"
+            v-if="job.jobApplications.length > 0"
           >
             <b-card-text class="mb-0">
               Description:
@@ -72,6 +81,11 @@
               <i class="fa fa-trash mr-1"></i> Delete
             </b-button>
           </b-card>
+        </b-col>
+        <b-col sm="12" md="12" v-if="jobs.length === 0">
+          <div class="alert alert-warning" role="alert">
+            You have not applied for any job yet...!!!
+          </div>
         </b-col>
       </b-row>
     </b-container>
