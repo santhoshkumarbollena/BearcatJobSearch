@@ -29,7 +29,10 @@ Route.group(() => {
   Route.post("login", "Auth.login");
   Route.post("registration", "Auth.registrationForStudent");
   Route.post("forgot-password", "Auth.sendResetMail");
-  Route.get("validate/reset/password/:secretKey", "Auth.validateResetPasswordLink");
+  Route.get(
+    "validate/reset/password/:secretKey",
+    "Auth.validateResetPasswordLink"
+  );
   Route.post("reset/password/:secretKey", "Auth.resetPassword");
   Route.post("changepassword", "Auth.changePassword");
 }).prefix("api/v1");
@@ -40,16 +43,30 @@ Route.group(() => {
   Route.get("getAllJobs", "StudentController.getAllJobs");
   Route.get("getJob/:jobId", "StudentController.getJobBasedOnId");
   Route.get("searchStudent", "StudentController.searchStudent");
-  Route.get("getAllStudents","StudentController.getAllStudents");
+  Route.get("getAllStudents", "StudentController.getAllStudents");
 }).prefix("api/v1/student");
 
 Route.group(() => {
-  Route.get("StudentApplyJob/:studentId/:jobId", "StudentApplicationController.StudentApplyJob");
-  Route.get("StudentGotRejected/:studentId/:jobId", "StudentApplicationController.StudentGotRejected");
-  Route.get("StudentGotApproved/:studentId/:jobId", "StudentApplicationController.StudentGotApproved");
-  Route.get("getStudentAppliedJobs/:studentId", "StudentApplicationController.getStudentAppliedJobs");
-  Route.get("getStudentAppliedJobs/:studentId/search/:search", "StudentApplicationController.getStudentAppliedJobsSearch");
-
+  Route.get(
+    "StudentApplyJob/:studentId/:jobId",
+    "StudentApplicationController.StudentApplyJob"
+  );
+  Route.get(
+    "StudentGotRejected/:studentId/:jobId",
+    "StudentApplicationController.StudentGotRejected"
+  );
+  Route.get(
+    "StudentGotApproved/:studentId/:jobId",
+    "StudentApplicationController.StudentGotApproved"
+  );
+  Route.get(
+    "getStudentAppliedJobs/:studentId",
+    "StudentApplicationController.getStudentAppliedJobs"
+  );
+  Route.get(
+    "getStudentAppliedJobs/:studentId/search/:search",
+    "StudentApplicationController.getStudentAppliedJobsSearch"
+  );
 }).prefix("api/v1/studentApplication");
 
 // Data fetching routers
@@ -59,9 +76,14 @@ Route.group(() => {
   Route.post("create-job", "JobController.createJob");
   Route.patch("update-job/:id", "JobController.updateJob");
   Route.delete("delete-job/:id", "JobController.deleteJob");
-  Route.delete(" appliedStudentsOfJob/:id", "JobController.appliedStudentsOfJob");
+  Route.delete(
+    " appliedStudentsOfJob/:id",
+    "JobController.appliedStudentsOfJob"
+  );
   Route.get("searchJob", "JobController.searchJob");
-}).prefix("api/v1/job").middleware("auth");
+})
+  .prefix("api/v1/job")
+  .middleware("auth");
 
 Route.group(() => {
   Route.get("getAllUsers", "UserController.getAllUsers");
@@ -72,9 +94,10 @@ Route.group(() => {
 }).prefix("api/v1/user");
 //FAQ Data fetching routers
 Route.group(() => {
-  Route.get("get/all/faqs", "FAQContoller.getAllFAQs");
-  Route.get("get/faqs/:FAQId", "FAQContoller.getFAQBasedOnId");
-  Route.post("create/faq", "FAQContoller.createFAQ");
-  Route.patch("update/faq/:id", "FAQContoller.updateFAQ");
-  Route.delete("delete/faq/:id", "FAQContoller.deleteFAQ");
+  Route.get("get/all/faqs", "FAQController.getAllFAQs");
+  Route.get("get/faqs/:FAQId", "FAQController.getFAQBasedOnId");
+  Route.post("create/faq", "FAQController.createFAQ");
+  Route.patch("update/faq/:id", "FAQController.updateFAQ");
+  Route.delete("delete/faq/:id", "FAQController.deleteFAQ");
+  Route.get("search/faq", "FAQController.searchFaq");
 }).prefix("api/v1/faq");
