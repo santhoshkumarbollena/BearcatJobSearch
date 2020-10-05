@@ -92,6 +92,14 @@ Route.group(() => {
   Route.patch("update-user/:id", "UserController.updateUser");
   Route.delete("delete-user/:id", "UserController.deleteUser");
 }).prefix("api/v1/user");
+
+Route.group(() => {
+  // Route.get("getAllUsers", "UserController.getAllUsers");
+  // Route.get("getUser/:userId", "UserController.getUserBasedOnId");
+  Route.post("create-admin", "AdminController.createAdmin");
+
+}).prefix("api/v1/admin");
+
 //FAQ Data fetching routers
 Route.group(() => {
   Route.get("get/all/faqs", "FAQController.getAllFAQs");
