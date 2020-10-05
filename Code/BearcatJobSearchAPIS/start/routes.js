@@ -96,7 +96,7 @@ Route.group(() => {
 Route.group(() => {
   // Route.get("getAllUsers", "UserController.getAllUsers");
   // Route.get("getUser/:userId", "UserController.getUserBasedOnId");
-  
+  Route.post("create-admin", "AdminController.createAdmin");
 
 }).prefix("api/v1/admin");
 
