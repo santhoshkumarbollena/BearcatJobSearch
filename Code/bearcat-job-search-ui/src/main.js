@@ -38,6 +38,15 @@ Vue.prototype.$http = axios.create({
   },
 });
 
+Vue.prototype.$http2 = axios.create({
+  // baseURL: process.env.API_BASE_URL,
+  baseURL: "",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/vnd.github.inertia-preview+json",
+  },
+});
+
 Vue.filter('formatDate', function (value, formatType) {
   console.log(value, formatType)
   if (formatType == 'date' && value) {
