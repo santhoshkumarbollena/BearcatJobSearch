@@ -108,6 +108,13 @@ const router = new Router({
         import(/* webpackChunkName: "about" */ "./views/StudentInfo.vue"),
     },
     {
+      path: "/student-info/:studentId/student-github/:githubUrl",
+      name: "student-github",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/StudentGithub.vue"),
+    },
+    
+    {
       path: "/faqs",
       name: "faqs",
       meta: { requiresAuth: true },
