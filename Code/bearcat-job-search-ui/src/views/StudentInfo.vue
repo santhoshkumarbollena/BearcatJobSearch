@@ -37,6 +37,20 @@
               icon="fa fa-downlaod"
             >Here</base-button>
           </div>
+          <div class="offset-md-8" style="position:relative; right:210px">
+            <router-link
+                :to="{
+                  name: 'student-github',
+                  params: { githubUrl: githubUserId }
+                }"
+              >
+            <base-button
+              type="primary"
+              class="btn pull-right mt-3 btn-icon btn-primary"
+              icon="fa fa-downlaod"
+            >GitHub</base-button>
+            </router-link>
+          </div>
         </div>
         <div class="col-md-8 v-center p-4">
           <div>
@@ -212,6 +226,7 @@ export default {
       loader: true,
       userRole: localStorage.getItem("role"),
       search: "",
+      githubUserId:"",
       students: [],
       breadcrumb: [
         {
@@ -257,6 +272,7 @@ export default {
         this.form.expectedSalary = this.students.expectedSalary;
         this.form.employementType = this.students.employementType;
         this.form.gitHubUrl = this.students.gitHubUrl;
+        this.githubUserId = this.students.gitHubUrl.split("/")[this.students.gitHubUrl.split("/").length-1]
         this.form.linkedInUrl = this.students.linkedInUrl;
 
         this.loader = false;
