@@ -27,6 +27,7 @@ export default {
     this.$http.defaults.headers.common["Authorization"] = localStorage.getItem(
       "access_token"
     );
+     
   },
   methods: {}
 };
