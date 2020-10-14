@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="mt-2">
-   
+    
   </div>
   </div>
 </template>
@@ -58,7 +58,14 @@ export default {
     };
   },
   mounted() {
-     
+      this.$http2.get(`https://api.github.com/users/santhoshkumarbollena/repos`)
+      .then(response => {
+      console.log(response.data)
+        this.githubRepos = response.data;
+      })
+      .catch(error => {
+        console.log("error",error)
+      });
    
   },
   methods: {}
