@@ -136,6 +136,26 @@
             required
           ></base-input>
             <small v-if="error.emptype" class="col-12 text-left text-danger">{{error.emptype}}</small>
+           
+            <base-input
+            type="text"
+            class="mt-3"
+            placeholder="GitHub Url"
+            addon-left-icon="fa fa-briefcase"
+            v-model="form.gitHubUrl"
+            required
+          ></base-input>
+            <small v-if="error.emptype" class="col-12 text-left text-danger">{{error.emptype}}</small>
+            
+            <base-input
+            type="text"
+            class="mt-3"
+            placeholder="LinkedIn Url"
+            addon-left-icon="fa fa-briefcase"
+            v-model="form.linkedInUrl"
+            required
+          ></base-input>
+            <small v-if="error.emptype" class="col-12 text-left text-danger">{{error.emptype}}</small>
           <base-button
               type="primary"
               class="btn pull-left mt-3 btn-icon btn-primary"
