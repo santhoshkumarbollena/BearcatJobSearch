@@ -1,7 +1,20 @@
 <template>
   <div>
       <div class="mt-2">
-    
+    <b-card-group columns>
+        <div v-for="githubrepo in githubRepos" :key="githubrepo.id">
+      <b-card border-variant="primary"
+         align="left">
+          <b-card-header header-bg-variant="info"
+        header-text-variant="white" >{{githubrepo.name}}</b-card-header>
+          <b-card-text v-if="githubrepo.description">Description:  {{githubrepo.description}}</b-card-text>
+        <b-card-text>GitHub Url: <a href=""> {{githubrepo.html_url}}</a></b-card-text>
+        
+       
+      </b-card>
+    </div>
+      
+    </b-card-group>
   </div>
   </div>
 </template>
