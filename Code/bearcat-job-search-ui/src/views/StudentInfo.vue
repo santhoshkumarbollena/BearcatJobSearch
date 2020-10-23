@@ -41,7 +41,7 @@
             <router-link
                 :to="{
                   name: 'student-github',
-                  params: { githubUrl: githubUserId }
+                  params: { githubUserId: githubUserId }
                 }"
               >
             <base-button
