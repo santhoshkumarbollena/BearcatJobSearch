@@ -1,21 +1,19 @@
 <template>
   <div>
-      <div class="mt-2">
-    <b-card-group columns>
+    <div class="mt-2">
+      <b-card-group columns>
         <div v-for="githubrepo in githubRepos" :key="githubrepo.id">
-      <b-card border-variant="primary"
-         align="left">
-          <b-card-header header-bg-variant="info"
-        header-text-variant="white" >{{githubrepo.name}}</b-card-header>
-          <b-card-text v-if="githubrepo.description">Description:  {{githubrepo.description}}</b-card-text>
-        <b-card-text>GitHub Url: <a href=""> {{githubrepo.html_url}}</a></b-card-text>
-        
-       
-      </b-card>
+          <b-card border-variant="primary" align="left">
+            <b-card-header header-bg-variant="info" header-text-variant="white">{{githubrepo.name}}</b-card-header>
+            <b-card-text v-if="githubrepo.description">Description: {{githubrepo.description}}</b-card-text>
+            <b-card-text>
+              GitHub Url:
+              <a :href="githubrepo.html_url" target="blank">{{githubrepo.html_url}}</a>
+            </b-card-text>
+          </b-card>
+        </div>
+      </b-card-group>
     </div>
-      
-    </b-card-group>
-  </div>
   </div>
 </template>
 
@@ -50,8 +48,8 @@ export default {
       loader: true,
       userRole: localStorage.getItem("role"),
       search: "",
-      githubRepos:[],
-      userName:"santhoshkumarbollena",
+      githubRepos: [],
+      userName: this.$route.params.githubUserId,
       students: [],
       breadcrumb: [
         {
@@ -71,15 +69,16 @@ export default {
     };
   },
   mounted() {
-      this.$http2.get(`https://api.github.com/users/santhoshkumarbollena/repos`)
+    this.$http2
+      .get(`https://api.github.com/users/${this.userName}/repos`)
       .then(response => {
-      console.log(response.data)
+        console.log(this.userName)
+        console.log(response.data);
         this.githubRepos = response.data;
       })
       .catch(error => {
-        console.log("error",error)
+        console.log("error", error);
       });
-   
   },
   methods: {}
 };
