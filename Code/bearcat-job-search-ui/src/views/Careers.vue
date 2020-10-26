@@ -36,11 +36,8 @@
 
     <hr class="mt-3 mb-3" />
     <b-container fluid>
-      <div class="row" v-for="(job, index) in jobs" :key="job.id">
-        <div
-          class="col-sm-4"
-          v-if="job.jobApplications && job.jobApplications.length > 0"
-        >
+      <div class="row">
+        <div class="col-sm-4" v-for="(job, index) in jobs" :key="job.id">
           <b-card
             :title="job.jobTitle"
             class="mb-2 m-auto card-1"
@@ -64,22 +61,18 @@
 
             <b-card-text
               class="bg-green text-white"
-              v-if="job.jobApplications[0].pivot.status == 'Applied'"
+              v-if="job.pivot.status == 'Applied'"
             >
               Status:
-              <span class="fw-650 ml-1">{{
-                job.jobApplications[0].pivot.status
-              }}</span>
+              <span class="fw-650 ml-1">{{ job.pivot.status }}</span>
             </b-card-text>
 
             <b-card-text
               class="bg-warning text-white"
-              v-if="job.jobApplications[0].pivot.status == 'Cancel'"
+              v-if="job.pivot.status == 'Cancel'"
             >
               Status:
-              <span class="fw-650 ml-1">{{
-                job.jobApplications[0].pivot.status
-              }}</span>
+              <span class="fw-650 ml-1">{{ job.pivot.status }}</span>
             </b-card-text>
 
             <router-link
@@ -156,7 +149,22 @@ export default {
     this.$http
       .get("studentApplication/getStudentAppliedJobs/" + this.studentId)
       .then(response => {
-        this.jobs = response.data;
+        let appliedJob = [];
+        let allJobs = response.data;
+
+        allJobs.map(job => {
+          if (job.jobApplications && job.jobApplications.length) {
+            let postJob = job.jobApplications[0];
+            postJob.id = job.id;
+            postJob.jobTitle = job.jobTitle;
+            postJob.jobDescription = job.jobDescription;
+            postJob.employmentType = job.employmentType;
+            postJob.salary = job.salary;
+            appliedJob.push(postJob);
+          }
+        });
+
+        this.jobs = appliedJob;
         this.loader = false;
       })
       .catch(error => {
