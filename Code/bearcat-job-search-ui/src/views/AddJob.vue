@@ -13,9 +13,11 @@
             v-model="form.jobTitle"
             required
           ></base-input>
-          <small v-if="error.jobTitle" class="col-12 text-left text-danger">{{
+          <small v-if="error.jobTitle" class="col-12 text-left text-danger">
+            {{
             error.jobTitle
-          }}</small>
+            }}
+          </small>
 
           <label for="jobId" class="font-weight-bold">Job Description:</label>
           <textarea
@@ -24,13 +26,11 @@
             v-model="form.jobDescription"
             required
             rows="4"
-          >
-          </textarea>
+          ></textarea>
           <small
             v-if="error.jobDescription"
             class="col-12 text-left text-danger"
-            >{{ error.jobDescription }}</small
-          >
+          >{{ error.jobDescription }}</small>
 
           <label for="jobId" class="font-weight-bold">Employment Type:</label>
           <base-input
@@ -43,8 +43,7 @@
           <small
             v-if="error.employmentType"
             class="col-12 text-left text-danger"
-            >{{ error.employmentType }}</small
-          >
+          >{{ error.employmentType }}</small>
 
           <label for="jobId" class="font-weight-bold">Salary:</label>
           <base-input
@@ -54,24 +53,24 @@
             v-model="form.salary"
             required
           ></base-input>
-          <small v-if="error.salary" class="col-12 text-left text-danger">{{
+          <small v-if="error.salary" class="col-12 text-left text-danger">
+            {{
             error.salary
-          }}</small>
+            }}
+          </small>
 
           <base-button
             type="primary"
             class="btn pull-left mt-3 btn-icon btn-primary"
             icon="fa fa-save"
             @click.prevent.stop="add"
-            >Save Job</base-button
-          >
+          >Save Job</base-button>
           <router-link to="/home">
             <base-button
               type="danger"
               class="btn pull-right mt-3 btn-icon btn-primary"
               icon="fa fa-ban"
-              >Cancel</base-button
-            >
+            >Cancel</base-button>
           </router-link>
         </div>
       </div>
