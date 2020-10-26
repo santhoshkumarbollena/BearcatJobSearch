@@ -316,7 +316,7 @@
             type="primary"
             class="btn pull-left mt-3 btn-icon btn-primary"
             icon="fa fa-save"
-            @click.prevent.stop="apply"
+            @click.prevent.stop="applyJob(jobDetails)"
             >Apply Job</base-button
           >
           <router-link to="/home">
