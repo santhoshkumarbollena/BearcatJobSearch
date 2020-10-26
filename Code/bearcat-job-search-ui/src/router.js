@@ -86,6 +86,13 @@ const router = new Router({
         import(/* webpackChunkName: "about" */ "./views/EditJob.vue"),
     },
     {
+      path: "/apply-job/:jobId",
+      name: "apply-job",
+      meta: { requiresAuth: true },
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/ApplyJob.vue"),
+    },
+    {
       path: "/job-details/:jobId",
       name: "job-details",
       meta: { requiresAuth: true },
