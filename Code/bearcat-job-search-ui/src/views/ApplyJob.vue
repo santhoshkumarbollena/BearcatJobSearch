@@ -437,8 +437,9 @@ export default {
     applyJob(job) {
       this.loader = true;
       this.$http
-        .get(
-          "studentApplication/StudentApplyJob/" + this.studentId + "/" + job.id
+        .post(
+          "studentApplication/StudentApplyJob/" + this.studentId + "/" + job.id,
+          this.form
         )
         .then(response => {
           this.$bvToast.toast(
