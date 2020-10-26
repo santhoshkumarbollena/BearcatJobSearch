@@ -26,6 +26,7 @@
               </b-button>
             </router-link>
           </div>
+          
           <div class="col-md-6 v-center border-right">
             <h3>Job Details Page</h3>
             <label for="jobId" class="font-weight-bold">Job Id:</label>
