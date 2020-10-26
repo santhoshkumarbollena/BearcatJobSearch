@@ -12,7 +12,9 @@ class StudentApplicationController {
     const job = await Job.find(params.jobId);
     const student = await Student.find(params.studentId);
 
-    student.studentApplications().attach([job.id], (studentApplication) => {
+    await student.studentApplications().detach().where("jobId", params.jobId);
+
+    await student.studentApplications().attach([job.id], (studentApplication) => {
       studentApplication.status = "Applied";
     });
 
@@ -53,7 +55,7 @@ class StudentApplicationController {
       const job = await Job.find(params.jobId);
       const student = await Student.find(params.studentId);
 
-      await student.studentApplications().detach();
+      await student.studentApplications().detach().where("jobId", params.jobId);
 
       await student
         .studentApplications()
