@@ -48,7 +48,7 @@ Route.group(() => {
 }).prefix("api/v1/student");
 
 Route.group(() => {
-  Route.get(
+  Route.post(
     "StudentApplyJob/:studentId/:jobId",
     "StudentApplicationController.StudentApplyJob"
   );
