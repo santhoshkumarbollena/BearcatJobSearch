@@ -8,14 +8,36 @@ const StudentApplication = use("App/Models/StudentApplication");
 
 class StudentApplicationController {
   async StudentApplyJob({ request, auth, response, params }) {
-    console.log(params.studentId, params.jobId);
+    let applyJob = request.all();
+    console.log(params.studentId, params.jobId, applyJob);
+
     const job = await Job.find(params.jobId);
     const student = await Student.find(params.studentId);
 
     await student.studentApplications().detach().where("jobId", params.jobId);
 
     await student.studentApplications().attach([job.id], (studentApplication) => {
+      console.log("applyJob",applyJob)
       studentApplication.status = "Applied";
+      studentApplication.studentName = applyJob.studentName;
+      studentApplication.email = applyJob.email;
+      studentApplication.dob = applyJob.dob.split('T')[0];
+      studentApplication.phoneNumber = applyJob.phoneNumber;
+      studentApplication.gender = applyJob.gender;
+      studentApplication.ugUniversity = applyJob.ugUniversity;
+      studentApplication.ugDegree = applyJob.ugDegree;
+      studentApplication.ugDepartment = applyJob.ugDepartment;
+      studentApplication.ugScore = applyJob.ugScore;
+      studentApplication.graduateUniversity = applyJob.graduateUniversity;
+      studentApplication.graduateDegree = applyJob.graduateDegree;
+      studentApplication.graduateDepartment = applyJob.graduateDepartment;
+      studentApplication.graduateScore = applyJob.graduateScore;
+      studentApplication.experienceYears = applyJob.experienceYears;
+      studentApplication.expectedSalary = applyJob.expectedSalary;
+      studentApplication.employementType = applyJob.employementType;
+      studentApplication.gitHubUrl = applyJob.gitHubUrl;
+      studentApplication.linkedInUrl = applyJob.linkedInUrl;
+      studentApplication.role = applyJob.role;  
     });
 
     return "Student Applied";
