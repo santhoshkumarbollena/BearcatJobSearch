@@ -39,6 +39,7 @@
               type="primary"
               class="btn pull-right mt-3 btn-icon btn-primary"
               icon="fa fa-downlaod"
+              @click="downloadAttachment()"
               >downlaod here</base-button
             >
           </div>
@@ -426,7 +427,45 @@ export default {
         this.error = error.response ? error.response.data.error.message : error;
       });
   },
-  methods: {}
+  methods: {
+    
+    downloadAttachment() {
+      console.log(this.students.studentId)
+      this.$http({
+        method: "get",
+        url: `student/download/resume/${this.students.studentId}`,
+        responseType: "arraybuffer",
+      })
+        .then((response) => {
+          console.log("response: ", response);
+          if (response.data.byteLength) {
+            const url = window.URL.createObjectURL(
+              new Blob([response.request.response])
+            );
+            const link = document.createElement("a");
+            link.href = url;
+            const fileName = response.config.url.split("=");
+            link.setAttribute("download", `${fileName[1]}`);
+            document.body.appendChild(link);
+            link.click();
+          } else {
+            this.$bvToast.toast("unable to download the file, file not found", {
+              title: "Error",
+              variant: "danger",
+              autoHideDelay: 5000,
+            });
+          }
+        })
+        .catch((error) => {
+          this.$bvToast.toast(error.response.data.message, {
+            title: "Error",
+            variant: "danger",
+            autoHideDelay: 5000,
+          });
+        });
+    },
+
+  }
 };
 </script>
 
