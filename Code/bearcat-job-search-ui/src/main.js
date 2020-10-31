@@ -47,6 +47,14 @@ Vue.prototype.$http2 = axios.create({
   },
 });
 
+Vue.prototype.$http3 = axios.create({
+  // baseURL: process.env.API_BASE_URL,
+  baseURL: "http://localhost:3099/api/v1/",
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+});
+
 Vue.filter('formatDate', function (value, formatType) {
   console.log(value, formatType)
   if (formatType == 'date' && value) {
