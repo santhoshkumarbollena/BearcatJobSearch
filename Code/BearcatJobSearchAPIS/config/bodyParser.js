@@ -121,7 +121,7 @@ module.exports = {
     | This value can contain a boolean or an array of route patterns
     | to be autoprocessed.
     */
-    autoProcess: true,
+    autoProcess: false,
 
     /*
     |--------------------------------------------------------------------------
