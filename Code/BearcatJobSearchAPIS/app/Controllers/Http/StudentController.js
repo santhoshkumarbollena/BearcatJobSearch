@@ -71,6 +71,31 @@ class StudentController {
     });
   }
 
+  async downloadResume({ params, request, response }) {
+    console.log("download resume")
+    try {
+      const queryParam = request.all();
+      let file = await database.table('resume_files')
+        .where('studentId', params.studentId)
+
+      if (!file && !file.length) {
+        throw ("file not found");
+      }
+      file = file[0];
+      response.header('content-type', 'docx');
+      response.header('content-length', Buffer.byteLength(file.resumeFile));
+      return response.send(file.resumeFile);
+    } catch (err) {
+      return response.badRequest({
+        error: {
+          status: 400,
+          message: "unable to download file",
+          error: err
+        }
+      });
+    }
+  }
+
 
   async searchStudent({ params, request, response }) {
     const queryParam = request.all();
