@@ -45,6 +45,8 @@ Route.group(() => {
   Route.get("searchStudent", "StudentController.searchStudent");
   Route.get("getAllStudents", "StudentController.getAllStudents");
   Route.patch("update/student/:id", "StudentController.updateStudent");
+  Route.post("upload-resume/:studentId", "StudentController.uploadResume");
+  Route.get("download/resume/:studentId", "StudentController.downloadResume");
 }).prefix("api/v1/student");
 
 Route.group(() => {
