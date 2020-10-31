@@ -4,6 +4,8 @@ const _ = use("lodash");
 const Hash = use("Hash");
 const Student = use("App/Models/Student");
 const Job = use("App/Models/Job");
+const database = use('Database');
+const getStream = use('get-stream')
 
 class StudentController {
   async getStudentBasedOnId({ request, auth, response, params }) {
@@ -43,6 +45,32 @@ class StudentController {
     await student.save();
     return response.status(200).json(student);
   }
+
+  async uploadResume({ params, request, response }) {
+
+    const scenarioFiles = [];
+
+    request.multipart.file('file1', {}, async function (file) {
+      const fileContent = await getStream.buffer(file.stream);
+
+      scenarioFiles.push({
+        resumeFile: fileContent,
+        fileName: `${file.clientName}`.split(" ").join("-").toLowerCase(),
+        type: `${file.type}/${this.subtype}`,
+        studentId: params.studentId,
+      });
+    });
+
+    await request.multipart.process();
+    await database.table('resume_files')
+      .insert(scenarioFiles);
+
+    return response.ok({
+      status: 200,
+      message: "files added to the program",
+    });
+  }
+
 
   async searchStudent({ params, request, response }) {
     const queryParam = request.all();
