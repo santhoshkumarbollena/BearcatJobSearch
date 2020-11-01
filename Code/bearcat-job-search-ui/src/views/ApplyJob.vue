@@ -276,7 +276,14 @@
           <small v-if="error.expsalary" class="col-12 text-left text-danger">{{
             error.expsalary
           }}</small>
-          <input type="file" />
+         <input
+                        type="file"
+                        id="file1"
+                        name="file1"
+                        ref="file1"
+                        class="border"
+                        v-on:change="handleFile1Upload()"
+                      />
           <base-input
             type="text"
             class="mt-3"
@@ -348,6 +355,7 @@ export default {
   data() {
     return {
       loader: true,
+      file1: "",
       studentId: localStorage.getItem("id"),
       breadcrumb: [
         {
@@ -434,6 +442,54 @@ export default {
   },
 
   methods: {
+
+    handleFile1Upload() {
+      this.file1 = this.$refs.file1.files;
+    },
+    uploadResume() {
+      console.log("uploading resume")
+      let formData = new FormData();
+      if (this.file1 && this.file1.length) {
+        for (let i = 0; i < this.file1.length; i++) {
+          let newfile = this.file1[i];
+          formData.append("file1", newfile);
+        }
+        console.log(formData)
+
+        this.$http3
+          .post(
+            `student/upload-resume/${this.studentId}`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((response) => {
+            this.file1 = [];
+            document.getElementById("file1").value = "";
+            this.$root.$bvToast.toast(response.data.message, {
+              title: "Success",
+              variant: "success",
+              autoHideDelay: 5000,
+            });
+          })
+          .catch((error) => {
+            this.$bvToast.toast(error.response.data.error.message, {
+              title: "Failure",
+              variant: "danger",
+              autoHideDelay: 5000,
+            });
+          });
+      } else {
+        this.$bvToast.toast("please choose the file to add attachment", {
+          title: "Warning",
+          variant: "warning",
+          autoHideDelay: 5000,
+        });
+      }
+    },
     applyJob(job) {
       this.loader = true;
       this.$http
@@ -464,6 +520,7 @@ export default {
             variant: "danger"
           });
         });
+        this.uploadResume();
     }
   }
 };
