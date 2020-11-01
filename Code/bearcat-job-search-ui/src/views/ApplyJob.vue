@@ -454,11 +454,12 @@ export default {
           let newfile = this.file1[i];
           formData.append("file1", newfile);
         }
-        console.log(formData)
+        // console.log(formData)
+        console.log(this.jobDetails.id)
 
         this.$http3
           .post(
-            `student/upload-resume/${this.studentId}`,
+            `student/upload-resume/${this.studentId}?jobId=${this.jobDetails.id}`,
             formData,
             {
               headers: {
