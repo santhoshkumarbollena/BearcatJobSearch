@@ -67,7 +67,7 @@ class StudentController {
 
     return response.ok({
       status: 200,
-      message: "files added to the program",
+      message: "resume added to the db",
     });
   }
 
