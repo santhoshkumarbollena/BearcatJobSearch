@@ -47,8 +47,24 @@ class StudentController {
   }
 
   async uploadResume({ params, request, response }) {
-
+    const queryParam = request.all()
+    console.log(queryParam)
     const scenarioFiles = [];
+    if(queryParam && queryParam.jobId){
+      request.multipart.file('file1', {}, async function (file) {
+        const fileContent = await getStream.buffer(file.stream);
+  
+        scenarioFiles.push({
+          resumeFile: fileContent,
+          fileName: `${file.clientName}`.split(" ").join("-").toLowerCase(),
+          type: `${file.type}/${this.subtype}`,
+          jobId: queryParam.jobId,
+          studentId: params.studentId,
+        });
+      });
+    }else{
+
+    
 
     request.multipart.file('file1', {}, async function (file) {
       const fileContent = await getStream.buffer(file.stream);
@@ -60,7 +76,7 @@ class StudentController {
         studentId: params.studentId,
       });
     });
-
+  }
     await request.multipart.process();
     await database.table('resume_files')
       .insert(scenarioFiles);
@@ -69,6 +85,7 @@ class StudentController {
       status: 200,
       message: "resume added to the db",
     });
+  
   }
 
   async downloadResume({ params, request, response }) {
