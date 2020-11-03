@@ -414,7 +414,7 @@ export default {
         this.form.experienceYears = this.students.experienceYears;
         this.form.expectedSalary = this.students.expectedSalary;
         this.form.employementType = this.students.employementType;
-        this.form.gitHubUrl = this.students.gitHubUrl;
+        this.form.gitHubUrl = this.students.gitHubUrl; 
         this.form.resume = this.students.resume;
         this.githubUserId = this.students.gitHubUrl.split("/")[
           this.students.gitHubUrl.split("/").length - 1
