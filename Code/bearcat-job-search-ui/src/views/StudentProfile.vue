@@ -309,7 +309,6 @@ export default {
       this.file1 = this.$refs.file1.files;
     },
     uploadResume() {
-      console.log("uploading resume")
       let formData = new FormData();
       if (this.file1 && this.file1.length) {
         for (let i = 0; i < this.file1.length; i++) {
@@ -353,7 +352,13 @@ export default {
       }
     },
     save() {
+      const file = document.getElementById("file1").value;
+      console.log(file)
+      const fileLen = file.length;
+      const lastValue = file.substring(fileLen - 4, fileLen);
       console.log("this.form", this.form); //update/student/
+      if (lastValue == 'docx')
+      {
       this.$http
         .patch("student/update/student/" + this.studentId, this.form)
         .then(response => {
@@ -369,6 +374,14 @@ export default {
           console.log("error");
         });
         this.uploadResume();
+      }
+      else{
+           this.$bvToast.toast("upload valid resume file format (.docx)", {
+              title: "Failure",
+              variant: "danger",
+              autoHideDelay: 5000,
+            });
+        }
     }
   }
 };
