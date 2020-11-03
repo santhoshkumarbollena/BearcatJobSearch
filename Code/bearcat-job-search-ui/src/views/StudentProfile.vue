@@ -287,6 +287,7 @@ export default {
         experienceYears: "",
         expectedSalary: "",
         employementType: "",
+        linkedInUrl:"",
         resume:""
       }
     };
