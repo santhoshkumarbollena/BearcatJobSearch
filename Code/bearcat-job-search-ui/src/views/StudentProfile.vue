@@ -286,7 +286,8 @@ export default {
         graduateScore: "",
         experienceYears: "",
         expectedSalary: "",
-        employementType: ""
+        employementType: "",
+        resume:""
       }
     };
   },
@@ -359,6 +360,7 @@ export default {
       console.log("this.form", this.form); //update/student/
       if (lastValue == 'docx')
       {
+      this.form.resume = file.substring(file.lastIndexOf("\\")+1)
       this.$http
         .patch("student/update/student/" + this.studentId, this.form)
         .then(response => {
