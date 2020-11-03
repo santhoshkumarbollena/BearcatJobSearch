@@ -383,7 +383,8 @@ export default {
       ],
       form: {
         studentId: "",
-        studentName: ""
+        studentName: "",
+        resume:""
       },
       currentPage: 1
     };
@@ -396,7 +397,6 @@ export default {
       .get("student/getStudent/" + path_id)
       .then(response => {
         this.students = response.data;
-        console.log("=================" + this.students.email);
         this.form.studentId = this.students.studentId;
         this.form.studentName = this.students.studentName;
         this.form.email = this.students.email;
@@ -415,6 +415,7 @@ export default {
         this.form.expectedSalary = this.students.expectedSalary;
         this.form.employementType = this.students.employementType;
         this.form.gitHubUrl = this.students.gitHubUrl;
+        this.form.resume = this.students.resume;
         this.githubUserId = this.students.gitHubUrl.split("/")[
           this.students.gitHubUrl.split("/").length - 1
         ];
@@ -444,8 +445,8 @@ export default {
             );
             const link = document.createElement("a");
             link.href = url;
-            const fileName = response.config.url.split("=");
-            link.setAttribute("download", `${fileName[1]}`);
+            // link.setAttribute("download", `${fileName[1]}`);
+            link.download = this.form.resume;
             document.body.appendChild(link);
             link.click();
           } else {
