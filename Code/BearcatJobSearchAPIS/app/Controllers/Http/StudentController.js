@@ -92,13 +92,16 @@ class StudentController {
     console.log("download resume")
     try {
       const queryParam = request.all();
+      // console.log(params.studentId)
       let file = await database.table('resume_files')
         .where('studentId', params.studentId)
 
+        // console.log("file",file)
       if (!file && !file.length) {
         throw ("file not found");
       }
-      file = file[0];
+      console.log("Length",file[file.length-1]);
+      file = file[file.length-1];
       response.header('content-type', 'docx');
       response.header('content-length', Buffer.byteLength(file.resumeFile));
       return response.send(file.resumeFile);
