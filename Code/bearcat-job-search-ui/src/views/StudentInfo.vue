@@ -415,11 +415,13 @@ export default {
         this.form.expectedSalary = this.students.expectedSalary;
         this.form.employementType = this.students.employementType;
         this.form.gitHubUrl = this.students.gitHubUrl; 
+        this.form.linkedInUrl = this.students.linkedInUrl;
+        console.log("here is the url: "+ this.form.linkedInUrl);
         this.form.resume = this.students.resume;
         this.githubUserId = this.students.gitHubUrl.split("/")[
           this.students.gitHubUrl.split("/").length - 1
         ];
-        this.form.linkedInUrl = this.students.linkedInUrl;
+        
 
         this.loader = false;
       })

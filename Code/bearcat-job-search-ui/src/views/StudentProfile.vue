@@ -5,6 +5,7 @@
       <div class="row">
         <div class="col-md-6 v-center p-4 ">
           <h1 class="text-center">STUDENT PROFILE</h1>
+          <label for="jobId" class="font-weight-bold">Student Id:</label>
           <base-input
             type="text"
             placeholder="Student Id"
@@ -15,6 +16,7 @@
           <small v-if="error.studentId" class="col-12 text-left text-danger">{{
             error.studentId
           }}</small>
+          <label for="jobId" class="font-weight-bold">Student Name:</label>
           <base-input
             type="text"
             placeholder="Student Name"
@@ -27,6 +29,7 @@
             class="col-12 text-left text-danger"
             >{{ error.studentName }}</small
           >
+          <label for="jobId" class="font-weight-bold">Email Id:</label>
           <base-input
             type="email"
             placeholder="Email Id"
@@ -37,7 +40,7 @@
           <small v-if="error.email" class="col-12 text-left text-danger">{{
             error.email
           }}</small>
-
+          <label for="jobId" class="font-weight-bold">Phone Number:</label>
           <base-input
             type="number"
             placeholder="Phone Number"
@@ -50,6 +53,7 @@
             class="col-12 text-left text-danger"
             >{{ error.phoneNumber }}</small
           >
+          <label for="jobId" class="font-weight-bold">Gender:</label>
           <base-input
             type="gender"
             placeholder="Gender"
@@ -60,6 +64,7 @@
           <small v-if="error.gender" class="col-12 text-left text-danger">{{
             error.gender
           }}</small>
+          <label for="jobId" class="font-weight-bold">UG University:</label>
           <base-input
             type="text"
             placeholder="UG University"
@@ -72,6 +77,7 @@
             class="col-12 text-left text-danger"
             >{{ error.ugUniversity }}</small
           >
+          <label for="jobId" class="font-weight-bold">UG Degree:</label>
           <base-input
             type="text"
             placeholder="UG Degree"
@@ -82,6 +88,7 @@
           <small v-if="error.ugdegree" class="col-12 text-left text-danger">{{
             error.ugdegree
           }}</small>
+          <label for="jobId" class="font-weight-bold">UG Department:</label>
           <base-input
             type="text"
             placeholder="UG Department"
@@ -92,6 +99,7 @@
           <small v-if="error.ugdepart" class="col-12 text-left text-danger">{{
             error.ugdepart
           }}</small>
+          <label for="jobId" class="font-weight-bold">UG Score:</label>
           <base-input
             type="number"
             placeholder="UG Score"
@@ -102,6 +110,7 @@
           <small v-if="error.ugscore" class="col-12 text-left text-danger">{{
             error.ugscore
           }}</small>
+          <label for="jobId" class="font-weight-bold">Graduate University:</label>
           <base-input
             type="text"
             placeholder="Graduate University"
@@ -112,6 +121,7 @@
           <small v-if="error.graduniv" class="col-12 text-left text-danger">{{
             error.graduniv
           }}</small>
+          <label for="jobId" class="font-weight-bold">Graduate Degree:</label>
           <base-input
             type="text"
             placeholder="Graduate Degree"
@@ -122,6 +132,7 @@
           <small v-if="error.gradegre" class="col-12 text-left text-danger">{{
             error.gradegre
           }}</small>
+          <label for="jobId" class="font-weight-bold">Graduate Department:</label>
           <base-input
             type="text"
             placeholder="Graduate Department"
@@ -132,6 +143,7 @@
           <small v-if="error.graddepart" class="col-12 text-left text-danger">{{
             error.ugdepart
           }}</small>
+          <label for="jobId" class="font-weight-bold">Graduate Score:</label>
           <base-input
             type="number"
             placeholder="Graduate Score"
@@ -144,6 +156,7 @@
             class="col-12 text-left text-danger"
             >{{ error.graduateScore }}</small
           >
+          <label for="jobId" class="font-weight-bold">Experience (in yrs):</label>
           <base-input
             type="number"
             placeholder="Experience (in yrs)"
@@ -154,6 +167,7 @@
           <small v-if="error.experience" class="col-12 text-left text-danger">{{
             error.experience
           }}</small>
+          <label for="jobId" class="font-weight-bold">Expected Salary:</label>
           <base-input
             type="number"
             placeholder="Expected Salary"
@@ -164,6 +178,7 @@
           <small v-if="error.expsalary" class="col-12 text-left text-danger">{{
             error.expsalary
           }}</small>
+          <label for="jobId" class="font-weight-bold">Resume (Format: .docx):</label><br/>
           <input
                         type="file"
                         id="file1"
@@ -171,10 +186,10 @@
                         ref="file1"
                         class="border"
                         v-on:change="handleFile1Upload()"
-                      />
+                      /><br/>
+          <label for="jobId" class="font-weight-bold mt-3">Employment Type:</label>
           <base-input
             type="text"
-            class="mt-3"
             placeholder="Employment Type"
             addon-left-icon="fa fa-briefcase"
             v-model="form.employementType"
@@ -183,10 +198,9 @@
           <small v-if="error.emptype" class="col-12 text-left text-danger">{{
             error.emptype
           }}</small>
-
+          <label for="jobId" class="font-weight-bold">GitHub Url:</label>
           <base-input
             type="text"
-            class="mt-3"
             placeholder="GitHub Url"
             addon-left-icon="fa fa-briefcase"
             v-model="form.gitHubUrl"
@@ -195,10 +209,9 @@
           <small v-if="error.emptype" class="col-12 text-left text-danger">{{
             error.emptype
           }}</small>
-
+          <label for="jobId" class="font-weight-bold">LinkedIn Url:</label>
           <base-input
             type="text"
-            class="mt-3"
             placeholder="LinkedIn Url"
             addon-left-icon="fa fa-briefcase"
             v-model="form.linkedInUrl"
