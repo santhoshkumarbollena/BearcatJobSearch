@@ -17,16 +17,12 @@
               <i class="fa fa-arrow-left" /> Back
             </b-button>
             <router-link :to="{ name: 'edit-job', params: { jobId: form.id } }">
-              <b-button
-                variant="info"
-                v-if="userRole == 'admin'"
-                class="float-right"
-              >
+              <b-button variant="info" v-if="userRole == 'admin'" class="float-right">
                 <i class="fa fa-edit mr-1" /> Edit
               </b-button>
             </router-link>
           </div>
-          
+
           <div class="col-md-6 v-center border-right">
             <h3>Job Details Page</h3>
             <label for="jobId" class="font-weight-bold">Job Id:</label>
@@ -54,8 +50,7 @@
               v-model="form.jobDescription"
               readonly
               rows="4"
-            >
-            </textarea>
+            ></textarea>
 
             <label for="jobId" class="font-weight-bold">Job Type:</label>
             <base-input
@@ -88,9 +83,7 @@
               readonly
             ></base-input>
 
-            <label for="jobId" class="font-weight-bold"
-              >Organization Name:</label
-            >
+            <label for="jobId" class="font-weight-bold">Organization Name:</label>
             <base-input
               type="text"
               placeholder="Employment Type"
@@ -99,17 +92,14 @@
               readonly
             ></base-input>
 
-            <label for="jobId" class="font-weight-bold"
-              >Organization Description:</label
-            >
+            <label for="jobId" class="font-weight-bold">Organization Description:</label>
             <textarea
               class="form-control mb-3"
               placeholder="Job Description"
               v-model="form.admin_user.userOrganizationDescription"
               readonly
               rows="4"
-            >
-            </textarea>
+            ></textarea>
 
             <label for="jobId" class="font-weight-bold">Email:</label>
             <base-input
@@ -130,58 +120,35 @@
             ></base-input>
           </div>
 
-          <div
-            class="col-md-12"
-            v-if="userRole == 'admin' && appliedStudents.length > 0"
-          >
+          <div class="col-md-12" v-if="userRole == 'admin' && appliedStudents.length > 0">
             <div class="mt-3 mb-2 border-bottom">
               <h4>Applied Students</h4>
             </div>
-            <div class="">
-              <el-table
-                class="table-responsive table-flush"
-                :data="appliedStudents"
-              >
+            <div class>
+              <el-table class="table-responsive table-flush" :data="appliedStudents">
                 <el-table-column>
                   <template v-slot="{ row }">
                     <div class="media align-items-center">
                       <a href="#" class="avatar rounded-circle mr-3">
-                        <img
-                          alt="Image placeholder"
-                          :src="require(`../assets/student.jpg`)"
-                        />
+                        <img alt="Image placeholder" :src="require(`../assets/student.jpg`)" />
                       </a>
                     </div>
                   </template>
                 </el-table-column>
-                <el-table-column
-                  label="Student ID"
-                  min-width="200px"
-                  prop="name"
-                  sortable
-                >
+                <el-table-column label="Student ID" min-width="200px" prop="name" sortable>
                   <template v-slot="{ row }">
                     <div class="media align-items-center">
                       <div class="media-body mb-4 mt-4">
-                        <span class="font-weight-600 name mb-0 text-sm">
-                          {{ row.studentId }}
-                        </span>
+                        <span class="font-weight-600 name mb-0 text-sm">{{ row.studentId }}</span>
                       </div>
                     </div>
                   </template>
                 </el-table-column>
-                <el-table-column
-                  label="Student Name"
-                  prop="budget"
-                  min-width="140px"
-                  sortable
-                >
+                <el-table-column label="Student Name" prop="budget" min-width="140px" sortable>
                   <template v-slot="{ row }">
                     <div class="media align-items-center">
                       <div class="media-body">
-                        <span class="font-weight-600 name mb-0 text-sm">
-                          {{ row.studentName }}
-                        </span>
+                        <span class="font-weight-600 name mb-0 text-sm">{{ row.studentName }}</span>
                       </div>
                     </div>
                   </template>
@@ -200,17 +167,14 @@
                   </template>
                 </el-table-column>
 
-                <el-table-column
-                  label="Status"
-                  prop="completion"
-                  min-width="260px"
-                  sortable
-                >
+                <el-table-column label="Status" prop="completion" min-width="260px" sortable>
                   <template v-slot="{ row }">
                     <div class="d-flex align-items-center">
-                      <span class="completion mr-2">{{
+                      <span class="completion mr-2">
+                        {{
                         row.pivot.status
-                      }}</span>
+                        }}
+                      </span>
                     </div>
                   </template>
                 </el-table-column>
@@ -226,9 +190,7 @@
                       >
                         <base-button type="primary" size="sm">Info</base-button>
                       </router-link>
-                      <base-button type="success" class="ml-1" size="sm"
-                        >Approve</base-button
-                      >
+                      <base-button type="success" class="ml-1" size="sm">Approve</base-button>
                       <base-button type="danger" size="sm">Decline</base-button>
                     </div>
                   </template>
@@ -237,16 +199,11 @@
             </div>
           </div>
 
-          <div
-            class="col-md-12"
-            v-if="userRole == 'admin' && appliedStudents.length === 0"
-          >
+          <div class="col-md-12" v-if="userRole == 'admin' && appliedStudents.length === 0">
             <div class="mt-3 mb-2 border-bottom">
               <h4>Applied Students</h4>
             </div>
-            <div class="alert alert-warning" role="alert">
-              No students have applied for this job...!
-            </div>
+            <div class="alert alert-warning" role="alert">No students have applied for this job...!</div>
           </div>
         </div>
       </div>

@@ -8,17 +8,8 @@
       <ChatList />
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
-          <b-form-input
-            id="search"
-            class="mr-2 ml-5"
-            placeholder="Search for FAQ's"
-          ></b-form-input>
-          <b-button
-            variant="info"
-            class="my-2 my-sm-0"
-            @click="findFAQs()"
-            type="submit"
-          >
+          <b-form-input id="search" class="mr-2 ml-5" placeholder="Search for FAQ's"></b-form-input>
+          <b-button variant="info" class="my-2 my-sm-0" @click="findFAQs()" type="submit">
             <i class="fa fa-search mr-1"></i>
             Search
           </b-button>
@@ -33,13 +24,7 @@
 
     <b-container fluid>
       <b-row>
-        <b-col
-          sm="4"
-          lg="4"
-          v-for="faq in projects"
-          :key="faq.FAQQuestion"
-          class="mb-5"
-        >
+        <b-col sm="4" lg="4" v-for="faq in projects" :key="faq.FAQQuestion" class="mb-5">
           <b-card
             :title="faq.FAQQuestion"
             class="mb-2 m-auto card-1"
