@@ -26,24 +26,16 @@
       </div>
       <div class="row">
         <div class="col-md-4 v-center p-4">
-          <div
-            class="offset-md-2"
-            style="position:relative; top:10px; right:100px"
-          >
-            <label>
-              <h4>Download Resume</h4>
-            </label>
-          </div>
           <div class="offset-md-4" style="position:relative; right:210px">
             <base-button
               type="primary"
               class="btn pull-right mt-3 btn-icon btn-primary"
               icon="fa fa-downlaod"
               @click="downloadAttachment()"
-              >downlaod here</base-button
+              >Download Resume</base-button
             >
           </div>
-          <div class="offset-md-8" style="position:relative; right:210px">
+          <div class="offset-md-4" style="position:relative; right:210px">
             <router-link
               :to="{
                 name: 'student-github',
@@ -54,9 +46,18 @@
                 type="primary"
                 class="btn pull-right mt-3 btn-icon btn-primary"
                 icon="fa fa-downlaod"
-                >GitHub</base-button
+                >GitHub Profile</base-button
               >
             </router-link>
+          </div>
+          <div class="offset-md-4" style="position:relative; right:210px">
+            <base-button
+              type="primary"
+              class="btn pull-right mt-3 btn-icon btn-primary"
+              icon="fa fa-downlaod"
+              @click="linkedinBtn()"
+              >LinkedIn Profile</base-button
+            >
           </div>
         </div>
         <div class="col-md-8 v-center p-4">
@@ -431,7 +432,10 @@ export default {
       });
   },
   methods: {
-    
+    linkedinBtn(){
+      window.open(this.form.linkedInUrl,'_blank')
+      // location.href._blank = this.form.linkedInUrl;
+    },
     downloadAttachment() {
       console.log(this.students.studentId)
       this.$http({
@@ -467,7 +471,7 @@ export default {
           });
         });
     },
-
+    
   }
 };
 </script>
