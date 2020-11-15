@@ -190,8 +190,8 @@
                       >
                         <base-button type="primary" size="sm">Info</base-button>
                       </router-link>
-                      <base-button type="success" class="ml-1" size="sm">Approve</base-button>
-                      <base-button type="danger" size="sm">Decline</base-button>
+                      <base-button type="success" @click="approveStudent(row.studentId)" class="ml-1" size="sm">Approve</base-button>
+                      <base-button type="danger" @click="declineStudent(row.studentId)"size="sm">Decline</base-button>
                     </div>
                   </template>
                 </el-table-column>
@@ -293,7 +293,107 @@ export default {
         this.loader = false;
       });
   },
-  methods: {}
+  methods: {
+    approveStudent(studentId){
+      this.loader = true;
+    let url = document.URL;
+    const path_id = url.substring(url.lastIndexOf("/") + 1);
+      console.log(studentId);
+      console.log(this.form.id)
+      this.$http
+      .get("studentApplication/approve-studentJob/" + studentId+"/"+this.form.id)
+      .then(response => {
+        if (response.data && response.data.length) {
+         
+          this.loader = false;
+        }
+      })
+      .catch(error => {
+        this.endResult = error.response
+          ? error.response.data.error.message
+          : error;
+        this.loader = false;
+      });
+       this.$http
+      .get("job/getJob/" + path_id)
+      .then(response => {
+        if (response.data && response.data.length) {
+          this.form = response.data[0];
+        }
+      })
+      .catch(error => {
+        this.endResult = error.response
+          ? error.response.data.error.message
+          : error;
+      });
+
+    this.$http
+      .get("studentApplication/get/student/applied/jobs/" + path_id)
+      .then(response => {
+        if (response.data && response.data.length) {
+          this.appliedStudents = response.data[0].jobApplications;
+          console.log(this.appliedStudents);
+          this.loader = false;
+        }
+      })
+      .catch(error => {
+        this.endResult = error.response
+          ? error.response.data.error.message
+          : error;
+        this.loader = false;
+      });
+    },
+    declineStudent(studentId){
+      this.loader = true;
+    let url = document.URL;
+    const path_id = url.substring(url.lastIndexOf("/") + 1);
+      console.log(studentId);
+      console.log(this.form.id)
+      this.$http
+      .get("studentApplication/decline-studentJob/" + studentId+"/"+this.form.id)
+      .then(response => {
+        if (response.data && response.data.length) {
+         
+          this.loader = false;
+        }
+      })
+      .catch(error => {
+        this.endResult = error.response
+          ? error.response.data.error.message
+          : error;
+        this.loader = false;
+      });
+       this.$http
+      .get("job/getJob/" + path_id)
+      .then(response => {
+        if (response.data && response.data.length) {
+          this.form = response.data[0];
+        }
+      })
+      .catch(error => {
+        this.endResult = error.response
+          ? error.response.data.error.message
+          : error;
+      });
+
+    this.$http
+      .get("studentApplication/get/student/applied/jobs/" + path_id)
+      .then(response => {
+        if (response.data && response.data.length) {
+          this.appliedStudents = response.data[0].jobApplications;
+          console.log(this.appliedStudents);
+          this.loader = false;
+        }
+      })
+      .catch(error => {
+        this.endResult = error.response
+          ? error.response.data.error.message
+          : error;
+        this.loader = false;
+      });
+    }
+
+  }
 };
 </script>
 
