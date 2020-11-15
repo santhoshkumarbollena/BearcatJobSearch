@@ -41,7 +41,7 @@
                 params: { githubUserId: githubUserId }
               }"
             >
-              <base-button
+              <base-button v-if="githubUserId"
                 type="primary"
                 class="btn pull-right mt-3 btn-icon btn-primary"
                 icon="fa fa-downlaod"
@@ -253,11 +253,11 @@ export default {
       currentPage: 1
     };
   },
-  mounted() {
+  async mounted() {
     this.loader = false;
     let url = document.URL;
     const path_id = url.substring(url.lastIndexOf("/") + 1);
-    this.$http
+   await this.$http
       .get("student/getStudent/" + path_id)
       .then(response => {
         this.students = response.data;
@@ -292,6 +292,8 @@ export default {
         this.loader = false;
         this.error = error.response ? error.response.data.error.message : error;
       });
+
+      console.log("this.githubUserId - ",this.githubUserId)
   },
   methods: {
     linkedinBtn(){
