@@ -50,7 +50,7 @@
             </router-link>
           </div>
           <div class="offset-md-4" style="position:relative; right:210px">
-            <base-button
+            <base-button v-if="this.form.linkedInUrl"
               type="primary"
               class="btn pull-right mt-3 btn-icon btn-primary"
               icon="fa fa-downlaod"
