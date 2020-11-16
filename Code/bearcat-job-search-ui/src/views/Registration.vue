@@ -13,7 +13,9 @@
             required
           ></base-input>
           <!-- <Loader v-if="loader"></Loader> -->
-          <small v-if="error.studentId" class="col-12 text-left text-danger">{{error.studentId}}</small>
+          <small v-if="error.studentId" class="col-12 text-left text-danger">{{
+            error.studentId
+          }}</small>
           <base-input
             type="text"
             placeholder="Name"
@@ -21,7 +23,11 @@
             v-model="form.studentName"
             required
           ></base-input>
-          <small v-if="error.studentName" class="col-12 text-left text-danger">{{error.studentName}}</small>
+          <small
+            v-if="error.studentName"
+            class="col-12 text-left text-danger"
+            >{{ error.studentName }}</small
+          >
           <base-input
             type="number"
             placeholder="Phone Number"
@@ -30,19 +36,25 @@
             addon-left-icon="fa fa-phone"
             required
           ></base-input>
-          <small v-if="error.phoneNumber" class="col-12 text-left text-danger">{{error.phoneNumber}}</small>
+          <small
+            v-if="error.phoneNumber"
+            class="col-12 text-left text-danger"
+            >{{ error.phoneNumber }}</small
+          >
           <base-input addon-left-icon="fa fa-calendar">
             <flat-picker
-              slot-scope="{focus, blur}"
+              slot-scope="{ focus, blur }"
               @on-open="focus"
               @on-close="blur"
-              :config="{allowInput: true}"
+              :config="{ allowInput: true }"
               class="form-control datepicker"
               v-model="form.dob"
               placeholder="DOB"
             ></flat-picker>
           </base-input>
-          <small v-if="error.dob" class="col-12 text-left text-danger">{{error.dob}}</small>
+          <small v-if="error.dob" class="col-12 text-left text-danger">{{
+            error.dob
+          }}</small>
           <b-form-radio-group
             v-model="form.gender"
             :options="options"
@@ -58,7 +70,9 @@
             v-model="form.email"
             required
           ></base-input>
-          <small v-if="error.email" class="col-12 text-left text-danger">{{error.email}}</small>
+          <small v-if="error.email" class="col-12 text-left text-danger">{{
+            error.email
+          }}</small>
           <base-input
             type="password"
             placeholder="Password"
@@ -66,7 +80,9 @@
             v-model="form.password"
             required
           ></base-input>
-          <small v-if="error.password" class="col-12 text-left text-danger">{{error.password}}</small>
+          <small v-if="error.password" class="col-12 text-left text-danger">{{
+            error.password
+          }}</small>
           <base-input
             type="password"
             placeholder="Confirm Password"
@@ -77,21 +93,26 @@
           <small
             v-if="error.confirmPassword"
             class="col-12 text-left text-danger"
-          >{{error.confirmPassword}}</small>
+            >{{ error.confirmPassword }}</small
+          >
           <base-button
             type="success"
             class="pull-left mt-3"
             icon="fa fa-registered"
             @click.prevent.stop="register"
-          >Register</base-button>
+            >Register</base-button
+          >
           <router-link to="/login">
             <base-button
               type="primary"
               class="btn pull-right mt-3 btn-icon btn-primary"
               icon="fa fa-sign-in"
-            >Login</base-button>
+              >Login</base-button
+            >
           </router-link>
-          <div class="alert alert-danger" role="alert" v-if="endResult">{{endResult}}</div>
+          <div class="alert alert-danger" role="alert" v-if="endResult">
+            {{ endResult }}
+          </div>
         </div>
       </div>
     </div>
@@ -112,7 +133,7 @@ export default {
         password: "",
         phoneNumber: "",
         gender: "",
-        confirmPassword: ""
+        confirmPassword: "",
       },
       form: {
         studentId: "",
@@ -121,19 +142,19 @@ export default {
         password: "",
         phoneNumber: "",
         gender: "Male",
-        dob: ""
+        dob: "",
       },
       confirmPassword: "",
       status: "not_accepted",
       endResult: "",
       options: [
         { item: "Male", name: "Male" },
-        { item: "Female", name: "Female" }
-      ]
+        { item: "Female", name: "Female" },
+      ],
     };
   },
   components: {
-    flatPicker
+    flatPicker,
   },
   methods: {
     register() {
@@ -179,18 +200,22 @@ export default {
 
       this.$http
         .post("registration", this.form)
-        .then(response => {
+        .then((response) => {
           this.endResult = "Student register successfully...!!";
-          alert("Student registered succesfully");
-          window.location = "http://localhost:8080/#/login";
+          this.$root.$bvToast.toast(`Student register successfully...!!`, {
+            title: "Success",
+            autoHideDelay: 5000,
+            variant: "success",
+          });
+          this.$router.push({ name: "login" });
         })
-        .catch(error => {
+        .catch((error) => {
           this.endResult = error.response
             ? error.response.data.error.message
             : error;
         });
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
