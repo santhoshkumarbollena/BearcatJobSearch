@@ -60,8 +60,24 @@
             </b-card-text>
 
             <b-card-text
-              class="bg-green text-white"
+              class="bg-warning text-white"
               v-if="job.pivot.status == 'Applied'"
+            >
+              Status:
+              <span class="fw-650 ml-1">{{ job.pivot.status }}</span>
+            </b-card-text>
+
+            <b-card-text
+              class="bg-green text-white"
+              v-if="job.pivot.status == 'Approved'"
+            >
+              Status:
+              <span class="fw-650 ml-1">{{ job.pivot.status }}</span>
+            </b-card-text>
+
+            <b-card-text
+              class="bg-danger text-white"
+              v-if="job.pivot.status == 'Declined'"
             >
               Status:
               <span class="fw-650 ml-1">{{ job.pivot.status }}</span>
