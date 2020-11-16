@@ -3,11 +3,14 @@ import _ from "lodash";
 import axios from "axios";
 import Ws from "@adonisjs/websocket-client/index";
 
+// configure do
+require('dotenv').config()
+
 // axios.defaults.baseURL = process.env.API_BASE_URL;
-axios.defaults.baseURL = "http://localhost:3099/api/v1";
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL || "http://localhost:3000/api/v1";
 
 // setting up web-socket provider
-const ws = Ws("ws://localhost:3099");
+const ws = Ws("ws://localhost:3000");
 ws.connect();
 ws.on("open", () => {
   console.log("--------web socket connection is open");
