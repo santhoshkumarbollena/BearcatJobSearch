@@ -477,18 +477,18 @@ export default {
             });
           })
           .catch((error) => {
-            this.$bvToast.toast(error.response.data.error.message, {
-              title: "Failure",
-              variant: "danger",
-              autoHideDelay: 5000,
-            });
+            // this.$bvToast.toast(error.response.data.error.message, {
+            //   title: "Failure",
+            //   variant: "danger",
+            //   autoHideDelay: 5000,
+            // });
           });
       } else {
-        this.$bvToast.toast("please choose the file to add attachment", {
-          title: "Warning",
-          variant: "warning",
-          autoHideDelay: 5000,
-        });
+        // this.$bvToast.toast("please choose the file to add attachment", {
+        //   title: "Warning",
+        //   variant: "warning",
+        //   autoHideDelay: 5000,
+        // });
       }
     },
     applyJob(job) {
