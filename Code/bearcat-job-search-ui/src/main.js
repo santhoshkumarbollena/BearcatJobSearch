@@ -15,6 +15,9 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Argon from "./plugins/argon-kit";
 import "./registerServiceWorker";
 
+// configure do
+require('dotenv').config()
+
 Vue.config.productionTip = false;
 
 library.add(faSpinner);
@@ -31,7 +34,7 @@ Vue.use(Argon);
 // Integrating axios with vue as $http
 Vue.prototype.$http = axios.create({
   // baseURL: process.env.API_BASE_URL,
-  baseURL: "http://localhost:3099/api/v1/",
+  baseURL: process.env.VUE_APP_API_BASE_URL || "http://localhost:3000/api/v1/",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -39,8 +42,7 @@ Vue.prototype.$http = axios.create({
 });
 
 Vue.prototype.$http2 = axios.create({
-  // baseURL: process.env.API_BASE_URL,
-  baseURL: "",
+  baseURL: process.env.VUE_APP_API_BASE_URL || "http://localhost:3000/api/v1/",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/vnd.github.inertia-preview+json",
@@ -48,8 +50,7 @@ Vue.prototype.$http2 = axios.create({
 });
 
 Vue.prototype.$http3 = axios.create({
-  // baseURL: process.env.API_BASE_URL,
-  baseURL: "http://localhost:3099/api/v1/",
+  baseURL: process.env.VUE_APP_API_BASE_URL || "http://localhost:3000/api/v1/",
   headers: {
     "Content-Type": "multipart/form-data",
   },
