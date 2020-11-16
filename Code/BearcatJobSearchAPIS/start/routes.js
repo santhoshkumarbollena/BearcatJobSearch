@@ -59,6 +59,14 @@ Route.group(() => {
     "StudentApplicationController.StudentGotRejected"
   );
   Route.get(
+    "approve-studentJob/:studentId/:jobId",
+    "StudentApplicationController.approveStudentJob"
+  );
+  Route.get(
+    "decline-studentJob/:studentId/:jobId",
+    "StudentApplicationController.declineStudentJob"
+  );
+  Route.get(
     "StudentGotApproved/:studentId/:jobId",
     "StudentApplicationController.StudentGotApproved"
   );

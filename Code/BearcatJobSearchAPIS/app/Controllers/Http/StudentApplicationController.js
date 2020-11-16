@@ -43,6 +43,32 @@ class StudentApplicationController {
     return "Student Applied";
   }
 
+  async approveStudentJob({ request, auth, response, params }) {
+    try {
+     let studentApplication =  await StudentApplication.query()
+     .update({ status: 'Approved'})
+      .where("jobId",params.jobId)
+      .andWhere("studentId",params.studentId);
+     
+      
+      return response.status(200).json("Approved");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async declineStudentJob({ request, auth, response, params }) {
+    try {
+     let studentApplication =  await StudentApplication.query()
+     .update({ status: 'Declined'})
+      .where("jobId",params.jobId)
+      .andWhere("studentId",params.studentId);
+     
+      
+      return response.status(200).json("Declined");
+    } catch (err) {
+      console.log(err);
+    }
+  }
   async getStudentAppliedJobs({ request, auth, response, params }) {
     console.log(params.studentId);
     const appliedJobs = await Job.query()

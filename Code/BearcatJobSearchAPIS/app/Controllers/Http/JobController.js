@@ -16,6 +16,7 @@ class JobController {
     }
   }
 
+
   async getJobBasedOnId({ request, auth, response, params }) {
     const job = await Job.query()
       .where("id", params.jobId)
