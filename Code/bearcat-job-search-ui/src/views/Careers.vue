@@ -44,7 +44,7 @@
             :img-src="images[(index % 6) + '']"
             img-alt="logo"
             img-top
-            style="max-width: 22rem;"
+            style="max-width: 22rem"
           >
             <b-card-text class="mb-0">
               Description:
@@ -134,17 +134,17 @@ export default {
   components: {
     ChatList,
     SubHeader,
-    Loader
+    Loader,
   },
   data() {
     return {
       images: {
-        "0": require(`../assets/1.png`),
-        "1": require(`../assets/2.jpg`),
-        "2": require(`../assets/3.jpg`),
-        "3": require(`../assets/4.jpg`),
-        "4": require(`../assets/5.jpg`),
-        "5": require(`../assets/6.png`)
+        0: require(`../assets/1.png`),
+        1: require(`../assets/2.jpg`),
+        2: require(`../assets/3.jpg`),
+        3: require(`../assets/4.jpg`),
+        4: require(`../assets/5.jpg`),
+        5: require(`../assets/6.png`),
       },
       loader: true,
       userRole: localStorage.getItem("role"),
@@ -155,20 +155,20 @@ export default {
       breadcrumb: [
         {
           text: "Careers",
-          href: "/careers"
-        }
-      ]
+          href: "/careers",
+        },
+      ],
     };
   },
   mounted() {
     this.loader = false;
     this.$http
       .get("studentApplication/getStudentAppliedJobs/" + this.studentId)
-      .then(response => {
+      .then((response) => {
         let appliedJob = [];
         let allJobs = response.data;
 
-        allJobs.map(job => {
+        allJobs.map((job) => {
           if (job.jobApplications && job.jobApplications.length) {
             let postJob = job.jobApplications[0];
             postJob.id = job.id;
@@ -183,7 +183,7 @@ export default {
         this.jobs = appliedJob;
         this.loader = false;
       })
-      .catch(error => {
+      .catch((error) => {
         this.loader = false;
         this.error = error.response ? error.response.data.error.message : error;
       });
@@ -201,11 +201,26 @@ export default {
             "/search/" +
             this.search
         )
-        .then(response => {
-          this.jobs = response.data;
+        .then((response) => {
+          let appliedJob = [];
+          let allJobs = response.data;
+
+          allJobs.map((job) => {
+            if (job.jobApplications && job.jobApplications.length) {
+              let postJob = job.jobApplications[0];
+              postJob.id = job.id;
+              postJob.jobTitle = job.jobTitle;
+              postJob.jobDescription = job.jobDescription;
+              postJob.employmentType = job.employmentType;
+              postJob.salary = job.salary;
+              appliedJob.push(postJob);
+            }
+          });
+
+          this.jobs = appliedJob;
           this.loader = false;
         })
-        .catch(error => {
+        .catch((error) => {
           this.loader = false;
           this.error = error.response
             ? error.response.data.error.message
@@ -222,17 +237,17 @@ export default {
             jobId +
             "/Cancel"
         )
-        .then(response => {
+        .then((response) => {
           this.$router.go();
         })
-        .catch(error => {
+        .catch((error) => {
           this.loader = false;
           this.error = error.response
             ? error.response.data.error.message
             : error;
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

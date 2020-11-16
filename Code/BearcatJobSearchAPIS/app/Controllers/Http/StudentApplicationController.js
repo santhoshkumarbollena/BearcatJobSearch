@@ -89,7 +89,6 @@ class StudentApplicationController {
       .orWhere("jobDescription", "like", "%" + params.search + "%")
       .with("jobApplications", (builder) => {
         builder
-          .where("student_applications.status", "Applied")
           .where("student_applications.studentId", params.studentId);
       })
       .fetch();
